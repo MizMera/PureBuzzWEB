@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apiary Overview</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="bg-light p-5">
+    <header>
+        <img src="logo.ico" alt="Logo">
+        <h1>Apiary Overview</h1>
+    </header>
+    <main class="container p-4 rounded shadow-sm">
+        <table id="apiaryTable"class="table table-bordered table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>Apiaries</th>
+                    <th>Assigned Beekeeper</th>
+                    <th>Location</th>
+                    <th>Coordinates</th>
+                    <th>Date</th>
+                    <th>Weather</th>
+                    <th>Hive Count</th>
+                    <th>Observation</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <button class="btn btn-primary add-apiary mt-4" onclick="addApiary()">Add Apiary</button>
+    </main>
+
+    <script>
+        const apiaryData = [
+            {
+                apiary: "Apiary 1",
+                beekeeper: "Mahdi Ben omor",
+                location: "Orchard Field",
+                coordinates: "35.6895° N, 139.6917° E",
+                date: "2024-11-12",
+                weather: "Sunny",
+                hiveCount: 10,
+                observation: "All hives are healthy"
+            },
+            {
+                apiary: "Apiary 2",
+                beekeeper: "Ella Derouiche",
+                location: "Mountain Valley",
+                coordinates: "36.2048° N, 138.2529° E",
+                date: "2024-11-11",
+                weather: "Cloudy",
+                hiveCount: 8,
+                observation: "Observed mild activity"
+            },
+            {
+                apiary: "Apiary 3",
+                beekeeper: "Youssef Ben Othmane",
+                location: "Riverside Meadow",
+                coordinates: "34.6937° N, 135.5023° E",
+                date: "2024-11-10",
+                weather: "Rainy",
+                hiveCount: 12,
+                observation: "Some hives need maintenance"
+            }
+        ];
+
+        function populateTable() {
+            const tableBody = document.querySelector("#apiaryTable tbody");
+            apiaryData.forEach(apiary => {
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td>${apiary.apiary}</td>
+                    <td>${apiary.beekeeper}</td>
+                    <td>${apiary.location}</td>
+                    <td>${apiary.coordinates}</td>
+                    <td>${apiary.date}</td>
+                    <td>${apiary.weather}</td>
+                    <td>${apiary.hiveCount}</td>
+                    <td>${apiary.observation}</td>
+                    <td>
+                        <button class="btn btn-primary add-apiary mt-4" onclick="editApiary()">Edit</button>
+                        <button class="btn btn-primary add-apiary mt-4" onclick="deleteApiary()">Delete</button>
+                    </td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        function editApiary() {
+             alert("Function to edit the Apiary");
+        }
+        function deleteApiary() {
+            alert("Function to delete the Apiary");
+        }
+        function addApiary() {
+            alert("Function to add new Apiary");
+        }
+        window.onload = populateTable;
+    </script>
+</body>
+</html>
