@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout Page</title>
+  <link rel="stylesheet" href="all.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Section with Logo and Welcome Message -->
+    <div class="header">
+      <a class="navbar-brand" href="file:///C:/Users/merya/OneDrive/Desktop/projet%20web/page/TEMPLATE%20FOR%20REFENCE/buzzpage.html">
+          <img src="PureBuzzLogo.png" alt="PureBuzz logo" />
+      </a>
+      <div class="welcome-message">
+          <h1 class="welcome-text">Review Your PureBuzz Cart</h1>
+          <h3 class="welcome-sub-text">Double-check your favorite honey, bee products, and more before completing your order. Pure and natural, directly from our hive to yours!</h3>
+      </div>
+  </div>
+  
+  <!-- Progress Indicator -->
+  <div class="progress-indicator">
+    <span class="step">
+      <span class="step-number">1</span> CART
+    </span>
+    <span class="separator"> &gt; </span>
+    <span class="step active">
+      <span class="step-number">2</span> ORDER DETAILS
+    </span>
+    <span class="separator"> &gt; </span>
+    <span class="step">
+      <span class="step-number">3</span> ORDER COMPLETED
+    </span>
+  </div>
+
+  <!-- Billing Details Form -->
+<div class="checkout-container">
+  <div class="billing-details">
+    <h2>BILLING DETAILS</h2>
+    <form id="billing-form">
+      <label for="first-name">First Name *</label>
+      <input type="text" id="first-name" placeholder="First Name" required>
+      <span id="firstNameError" class="error-message"></span>
+
+      <label for="last-name">Last Name *</label>
+      <input type="text" id="last-name" placeholder="Last Name" required>
+      <span id="lastNameError" class="error-message"></span>
+
+      <label for="country">Country/Region *</label>
+      <input type="text" id="country" placeholder="Country/Region" required>
+      <span id="countryError" class="error-message"></span>
+
+      <label for="address">Address *</label>
+      <input type="text" id="address" placeholder="Street address and street name" required>
+      <span id="addressError" class="error-message"></span>
+
+      <label for="city">City *</label>
+      <input type="text" id="city" placeholder="City" required>
+      <span id="cityError" class="error-message"></span>
+
+      <label for="governorate">Governorate *</label>
+      <input type="text" id="governorate" placeholder="Governorate" required>
+      <span id="governorateError" class="error-message"></span>
+
+      <label for="phone">Phone *</label>
+      <input type="tel" id="phone" placeholder="Phone" required>
+      <span id="phoneError" class="error-message"></span>
+
+      <label for="email">Email (optional)</label>
+      <input type="email" id="email" placeholder="Email">
+      <span id="emailError" class="error-message"></span>
+    </form>
+  </div>
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+      <h2>YOUR ORDER</h2>
+      <table>
+        <tr>
+          <td>Product</td>
+          <td>Subtotal</td>
+        </tr>
+        <tr>
+          <td>Lip Balm × 1</td>
+          <td>34.900 TND</td>
+        </tr>
+        <tr>
+          <td>Subtotal</td>
+          <td>34.900 TND</td>
+        </tr>
+        <tr>
+          <td>Shipping</td>
+          <td>Home delivery across Tunisia (48 business hours): 4.500 TND</td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td><strong>39.400 TND</strong></td>
+        </tr>
+      </table>
+      <section id="shipping-method">
+        <p>Shipping Method</p>
+        <div class="shipping-options">
+          <label><input type="radio" name="shipping" value="standard" checked> Standard Shipping</label>
+          <label><input type="radio" name="shipping" value="express"> Express Shipping</label>
+        </div>
+      </section>
+
+      <section id="payment-info">
+        <p>Payment Information</p>
+        <input type="text" placeholder="Credit Card Number" required>
+        <span id="cardNumberError" class="error-message"></span>
+        <br>
+        <input type="text" placeholder="Expiration Date (MM/YY)" required>
+        <span id="expirationDateError" class="error-message"></span>
+        <br>
+        <input type="text" placeholder="CVV" required>
+        <span id="cvvError" class="error-message"></span>
+        <br>
+        <label><input type="radio" name="payment" value="credit" checked> Credit Card</label>
+        <label><input type="radio" name="payment" value="paypal"> PayPal</label>
+      </section>
+      
+      <a class="place-order" href="file:///C:/Users/merya/OneDrive/Desktop/projet%20web/new/try.html">
+        <button id="place-order">PLACE ORDER</button>
+   </a>
+    </div>
+  </div>
+
+   <!-- Footer -->
+   <footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">PureBuzz &copy; 2024</span>
+      <span class="text-muted d-block text-center text-sm-right d-sm-inline-block">Honey, Beekeeping & Bee Essentials</span>
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+<script src="checkcom.js"></script>
+</body>
+</html>
