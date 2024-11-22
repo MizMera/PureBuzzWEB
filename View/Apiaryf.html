@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to user Page</title>
+    <link rel="stylesheet" href="../View/style.css">
+</head>
+<body class="apiary bg-light p-5">
+    <header>
+        <img src="../assets/logo.ico" alt="Logo">
+        <h1>Apiary overview</h1>
+    </header>
+    <main class="container p-4 rounded shadow-sm">
+        <table id="apiaryTable" class="table table-bordered table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>Apiary Name</th>
+                    <th>Assigned Beekeeper</th>
+                    <th>Location</th>
+                    <th>Coordinates</th>
+                    <th>Date</th>
+                    <th>Weather</th>
+                    <th>Hive Count</th>
+                    <th>Observation</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </main>
+
+    <script>
+        // Fetch harvest records on page load
+        window.onload = fetchApiaries;
+
+        function fetchApiaries() {
+            fetch('apiary_record.php') // Make sure this is the correct URL for fetching data
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error('Error:', data.error);
+                        alert('Error fetching records: ' + data.error);
+                    } else if (data.message) {
+                        alert(data.message); // No records found
+                    } else {
+                        const tableBody = document.querySelector("#apiaryTable tbody");
+                        tableBody.innerHTML = ''; // Clear table body before appending new rows
+                        data.forEach(record => {
+                            const row = document.createElement("tr");
+                            row.setAttribute("data-id", record.id); // Add data-id to the row
+                            row.innerHTML = `
+                            <td class="editable" data-field="apiaryName">${record.apiaryName}</td>
+                            <td class="editable" data-field="beekeeper">${record.beekeeper}</td>
+                            <td class="editable" data-field="location">${record.location}</td>
+                            <td class="editable" data-field="coordinates">${record.coordinates}</td>
+                            <td class="editable" data-field="date">${record.date}</td>
+                            <td class="editable" data-field="weather">${record.weather}</td>
+                            <td class="editable" data-field="hiveCount">${record.hiveCount}</td>
+                            <td class="editable" data-field="observation">${record.observation}</td>
+                               
+                            `;
+                            tableBody.appendChild(row);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching harvests:', error);
+                    alert('There was an error fetching the records.');
+                });
+        }
+
+      
+    </script>
+
+</body>
+</html>
