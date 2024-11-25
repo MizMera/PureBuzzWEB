@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claims Submission</title>
+
+    <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+
+    <!-- Link to Font Awesome (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+
+    <style>
+        .navbar {
+            z-index: 1030;
+            /* Ensure the navbar has a higher stack order */
+        }
+
+        .sidebar {
+            background-color: #f8f9fa;
+            /* Light background for sidebar */
+            height: 100vh;
+            /* Full height sidebar */
+            padding: 10px;
+            /* Add padding */
+        }
+
+        .main-content {
+            padding: 20px;
+            /* Add padding to the main content */
+            padding-top: 100px;
+            /* Add top padding to avoid overlap with navbar */
+            min-height: calc(100vh - 100px);
+            /* Ensures the main content area takes up remaining space */
+        }
+
+        footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            background-color: #f8f9fa;
+            /* Similar styling to sidebar */
+            padding: 10px 0;
+            /* Add padding for footer */
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="ala">
+        <header class="container-scroller">
+            <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+                <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+                    <div class="me-3">
+                        <button class="navbar-toggler navbar-toggler align-self-center" type="button"
+                            data-bs-toggle="minimize">
+                            <span class="icon-menu"></span>
+                        </button>
+                    </div>
+                    <div>
+                        <a class="navbar-brand brand-logo" href="index.html">
+                            <img src="logo.png" style="height: 80px;" alt="Company Logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="navbar-menu-wrapper d-flex align-items-top">
+                    <ul class="navbar-nav">
+                        <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+                            <h1 style="margin-left: 500px;" class="welcome-text">Submit a New Claim
+                            </h1>
+
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Your Navbar Items -->
+                    </ul>
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                        data-bs-toggle="offcanvas">
+                        <span class="mdi mdi-menu"></span>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <div style="margin-top: 100px;" class="d-flex">
+
+            <!-- Sidebar -->
+            <nav class="sidebar">
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Orders.html">Orders</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Submit Claim</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main Content -->
+            <div class="container main-content">
+                <section class="claim-form-section">
+                    <form class="claim-form" id="claimForm">
+                        <div class="form-group">
+                            <label for="user-name" class="form-label">User Name</label>
+                            <input type="text" id="user-name" name="user_name" class="form-control"
+                                placeholder="Enter your name" required autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="product" class="form-label">Product</label>
+                            <input type="text" id="product" name="product" class="form-control"
+                                placeholder="Enter the product name" required autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="claim-details" class="form-label">Claim Details</label>
+                            <textarea id="claim-details" name="claim_details" class="form-control" rows="4"
+                                placeholder="Describe your claim" required></textarea>
+                        </div>
+                        <div class="form-actions d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary">Submit Claim</button>
+                            <button type="reset" class="btn btn-secondary">Reset</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-auto py-3">
+        <div class="container-fluid">
+            <p class="text-muted">&copy; 2024 PureBuzz. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+<script src="index.js"></script>
+
+</html>
