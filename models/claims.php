@@ -48,18 +48,29 @@ class ClaimModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function updateClaim($claimId, $userName, $product, $claimDetails, $status)
+    public function updateClaim($claimId, $userName, $product, $claimDetails)
     {
+        $CI = (int)$claimId;
         $query = "UPDATE claims 
-                  SET user_id = (SELECT id FROM users WHERE name = ? LIMIT 1), 
+                  SET user_id = (SELECT id FROM users WHERE email = ? LIMIT 1), 
                       order_id = (SELECT id FROM orders WHERE name = ? LIMIT 1), 
-                      details = ?, 
+                      details = ?
                   WHERE id = ?";
 
         $stmt = $this->db->prepare($query);
 
-        if (!$stmt->execute([$userName, $product, $claimDetails, $claimId])) {
+        if (!$stmt->execute([$userName, $product, $claimDetails, $CI])) {
             throw new Exception("Failed to update claim.");
         }
+    }
+    public function deleteClaim($claimID)
+    {
+        $id = (int)$claimID;
+        $query = "DELETE FROM claims WHERE id = :claimID";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':claimID', $claimID);
+
+        $stmt->execute();
     }
 }

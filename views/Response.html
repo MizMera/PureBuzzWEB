@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respond to Claim</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-section {
+            margin-top: 20px;
+        }
+
+        .text {
+            width: 100%;
+            height: 150px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Respond to Claim</h1>
+
+        <!-- Claim Details Section -->
+        <section class="claim-details">
+            <h3>Claim Details</h3>
+            <p><strong>Claim ID:</strong> <span id="claim-id">Loading...</span></p>
+            <p><strong>User Name:</strong> <span id="user-name">Loading...</span></p>
+            <p><strong>Product:</strong> <span id="product">Loading...</span></p>
+            <p><strong>Status:</strong> <span id="status">Loading...</span></p>
+            <p><strong>Details:</strong> <span id="details">Loading...</span></p>
+            <p><strong>Created_at:</strong> <span id="created_at">Loading...</span></p>
+        </section>
+
+        <!-- Response Form Section -->
+        <section class="form-section">
+            <h3>Submit Your Response</h3>
+            <form id="responseForm">
+                <input type="hidden" id="hidden-claim-id" name="claim_id" value="">
+                <div class="mb-3">
+                    <textarea class="text" id="response" name="response" required
+                        placeholder="Type your response here..."></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Response</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        // Extract the Claim ID and other details from the URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const claimID = urlParams.get('claim-id');
+        const userName = urlParams.get('user-name');
+        const product = urlParams.get('product');
+        const status = urlParams.get('status');
+        const details = urlParams.get('details');
+        const created_at = urlParams.get('created_at');
+
+        // Update the claim details on the page
+        document.getElementById('claim-id').textContent = `#${claimID || 'N/A'}`;
+        document.getElementById('user-name').textContent = userName || 'N/A';
+        document.getElementById('product').textContent = product || 'N/A';
+        document.getElementById('status').textContent = status || 'N/A';
+        document.getElementById('details').textContent = details || 'N/A';
+        document.getElementById('created_at').textContent = created_at || 'N/A';
+
+        // Set the hidden claim ID value
+        document.getElementById("hidden-claim-id").value = claimID || ''; // Set the value for the hidden input
+
+        document.getElementById("responseForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const formData = {
+                claim_id: document.getElementById("hidden-claim-id").value,
+                response_details: document.getElementById("response").value,
+            };
+
+            try {
+                const response = await fetch("http://localhost/omar/public/index.php?controller=responses&action=store_response", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message);
+                    document.getElementById("responseForm").reset();
+                } else {
+                    alert("Error: " + result.error);
+                }
+            } catch (error) {
+                console.error("Error submitting the form:", error);
+                alert("Failed to submit response. Please try again later.");
+            }
+        });
+    </script>
+</body>
+
+</html>

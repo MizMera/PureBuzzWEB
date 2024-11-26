@@ -46,4 +46,58 @@ class claims
             echo json_encode(["error" => "Failed to retrieve claims. " . $e->getMessage()]);
         }
     }
+    public function update()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        if (!$data) {
+            http_response_code(400);
+            echo json_encode(["error" => "Invalid JSON input."]);
+            return;
+        }
+
+        $claimID = $data['Claim_ID'] ?? null;
+        $userName = $data['User_Name'] ?? null;
+        $product = $data['Product'] ?? null;
+        $details = $data['Details'] ?? null;
+
+        if (!$claimID || !$userName || !$product || !$details) {
+            http_response_code(400);
+            echo json_encode(["error" => "All fields are required. " . $claimID]);
+            return;
+        }
+
+        $claimModel = new ClaimModel();
+
+        try {
+            // Call the model's method to update the claim
+            $claimModel->updateClaim($claimID, $userName, $product, $details);
+            echo json_encode(["message" => "Claim updated successfully."]);
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode(["error" => "Failed to update claim. " . $e->getMessage()]);
+        }
+    }
+    public function deleteClaim()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        if (!$data || !isset($data['claim_id'])) {
+            http_response_code(400);
+            echo json_encode(["error" => "Invalid request. Claim ID is required."]);
+            return;
+        }
+
+        $claimID = $data['claim_id'];
+
+        $claimModel = new ClaimModel();
+
+        try {
+            $claimModel->deleteClaim($claimID);
+            echo json_encode(["message" => "Claim deleted successfully."]);
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode(["error" => "Failed to delete claim. " . $e->getMessage()]);
+        }
+    }
 }

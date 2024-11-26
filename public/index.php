@@ -34,6 +34,7 @@ try {
 
     $controller->$action();
 } catch (Exception $e) {
+    error_log("Error in index.php: " . $e->getMessage()); // Log error for debugging
     http_response_code(500);
     echo json_encode(["error" => $e->getMessage()]);
 }
