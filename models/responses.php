@@ -25,4 +25,32 @@ class ResponseModel
             return false; // Return false on failure
         }
     }
+    public function getResponsesByClaimId()
+    {
+        $query = "SELECT id, claim_id, response_detail, created_at FROM responses"; // No WHERE condition
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function updateResponse($responseID, $responseDetail)
+    {
+        $query = "UPDATE responses SET response_detail = :response_detail";
+        $statement = $this->db->prepare($query);
+
+        $statement->execute([
+            ":response_detail" => $responseDetail,
+        ]);
+    }
+    public function deleteResponse($responseID)
+    {
+        // Prepare the SQL query with a WHERE clause
+        $query = "DELETE FROM responses WHERE id = :responseID";
+
+        $stmt = $this->db->prepare($query);
+        // Bind the responseID parameter
+        $stmt->bindParam(':responseID', $responseID, PDO::PARAM_INT);
+
+        // Execute the statement
+        return $stmt->execute(); // Return the result of the execution
+    }
 }
