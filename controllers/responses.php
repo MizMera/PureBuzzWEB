@@ -61,7 +61,8 @@ class Responses
             return;
         }
 
-        $responseID = $data['Response_ID'] ?? null;
+        // Extract Response_ID and Response_Detail from the input data
+        $responseID = ltrim($data['Response_ID'], '#'); // Remove '#' if present
         $responseDetail = $data['Response_Detail'] ?? null;
 
         if (!$responseID || !$responseDetail) {
@@ -82,6 +83,8 @@ class Responses
                 echo json_encode(["error" => "Response not found or no changes made."]);
             }
         } catch (Exception $e) {
+            // Log the error message for debugging
+            error_log("Error in update_response: " . $e->getMessage());
             http_response_code(500);
             echo json_encode(["error" => "Failed to update response. " . $e->getMessage()]);
         }

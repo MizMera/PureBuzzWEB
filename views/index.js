@@ -129,7 +129,7 @@ document.getElementById("claimForm").addEventListener("submit", async function (
     };
 
     try {
-        const response = await fetch("http://localhost/omar/public/index.php?controller=responses&action=store", {
+        const response = await fetch("http://localhost/omar/public/index.php?controller=claims&action=store", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

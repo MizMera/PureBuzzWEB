@@ -27,6 +27,7 @@ class ClaimModel
         $stmt->execute([$userName, $product, $details]);
     }
 
+
     public function getClaimsAdmin()
     {
         $query = "
@@ -69,8 +70,17 @@ class ClaimModel
         $query = "DELETE FROM claims WHERE id = :claimID";
 
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':claimID', $claimID);
+        $stmt->bindParam(':claimID', $id);
 
         $stmt->execute();
+    }
+    public function searchProd($product)
+    {
+        $query = "SELECT *FROM orders WHERE name =? ;";
+        $stmt = $this->db->prepare($query);
+        if ((!$stmt->execute([$product]))) {
+            throw new Exception("failed to load products");
+        }
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

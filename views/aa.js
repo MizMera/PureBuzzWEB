@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claims Submission</title>
+    <title>Chatbot Interface</title>
 
     <!-- Link to Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
 
-    <!-- Link to Font Awesome (for icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
-
     <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
         .navbar {
             z-index: 1030;
         }
@@ -31,31 +31,18 @@
             min-height: calc(100vh - 100px);
         }
 
-        footer {
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            background-color: #f8f9fa;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        /* Chatbot Styles */
         .chat-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
+            margin-top: 30px;
             border: 1px solid #ccc;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             background-color: #fff;
+            padding: 0;
         }
 
         .chat-header {
             background-color: #ffcc00;
-            /* Bee color */
-            padding: 10px;
+            padding: 15px;
             text-align: center;
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
@@ -63,36 +50,39 @@
 
         .chat-header h3 {
             margin: 0;
-            font-size: 18px;
+            font-size: 22px;
         }
 
         .chat-body {
-            height: 300px;
+            height: 400px;
             overflow-y: auto;
-            padding: 10px;
+            padding: 15px;
         }
 
         .chat-message {
             margin: 10px 0;
-            padding: 8px;
+            padding: 10px;
             border-radius: 5px;
+            max-width: 80%;
         }
 
         .user-message {
             background-color: #e1f7d5;
             align-self: flex-end;
             text-align: right;
+            margin-left: auto;
         }
 
         .bot-message {
             background-color: #f1f0f0;
             align-self: flex-start;
             text-align: left;
+            margin-right: auto;
         }
 
         .chat-input {
             display: flex;
-            padding: 10px;
+            padding: 15px;
             border-top: 1px solid #ccc;
         }
 
@@ -105,21 +95,18 @@
         }
 
         .chat-input button {
-            padding: 10px;
+            padding: 10px 15px;
             background-color: #ffcc00;
-            /* Bee color */
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-left: 5px;
+            margin-left: 10px;
         }
 
         .chat-input button:hover {
             background-color: #e6b800;
-            /* Darker shade */
         }
     </style>
-
 </head>
 
 <body>
@@ -142,7 +129,7 @@
                 <div class="navbar-menu-wrapper d-flex align-items-top">
                     <ul class="navbar-nav">
                         <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-                            <h1 style="margin-left: 500px;" class="welcome-text">Submit a New Claim</h1>
+                            <h1 style="margin-left: 500px;" class="welcome-text">Chatbot Interface</h1>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
@@ -163,51 +150,29 @@
                 <ul class="nav">
                     <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
                     <li class="nav-item"><a class="nav-link" href="Orders.html">Orders</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Submit Claim</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Help</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Submit Claim</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
                     <li class="nav-item"><a class="nav-link" href="login.html">Logout</a></li>
                 </ul>
             </nav>
 
             <!-- Main Content -->
             <div class="container main-content">
-                <section class="claim-form-section">
-                    <form class="claim-form" id="claimForm">
-                        <div class="form-group">
-                            <label for="user-name" class="form-label">User Name</label>
-                            <input type="text" id="user-name" name="user_name" class="form-control"
-                                placeholder="Enter your name" required autocomplete="name">
+                <section class="chat-section">
+                    <!-- Chatbot Interface -->
+                    <div class="chat-container">
+                        <div class="chat-header">
+                            <h3>Bee Claims Chatbot</h3>
                         </div>
-                        <div class="form-group">
-                            <label for="product" class="form-label">Product</label>
-                            <input type="text" id="product" name="product" class="form-control"
-                                placeholder="Enter the product name" required autocomplete="off">
+                        <div class="chat-body" id="chatBody">
+                            <!-- Chat messages will appear here -->
                         </div>
-                        <div class="form-group">
-                            <label for="claim-details" class="form-label">Claim Details</label>
-                            <textarea id="claim-details" name="claim_details" class="form-control" rows="4"
-                                placeholder="Describe your claim" required></textarea>
+                        <div class="chat-input">
+                            <input type="text" id="userInput" placeholder="Type your message..." />
+                            <button onclick="sendMessage()">Send</button>
                         </div>
-                        <div class="form-actions d-flex justify-content-between">
-                            <button type="submit" class="btn btn-primary">Submit Claim</button>
-                            <button type="reset" class="btn btn-secondary">Reset</button>
-                        </div>
-                    </form>
+                    </div>
                 </section>
-
-                <!-- Chatbot Interface -->
-                <div class="chat-container">
-                    <div class="chat-header">
-                        <h3>Bee Claims Chatbot</h3>
-                    </div>
-                    <div class="chat-body" id="chatBody">
-                        <!-- Chat messages will appear here -->
-                    </div>
-                    <div class="chat-input">
-                        <input type="text" id="userInput" placeholder="Type your message...">
-                        <button onclick="sendMessage()">Send</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -219,37 +184,6 @@
     </footer>
 
     <script>
-        document.getElementById("claimForm").addEventListener("submit", async function (e) {
-            e.preventDefault();
-
-            const formData = {
-                user_name: document.getElementById("user-name").value,
-                product: document.getElementById("product").value,
-                claim_details: document.getElementById("claim-details").value,
-            };
-
-            try {
-                const response = await fetch("http://localhost/omar/public/index.php?controller=claims&action=store", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(formData),
-                });
-
-                const result = await response.json();
-                if (response.ok) {
-                    alert(result.message);
-                    document.getElementById("claimForm").reset();
-                } else {
-                    alert("Error: " + result.error);
-                }
-            } catch (error) {
-                console.error("Error submitting the form:", error);
-                alert("Failed to submit claim. Please try again later.");
-            }
-        });
-
         function sendMessage() {
             const userInput = document.getElementById("userInput");
             const chatBody = document.getElementById("chatBody");

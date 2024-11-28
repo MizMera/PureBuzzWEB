@@ -34,12 +34,23 @@ class ResponseModel
     }
     public function updateResponse($responseID, $responseDetail)
     {
-        $query = "UPDATE responses SET response_detail = :response_detail";
+        $query = "UPDATE responses SET response_detail = :responseDetail WHERE id = :responseID";
         $statement = $this->db->prepare($query);
 
-        $statement->execute([
-            ":response_detail" => $responseDetail,
-        ]);
+        try {
+            // Execute with both parameters
+            $statement->execute([
+                ":responseDetail" => $responseDetail,
+                ":responseID" => $responseID, // Ensure you are passing the ID correctly
+            ]);
+
+            // Check if any rows were affected
+            return $statement->rowCount() > 0; // Return true if the update was successful
+        } catch (PDOException $e) {
+            // Log the error message for debugging
+            error_log("Error updating response: " . $e->getMessage());
+            return false; // Indicate failure
+        }
     }
     public function deleteResponse($responseID)
     {
