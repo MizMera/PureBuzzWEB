@@ -60,10 +60,10 @@
             <form id="responseForm">
                 <input type="hidden" id="hidden-claim-id" name="claim_id" value="">
                 <div class="mb-3">
-                    <textarea class="text" id="response" name="response" required
+                    <textarea class="text" id="response" name="response"
                         placeholder="Type your response here..."></textarea>
                 </div>
-                <button type="submit" class="btn">Submit Response</button>
+                <button onclick="validation()" type="submit" class="btn">Submit Response</button>
             </form>
         </section>
     </div>
@@ -118,6 +118,12 @@
                 alert("Failed to submit response. Please try again later.");
             }
         });
+        function validation() {
+            const name = document.getElementById("response").value;
+            if (name == null || name == "") {
+                alert("response can't be blank");
+            }
+        }
 
 
     </script>

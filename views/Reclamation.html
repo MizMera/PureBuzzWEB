@@ -597,10 +597,8 @@
                                     <th>Claim ID</th>
                                     <th>User Name</th>
                                     <th>Product</th>
-                                    <th>Status</th>
                                     <th>Created At</th>
                                     <th>Details</th>
-                                    <th>Responses</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -610,21 +608,25 @@
                         </table>
 
                         <!-- Responses Table -->
-                        <table id="responsesTable" class="table table-bordered table-hover"
-                            style="width: 1000px; margin-left:70px; margin-top: 50px;">
-                            <thead>
-                                <tr>
-                                    <th>Response ID</th>
-                                    <th>Claim ID</th>
-                                    <th>Response Detail</th>
-                                    <th>Created At</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="responsesBody">
-                                <!-- Dynamic rows for standalone responses will be inserted here by JavaScript -->
-                            </tbody>
-                        </table>
+                        <h1 style="color: orange; margin-left: 600px;margin-top: 70px;">Response Table</h3>
+                            <center>
+                                <table id="responsesTable" class="table table-bordered table-hover"
+                                    style="width: 1000px; margin-top: 50px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Response ID</th>
+                                            <th>Claim ID</th>
+                                            <th>Response Detail</th>
+                                            <th>Created At</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="responsesBody">
+                                        <!-- Dynamic rows for standalone responses will be inserted here by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </center>
+
                     </section>
                 </main>
             </div>
@@ -678,10 +680,8 @@
                         <td>#${claimID}</td>
                         <td>${userName}</td>
                         <td>${product}</td>
-                        <td>${status}</td>
                         <td>${createdAt}</td>
                         <td>${details}</td>
-                        <td>${responses}</td>
                         <td>
                             <button onclick="editClaim(this)" class="btn btn-outline-secondary btn-sm mr-1">Edit</button>
                             <button onclick="confirmDeleteClaim(this)" class="btn btn-outline-danger btn-sm">Delete</button>
@@ -990,6 +990,21 @@
             fetchClaims();
             fetchResponses();
         });
+        function searchById() {
+            const id = document.getElementById("search-bar").value.trim(); // Get the value of the search bar and trim spaces
+            var table = document.getElementById("tbl");
+            var rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+
+            // If the search input is empty, show all rows, otherwise apply search filter
+            Array.from(rows).forEach(row => {
+                var IdCell = row.cells[0]; // Assuming the ID is in the first cell
+                if (id === "" || IdCell.textContent.trim() === id) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
     </script>
 
 </html>

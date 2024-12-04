@@ -22,6 +22,9 @@
             padding: 20px;
             padding-top: 100px;
             min-height: calc(100vh - 100px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         footer {
@@ -35,44 +38,50 @@
 
         /* Chatbot styles */
         .chat-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            height: 450px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             background-color: #fff;
+            display: flex;
+            flex-direction: column;
         }
 
         .chat-header {
             background-color: #ffcc00;
-            padding: 10px;
+            padding: 15px;
             text-align: center;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
         }
 
         .chat-body {
-            height: 300px;
+            flex-grow: 1;
+            padding: 15px;
             overflow-y: auto;
-            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 14px;
         }
 
         .chat-message {
-            margin: 10px 0;
-            padding: 8px;
-            border-radius: 5px;
+            max-width: 80%;
+            padding: 10px;
+            border-radius: 10px;
+            word-wrap: break-word;
         }
 
         .user-message {
-            background-color: #e1f7d5;
+            background-color: #d4edda;
             align-self: flex-end;
             text-align: right;
         }
 
         .bot-message {
-            background-color: #f1f0f0;
+            background-color: #f8f9fa;
             align-self: flex-start;
             text-align: left;
         }
@@ -80,24 +89,29 @@
         .chat-input {
             display: flex;
             padding: 10px;
-            border-top: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
         }
 
         .chat-input input {
             flex: 1;
             padding: 10px;
+            font-size: 14px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 10px;
             outline: none;
+            background-color: #fff;
         }
 
         .chat-input button {
             padding: 10px;
             background-color: #ffcc00;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
-            margin-left: 5px;
+            margin-left: 10px;
+            font-size: 14px;
         }
 
         .chat-input button:hover {
@@ -108,6 +122,7 @@
 
 <body>
     <div class="ala">
+        <!-- Navbar -->
         <header class="container-scroller">
             <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
                 <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
@@ -142,42 +157,18 @@
             <!-- Sidebar -->
             <nav class="sidebar">
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ReaclamationFront.html">Dashboard</a></li>
                     <li class="nav-item"><a class="nav-link" href="Orders.html">Orders</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Submit Claim</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="ReaclamationFront.html">Submit Claim</a></li>
                     <li class="nav-item"><a class="nav-link" href="help.html">Help</a></li>
                     <li class="nav-item"><a class="nav-link" href="login.html">Logout</a></li>
                 </ul>
             </nav>
 
-            <div class="container main-content">
-                <section class="claim-form-section">
-                    <form class="claim-form" id="claimForm">
-                        <div class="form-group">
-                            <label style="font-size: larger;" for="user-name" class="form-label">User Name :</label>
-                            <input style="height: 50px; font-size: medium;" type="text" id="user-name" name="user_name"
-                                class="form-control" placeholder="Enter your email">
-                        </div>
-                        <div class="form-group">
-                            <label style="font-size: larger;" for="product" class="form-label">Product :</label>
-                            <input style="height: 50px;font-size: medium;" type="text" id="product" name="product"
-                                class="form-control" placeholder="Enter the product name">
-                        </div>
-                        <div class="form-group">
-                            <label style="font-size: larger;" for="claim-details" class="form-label">Claim Details
-                                :</label>
-                            <textarea style="height: 250px;font-size: medium;" id="claim-details" name="claim_details"
-                                class="form-control" rows="4" placeholder="Describe your claim"></textarea>
-                        </div>
-                        <div class="form-actions d-flex justify-content-between">
-                            <button type="submit" class="btn btn-primary">Submit Claim</button>
-                            <button type="reset" class="btn btn-secondary">Reset</button>
-                        </div>
-                    </form>
-                </section>
-
+            <!-- Main Content with Chatbot -->
+            <div class="main-content">
                 <!-- Chatbot Interface -->
-                <div class="chat-container">
+                <div style="margin-left: 400px; margin-bottom: 400px; width: 700px;" class="chat-container">
                     <div class="chat-header">
                         <h3>Bee Claims Chatbot</h3>
                     </div>
@@ -191,52 +182,20 @@
                 </div>
             </div>
         </div>
+
+        <footer class="footer mt-auto py-3">
+            <div class="container-fluid">
+                <p class="text-muted">&copy; 2024 PureBuzz. All Rights Reserved.</p>
+            </div>
+        </footer>
     </div>
 
-    <footer class="footer mt-auto py-3">
-        <div class="container-fluid">
-            <p class="text-muted">&copy; 2024 PureBuzz. All Rights Reserved.</p>
-        </div>
-    </footer>
-
     <script>
-        document.getElementById("claimForm").addEventListener("submit", async function (e) {
-            e.preventDefault();
-
-            const formData = {
-                user_name: document.getElementById("user-name").value,
-                product: document.getElementById("product").value,
-                claim_details: document.getElementById("claim-details").value,
-            };
-
-            // Basic validation
-            if (!formData.user_name || !formData.product || !formData.claim_details) {
-                alert("All fields are required.");
-                return;
-            }
-
-            try {
-                console.log(formData)
-                const response = await fetch("http://localhost/omar/public/index.php?controller=claims&action=store", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(formData),
-                });
-
-                const result = await response.json();
-                if (response.ok) {
-                    alert(result.message);
-                    document.getElementById("claimForm").reset();
-                } else {
-                    alert("Error: " + result.error);
-                }
-            } catch (error) {
-                console.error("Error submitting the form:", error);
-                alert("Failed to submit claim. Please try again later.");
-            }
-        });
+        let claimData = {
+            user_name: '',
+            product: '',
+            claim_details: ''
+        };
 
         function sendMessage() {
             const userInput = document.getElementById("userInput");
@@ -244,23 +203,73 @@
 
             if (userInput.value.trim() === "") return;
 
+            // Display the user's message
             const userMessage = document.createElement("div");
             userMessage.className = "chat-message user-message";
             userMessage.textContent = userInput.value;
             chatBody.appendChild(userMessage);
 
-            setTimeout(() => {
-                const botMessage = document.createElement("div");
-                botMessage.className = "chat-message bot-message";
-                botMessage.textContent = "mezelt ma ne5demsh he he he he  " + userInput.value; // Replace with actual response
-                chatBody.appendChild(botMessage);
-                chatBody.scrollTop = chatBody.scrollHeight;
-            }, 1000);
+            // Process user input and respond
+            processUserInput(userInput.value);
 
+            // Clear input field
             userInput.value = "";
             chatBody.scrollTop = chatBody.scrollHeight;
         }
+
+        // Function to process user input
+        function processUserInput(input) {
+            const chatBody = document.getElementById("chatBody");
+
+            // Check if it's the first claim prompt
+            if (!claimData.user_name) {
+                claimData.user_name = input;
+                sendBotMessage("Got it! Now, please tell me the product you're making a claim for.");
+            } else if (!claimData.product) {
+                claimData.product = input;
+                sendBotMessage("Great! Now, please provide details about the claim.");
+            } else if (!claimData.claim_details) {
+                claimData.claim_details = input;
+                sendBotMessage("Thanks for the details! I'm submitting your claim now.");
+                submitClaim();
+            }
+        }
+
+        // Function to send the bot's message
+        function sendBotMessage(message) {
+            const chatBody = document.getElementById("chatBody");
+            const botMessage = document.createElement("div");
+            botMessage.className = "chat-message bot-message";
+            botMessage.textContent = message;
+            chatBody.appendChild(botMessage);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        // Function to submit the claim data to the backend
+        async function submitClaim() {
+            try {
+                const response = await fetch("http://localhost/omar/public/index.php?controller=claims&action=store", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(claimData),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    sendBotMessage("Your claim has been successfully submitted!");
+                    claimData = { user_name: '', product: '', claim_details: '' }; // Reset data
+                } else {
+                    sendBotMessage(`Error: ${result.error || "There was an error submitting your claim. Please try again."}`);
+                }
+            } catch (error) {
+                console.error("Error submitting claim:", error);
+                sendBotMessage("Failed to submit your claim. Please try again later.");
+            }
+        }
     </script>
+
 </body>
 
 </html>
