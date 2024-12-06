@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>All Users </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../../../assets/vendors/feather/feather.css">
+    <link rel="stylesheet" href="../../../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../../../assets/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href=../../../../assets/vendors/typicons/typicons.css"">
+    <link rel="stylesheet" href="../../../../assets/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="../../../../assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="../../../../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../../../../assets/js/select.dataTables.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+
+    <link rel="stylesheet" href="../../../../assets/css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../../../../assets/css/Back_office/AllUsers.css">
+    <link rel="shortcut icon" href="../../../../pages/samples/PureBuzzLogo.png" />
+
+
+</head>
+<body>
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+            <div class="me-3">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
+                    <span class="icon-menu"></span>
+                </button>
+            </div>
+            <div>
+                <a class="navbar-brand brand-logo" href="../../../../index.html">
+                    <img src="../../../../assets/PureBuzzLogo.png"style="height: 80px;" alt="logo" />
+                </a>
+
+            </div>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-top">
+            <ul class="navbar-nav">
+                <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+                    <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">Dear Admin</span></h1>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+
+
+
+
+
+                <li class="nav-item dropdown d-none d-lg-block user-dropdown">
+                    <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="img-xs rounded-circle" src="../../../../assets/images/faces/face8.jpg" alt="Profile image"> </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                        <div class="dropdown-header text-center">
+                            <img class="img-md rounded-circle" src="../../../../assets/images/faces/face8.jpg" alt="Profile image">
+                            <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
+                            <p class="fw-light text-muted mb-0">chahd@gmail.com</p>
+                        </div>
+                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
+                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
+                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
+                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
+                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+                    </div>
+                </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
+                <span class="mdi mdi-menu"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+        <div class="theme-setting-wrapper">
+            <div id="settings-trigger"><i class="ti-settings"></i></div>
+            <div id="theme-settings" class="settings-panel">
+                <i class="settings-close ti-close"></i>
+                <p class="settings-heading">SIDEBAR SKINS</p>
+                <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border me-3"></div>Light</div>
+                <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border me-3"></div>Dark</div>
+                <p class="settings-heading mt-2">HEADER SKINS</p>
+                <div class="color-tiles mx-0 px-4">
+                    <div class="tiles success"></div>
+                    <div class="tiles warning"></div>
+                    <div class="tiles danger"></div>
+                    <div class="tiles info"></div>
+                    <div class="tiles dark"></div>
+                    <div class="tiles default"></div>
+                </div>
+            </div>
+        </div>
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../../index.html">
+                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="nav-item nav-category">User Managment</li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#basic" aria-expanded="false" aria-controls="basic">
+                        <i class="menu-icon mdi mdi-table"></i>
+                        <span class="menu-title">User Mangamnets</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="basic">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="addUser.html">Add User</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="AllUsers.html">Get All Users</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="stat.html">Statistics</a></li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item nav-category">Others </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+                        <i class="menu-icon mdi mdi-table"></i>
+                        <span class="menu-title">Tables</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="tables">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+                        <i class="menu-icon mdi mdi-layers-outline"></i>
+                        <span class="menu-title">Icons</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="icons">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item nav-category">pages</li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                        <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                        <span class="menu-title">User Pages</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="auth">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item nav-category">help</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutLink">
+                        <i class="menu-icon mdi mdi-file-document"></i>
+                        <span class="menu-title">Log Out</span>
+                    </a>
+                </li>
+
+
+            </ul>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="home-tab">
+                            <div class="d-sm-flex align-items-center justify-content-between border-bottom">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#allusers" role="tab" aria-controls="overview" aria-selected="true">All users </a>
+                                    </li>
+
+
+                                </ul>
+                                <div>
+                                    <div class="btn-wrapper">
+                                        <a href="#" class="btn btn-otline-dark align-items-center"><i class="icon-share"></i> Share</a>
+                                        <a href="#" class="btn btn-otline-dark"><i class="icon-printer"></i> Print</a>
+                                        <a href="#" id="exportPdfButton" class="btn btn-primary text-white me-0">
+                                            <i class="icon-download"></i> Export Pdf
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div id="searchResult">
+                                <!-- Les résultats de la recherche apparaîtront ici -->
+                            </div>
+
+                            <div class="tab-content tab-content-basic">
+                                <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview">
+
+                                    <div class="row">
+
+
+                                        <div class="row flex-grow">
+                                            <div class="col-12 grid-margin stretch-card">
+                                                <div class="card card-rounded">
+                                                    <div class="card-body">
+                                                        <div class="d-sm-flex justify-content-between align-items-start">
+
+                                                            <div>
+                                                                <input type="search" id="searchInput" class="form-control" placeholder="Search Here" title="Search here">
+
+                                                            </div>
+                                                            <div>
+                                                                <button class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" onclick="redirectToAdd()"><i class="mdi mdi-account-plus"></i>Add new member</a></button>
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="table-responsive  mt-1">
+                                                            <table class="table select-table">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>
+                                                                        <div class="form-check form-check-flat mt-0">
+                                                                            <label class="form-check-label">
+                                                                                <input type="checkbox" class="form-check-input" aria-checked="false"><i class="input-helper"></i>
+                                                                            </label>
+                                                                        </div>
+                                                                    </th>
+                                                                    <th>User</th>
+                                                                    <th>Email</th>
+                                                                    <th>Date</th>
+                                                                    <th>Role</th>
+                                                                    <th>Actions</th>
+                                                                </tr>
+                                                                </thead>
+
+                                                                    <tbody id="userTableBody">
+                                                                    <!-- Rows will be added dynamically here -->
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+
+            <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+<footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash.</span>
+        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All rights reserved.</span>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Check session to see if the user is logged in
+        fetch('../../../controller/user/checkSession.php') // Ensure the path to the session check PHP file is correct
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(sessionData => {
+                if (!sessionData.success) {
+                    // If the session is not valid, redirect to the login page
+                    alert(sessionData.message || "User not logged in.");
+                    window.location.href = "../../../view/Front_Office/User/log_in.html"; // Redirect to login page
+                } else {
+                    // If the session is valid, fetch all users
+                    fetchUsers();
+                }
+            })
+            .catch(error => {
+                console.error("Error checking session:", error);
+                alert("An error occurred while checking the session. Redirecting to login.");
+                window.location.href = "../../../view/Front_Office/User/log_in.html"; // Redirect to login page
+            });
+    });
+
+    function fetchUsers() {
+        // Fetch all users and display them in the table
+        fetch('../../../controller/user/getalluser.php') // Ensure the path is correct
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (!data.success) {
+                    console.error("Error fetching users:", data.message || "Unknown error");
+                    alert("Failed to fetch users. Please try again.");
+                    return;
+                }
+
+                const users = data.data; // Assuming the users are in `data.data`
+
+                // Check if `users` is an array before iterating
+                if (!Array.isArray(users)) {
+                    console.error("Unexpected data format:", users);
+                    alert("An error occurred while fetching users. Please try again.");
+                    return;
+                }
+
+                const tableBody = document.getElementById("userTableBody");
+                tableBody.innerHTML = ""; // Clear the table before populating it
+
+                // Populate the table with user data
+                users.forEach((user) => {
+                    const row = `
+                <tr>
+                    <td>
+                        <div class="form-check form-check-flat mt-0">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" value="${user.id}">
+                                <i class="input-helper"></i>
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-flex">
+                            <img src="../../../../assets/images/uploads/profile_pictures/${user.profile_picture}" alt="User Image" class="img-sm rounded-circle">
+                            <div>
+                                <h6>${user.first_name} ${user.last_name}</h6>
+                                <p>${user.email}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <h6>${user.email}</h6>
+                    </td>
+                    <td>${user.date_of_birth}</td>
+                    <td><div class="badge badge-opacity-warning">${user.role}</div></td>
+                    <td>
+                        <button class="edit" onclick="redirectToEditPage(${user.id})">Edit</button>
+                        <button class="details" onclick="viewDetails(${user.id})">Details</button>
+                        <button class="delete" onclick="deleteUser(${user.id})">Delete</button>
+                    </td>
+                </tr>
+                `;
+                    tableBody.insertAdjacentHTML("beforeend", row);
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching users:", error);
+                alert("An error occurred while fetching the user list. Please try again later.");
+            });
+    }
+
+    function deleteUser(userId) {
+        const confirmDelete = confirm("Are you sure you want to delete this user? This action cannot be undone.");
+        if (confirmDelete) {
+            const formData = new FormData();
+            formData.append("id", userId);
+
+            fetch("../../../controller/user/Back_Office/deleteUser.php", {
+                method: "POST",
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        alert(result.message);
+                        location.reload(); // Reload the page to reflect changes
+                    } else {
+                        alert(`Failed to delete user: ${result.message}`);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error deleting user:", error);
+                    alert("An error occurred while deleting the user.");
+                });
+        }
+    }
+
+
+    document.getElementById("exportPdfButton").addEventListener("click", function () {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Get the current date for the generation timestamp
+        const currentDate = new Date().toLocaleDateString();
+
+        // Set up the header
+        doc.setFontSize(18);
+        doc.setTextColor(242, 157, 0); // PureBuzz Orange
+        doc.text("User Data Export", 14, 15); // Title
+
+        // Add the generation date below the title
+        doc.setFontSize(12);
+        doc.setTextColor(100, 100, 100); // Gray for the date
+        doc.text(`Generated on: ${currentDate}`, 14, 25); // Adjust Y-position for the date
+
+        // Add a logo if available
+        const img = new Image();
+        img.src = '..\\..\\..\\..\\assets\\PureBuzzLogo.png'; // Replace with the actual path to your logo
+        img.onload = function () {
+            doc.addImage(img, "PNG", 150, 5, 20, 20); // Adjust position and size of the logo
+            // Generate the table after adding the logo
+            generateTable();
+        };
+
+        // If no logo is needed, generate the table directly
+        if (!img.src) {
+            generateTable();
+        }
+
+        function generateTable() {
+            // Fetch user data dynamically
+            fetch('../../../controller/user/getalluser.php')
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    if (!data.success) {
+                        console.error("Error fetching users:", data.message || "Unknown error");
+                        alert("Failed to fetch users. Please try again.");
+                        return;
+                    }
+
+                    const users = data.data;
+
+                    if (!Array.isArray(users)) {
+                        console.error("Unexpected data format:", users);
+                        alert("An error occurred while fetching users. Please try again.");
+                        return;
+                    }
+
+                    // Prepare the table rows dynamically
+                    const rows = users.map((user) => [
+                        user.first_name,
+                        user.last_name,
+                        user.email,
+                        user.date_of_birth,
+                        user.role,
+                    ]);
+
+                    // Generate the table
+                    doc.autoTable({
+                        startY: 35, // Position below the title and date
+                        head: [["Name", "Last Name", "Email", "Date", "Role"]], // Table headers
+                        body: rows,
+                        styles: {
+                            fontSize: 10,
+                            textColor: [0, 0, 0], // Black text color for table content
+                        },
+                        headStyles: {
+                            fillColor: [242, 157, 0], // Orange inspired by the logo for the header
+                            textColor: [255, 255, 255], // White text for the header
+                            fontSize: 12,
+                            fontStyle: "bold",
+                        },
+                        bodyStyles: {
+                            fillColor: [255, 245, 229], // Light honey shade for rows
+                            textColor: [0, 0, 0], // Black text
+                        },
+                        alternateRowStyles: {
+                            fillColor: [255, 255, 240], // Slightly lighter honey shade for alternating rows
+                        },
+                        margin: { top: 10, left: 14, right: 14 }, // Margins
+                        theme: "striped", // Striped theme
+                    });
+
+                    // Add footer with generation date
+                    doc.setFontSize(10);
+                    doc.text(`Generated on: ${currentDate}`, 14, doc.internal.pageSize.height - 10); // Footer text
+
+                    // Save the PDF
+                    doc.save(`Export_User_data_${currentDate.replace(/\//g, "-")}.pdf`);
+                })
+                .catch((error) => {
+                    console.error("Error generating PDF:", error);
+                    alert("An error occurred while generating the PDF. Please try again.");
+                });
+        }
+    });
+
+    function redirectToEditPage(userId) {
+        // Directly redirect to the edit page with the user ID in the query parameters
+        window.location.href = `editUser.html?id=${userId}`;
+    }
+    function viewDetails(userId) {
+        // Directly redirect to the edit page with the user ID in the query parameters
+        window.location.href = `GetOneUser.html?id=${userId}`;
+    }
+
+
+    function redirectToAdd(userId) {
+        // Redirige vers la page d'édition avec l'ID de l'utilisateur comme paramètre
+        window.location.href = `addUser.html`;
+    }
+    ////// recherche
+    // l'événements se déclenche à chaque fois que l'utilisateur tape quelque chose dans cet élément
+    document.getElementById('searchInput').addEventListener('input', function () {
+        const searchValue = this.value.trim().toLowerCase(); // trim() enlève les espaces blancs au début et à la fin de la chaîne de texte,
+        // et toLowerCase() convertit toute la chaîne en minuscules
+        const table = document.getElementById('userTableBody'); // donne the table body
+        const rows = table.getElementsByTagName('tr'); // Get all table ligne
+
+        //vérifier si des résultats de recherche sont trouvés ou non
+        let found = false;
+
+        // Loop through each row in the table
+        for (let i = 0; i < rows.length; i++) {
+            //récupère toutes les cellules
+            const cells = rows[i].getElementsByTagName('td');
+            //recuperation du mail
+            const email = cells[2]?.textContent.trim().toLowerCase() || ''; // Get the email column text
+
+            // Check if the email includes the search value
+            if (email.includes(searchValue)) {
+                rows[i].style.display = ''; // Show the matching row
+                found = true;
+            } else {
+                rows[i].style.display = 'none'; // Hide non-matching rows
+            }
+        }
+
+        //  la variable found est toujours false
+        //  et si l'utilisateur a saisi une valeur de recherche (searchValue !== '').
+        if (!found && searchValue !== '') {
+            //Les lignes qui correspondent au critère de recherche sont affichées,
+            // tandis que celles qui ne correspondent pas sont cachées.
+            document.getElementById('noResultsMessage').style.display = 'block'; // Show a "No results found" message
+        } else {
+            document.getElementById('noResultsMessage').style.display = 'none'; // Hide the message
+        }
+    });/////
+
+    document.getElementById("logoutLink").addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default link behavior
+
+        // Use Fetch API to call the logout PHP script
+        //log out
+        fetch('../../../controller/user/Back_Office/logOut.php', {
+            method: 'POST', // POST request to handle logout
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Redirect to the login page
+                    window.location.href = '../../Front_Office/User/log_in.html';
+                } else {
+                    console.error("Failed to log out:", response.statusText);
+                    alert("An error occurred while logging out. Please try again.");
+                }
+            })
+            .catch(error => {
+                console.error("Error during logout:", error);
+                alert("An error occurred while logging out. Please try again.");
+            });
+    });
+</script>
+<!-- pdf -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
+<!-- plugins:js -->
+<script src="../../../../assets/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="../../../../assets/vendors/chart.js/Chart.min.js"></script>
+<script src="../../../../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="../../../../assets/vendors/progressbar.js/progressbar.min.js"></script>
+
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="../../../../assets/js/off-canvas.js"></script>
+<script src="../../../../assets/js/hoverable-collapse.js"></script>
+<script src="../../../../assets/js/template.js"></script>
+<script src="../../../../assets/js/settings.js"></script>
+<script src="../../../../assets/js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="../../../../assets/js/dashboard.js"></script>
+<script src="../../../../assets/js/Chart.roundedBarCharts.js"></script>
+
