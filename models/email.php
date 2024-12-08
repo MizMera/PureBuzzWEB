@@ -16,12 +16,12 @@ class EmailModel {
         
         // Server settings
         $this->mail->isSMTP(); // Set mailer to use SMTP
-        $this->mail->Host = 'smtp.gmail.com'; // Specify main and backup SMTP servers
-        $this->mail->SMTPAuth = true; // Enable SMTP authentication
-        $this->mail->Username = 'djangomailer040@gmail.com'; // Your Gmail address
-        $this->mail->Password = 'cdgh rufa gtwr ocqe'; // Your Gmail password or app password
-        $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption
-        $this->mail->Port = 587; // TCP port to connect to
+        $this->mail->Host = 'smtp.gmail.com'; 
+        $this->mail->SMTPAuth = true; 
+        $this->mail->Username = 'djangomailer040@gmail.com'; 
+        $this->mail->Password = 'cdgh rufa gtwr ocqe'; 
+        $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
+        $this->mail->Port = 587; 
     }
 
     public function sendEmail($to, $subject, $message) {

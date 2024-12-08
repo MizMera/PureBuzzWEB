@@ -4,267 +4,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claims Submission</title>
+    <title>Product Ratings</title>
     <!-- Link to Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <!-- Link to Font Awesome (for icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
     <style>
-        .navbar {
-            z-index: 1030;
-        }
-
-        .sidebar {
-            background-color: #f8f9fa;
-            height: 100vh;
-            padding: 10px;
-        }
-
-        .main-content {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            height: calc(100vh - 100px);
-            padding: 20px;
-            padding-top: 50px;
-        }
-
-        footer {
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            background-color: #f8f9fa;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        .orders-table {
-            width: 90%;
-            max-width: 1200px;
-            font-size: 1.5rem;
-            table-layout: fixed;
+        .product-card {
             border: 1px solid #ddd;
-        }
-
-        .orders-table th,
-        .orders-table td {
-            padding: 25px;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            background-color: #f8f9fa;
             text-align: center;
         }
 
-        .orders-table img {
-            max-width: 180px;
-            max-height: 180px;
-            object-fit: contain;
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
         }
 
-        .button-group {
-            margin-top: 15px;
+        .product-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 10px 0;
         }
 
-        .button-group .btn {
-            margin-right: 10px;
+        .product-price {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 15px;
         }
 
-        .comment-section {
-            margin-top: 15px;
+        .rating i {
+            font-size: 1.8rem;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .rating i.selected {
+            color: gold;
+        }
+
+        .comment-box {
+            width: 100%;
+            font-size: 1rem;
+            height: 100px;
+            padding: 10px;
+            margin-top: 10px;
+            resize: none;
         }
     </style>
 </head>
 
 <body>
-    <div class="ala">
-        <header class="container-scroller">
-            <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
-                <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-                    <div class="me-3">
-                        <button class="navbar-toggler navbar-toggler align-self-center" type="button"
-                            data-bs-toggle="minimize">
-                            <span class="icon-menu"></span>
-                        </button>
+    <div style="margin-top: 100px;" class="d-flex">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="Orders.html">Orders</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#">Submit Claim</a></li>
+                <li class="nav-item"><a class="nav-link" href="help.html">Help</a></li>
+                <li class="nav-item"><a class="nav-link" href="login.html">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="container py-">
+            <h1 class="text-center mb-4">Rate Our Products</h1>
+            <div class="row">
+                <!-- Product 1 -->
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <img src="shampooing.png" alt="Shampooing" class="product-image">
+                        <div class="product-name">Shampooing</div>
+                        <div class="product-price">$15.99</div>
+                        <div>
+                            <label>Rate this product:</label>
+                            <div class="rating" data-product-id="101">
+                                <i class="fa fa-star" data-value="1"></i>
+                                <i class="fa fa-star" data-value="2"></i>
+                                <i class="fa fa-star" data-value="3"></i>
+                                <i class="fa fa-star" data-value="4"></i>
+                                <i class="fa fa-star" data-value="5"></i>
+                            </div>
+                        </div>
+                        <textarea class="form-control comment-box" rows="4"
+                            placeholder="Write your comment here..."></textarea>
+                        <button class="btn btn-primary btn-sm mt-3 submit-button">Submit</button>
                     </div>
-                    <div>
-                        <a class="navbar-brand brand-logo" href="index.html">
-                            <img src="logo.png" style="height: 80px;" alt="Company Logo">
-                        </a>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <img src="Huile.png" alt="Huile et Bomme a Levres" class="product-image">
+                        <div class="product-name">Huile et Bomme a Levres</div>
+                        <div class="product-price">$89.99</div>
+                        <div>
+                            <label>Rate this product:</label>
+                            <div class="rating" data-product-id="102">
+                                <i class="fa fa-star" data-value="1"></i>
+                                <i class="fa fa-star" data-value="2"></i>
+                                <i class="fa fa-star" data-value="3"></i>
+                                <i class="fa fa-star" data-value="4"></i>
+                                <i class="fa fa-star" data-value="5"></i>
+                            </div>
+                        </div>
+                        <textarea class="form-control comment-box" rows="4"
+                            placeholder="Write your comment here..."></textarea>
+                        <button class="btn btn-primary btn-sm mt-3 submit-button">Submit</button>
                     </div>
                 </div>
-                <div class="navbar-menu-wrapper d-flex align-items-top">
-                    <ul class="navbar-nav">
-                        <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-                            <h1 class="welcome-text">Orders</h1>
-                        </li>
-                    </ul>
+
+                <!-- Product 3 -->
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <img src="Sabon.png" alt="Sabon" class="product-image">
+                        <div class="product-name">Sabon</div>
+                        <div class="product-price">$199.99</div>
+                        <div>
+                            <label>Rate this product:</label>
+                            <div class="rating" data-product-id="103">
+                                <i class="fa fa-star" data-value="1"></i>
+                                <i class="fa fa-star" data-value="2"></i>
+                                <i class="fa fa-star" data-value="3"></i>
+                                <i class="fa fa-star" data-value="4"></i>
+                                <i class="fa fa-star" data-value="5"></i>
+                            </div>
+                        </div>
+                        <textarea class="form-control comment-box" rows="4"
+                            placeholder="Write your comment here..."></textarea>
+                        <button class="btn btn-primary btn-sm mt-3 submit-button">Submit</button>
+                    </div>
                 </div>
-            </nav>
-        </header>
-
-        <div style="margin-top: 150px;" class="d-flex">
-            <!-- Sidebar -->
-            <nav class="sidebar">
-                <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="">Orders</a></li>
-                    <li class="nav-item"><a class="nav-link" href="ReaclamationFront.html">Submit Claim</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.html">Logout</a></li>
-                </ul>
-            </nav>
-
-            <!-- Main Content -->
-            <main class="container main-content">
-                <div class="table-wrapper">
-                    <table class="table table-striped orders-table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Product ID</th>
-                                <th scope="col">Product Name</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Number of Units</th>
-                                <th scope="col">Product Image</th>
-                                <th scope="col">Actions</th>
-                                <th scope="col">Rate & Comment</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>101</td>
-                                <td>Shampooing</td>
-                                <td>$15.99</td>
-                                <td>120</td>
-                                <td><img src="shampooing.png" class="img-fluid" alt="Shampooing"
-                                        style="height: 100px; width: 100px;"></td>
-                                <td>
-                                    <div class="button-group">
-                                        <a href="ReaclamationFront.html"
-                                            class="btn btn-outline-secondary btn-sm mr-1">Claim</a>
-                                        <button class="btn btn-outline-danger btn-sm">Delete</button>
-                                    </div>
-                                </td>
-                                <td class="comment-section">
-                                    <div>
-                                        <label for="rating-101">Rating:</label>
-                                        <select id="rating-101" class="form-select form-select-sm"
-                                            aria-label="Select rating">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label for="comment-101">Comment:</label>
-                                        <textarea id="comment-101" class="form-control form-control-sm"
-                                            rows="2"></textarea>
-                                    </div>
-                                    <button class="btn btn-primary btn-sm mt-2">Submit</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>102</td>
-                                <td>Huile et Bomme a Levres</td>
-                                <td>$89.99</td>
-                                <td>75</td>
-                                <td>
-                                    <img src="Huile.png" class="img-fluid" alt="Huile et Bomme a Levres"
-                                        style="height: 100px; width: 100px;">
-                                </td>
-                                <td>
-                                    <div class="button-group">
-                                        <a href="claim.html" class="btn btn-outline-secondary btn-sm mr-1">Claim</a>
-                                        <button class="btn btn-outline-danger btn-sm">Delete</button>
-                                    </div>
-                                </td>
-                                <td class="comment-section">
-                                    <div>
-                                        <label for="rating-102">Rating:</label>
-                                        <select id="rating-102" class="form-select form-select-sm"
-                                            aria-label="Select rating">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label for="comment-102">Comment:</label>
-                                        <textarea id="comment-102" class="form-control form-control-sm"
-                                            rows="2"></textarea>
-                                    </div>
-                                    <button class="btn btn-primary btn-sm mt-2">Submit</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>103</td>
-                                <td>Sabon</td>
-                                <td>$199.99</td>
-                                <td>45</td>
-                                <td>
-                                    <img src="Sabon.png" class="img-fluid" alt="Sabon"
-                                        style="height: 100px; width: 100px;">
-                                </td>
-                                <td>
-                                    <div class="button-group">
-                                        <a href="claim.html" class="btn btn-outline-secondary btn-sm mr-1">Claim</a>
-                                        <button class="btn btn-outline-danger btn-sm">Delete</button>
-                                    </div>
-                                </td>
-                                <td class="comment-section">
-                                    <div>
-                                        <label for="rating-103">Rating:</label>
-                                        <select id="rating-103" class="form-select form-select-sm"
-                                            aria-label="Select rating">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label for="comment-103">Comment:</label>
-                                        <textarea id="comment-103" class="form-control form-control-sm"
-                                            rows="2"></textarea>
-                                    </div>
-                                    <button class="btn btn-primary btn-sm mt-2">Submit</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </main>
+            </div>
         </div>
     </div>
 
-    <footer class="footer mt-auto py-3">
-        <div class="container-fluid">
-            <p class="text-muted">&copy; 2024 PureBuzz. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-
     <script>
-        // Example of JS to handle comments/rating submission
-        const submitButtons = document.querySelectorAll('.btn-primary');
-        submitButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const ratingSelect = this.parentElement.querySelector('select');
-                const commentTextarea = this.parentElement.querySelector('textarea');
+        // Handle star rating
+        document.querySelectorAll('.rating').forEach(ratingElement => {
+            const stars = ratingElement.querySelectorAll('.fa-star');
 
-                const rating = ratingSelect.value;
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const value = star.getAttribute('data-value');
+
+                    // Reset all stars
+                    stars.forEach(s => s.classList.remove('selected'));
+
+                    // Highlight up to the clicked star
+                    for (let i = 0; i < value; i++) {
+                        stars[i].classList.add('selected');
+                    }
+
+                    // Store the selected rating in the dataset
+                    ratingElement.setAttribute('data-selected-rating', value);
+                });
+            });
+        });
+
+        document.querySelectorAll('.rating').forEach(ratingElement => {
+            const stars = ratingElement.querySelectorAll('.fa-star');
+
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const value = star.getAttribute('data-value');
+
+                    // Reset all stars
+                    stars.forEach(s => s.classList.remove('selected'));
+
+                    // Highlight up to the clicked star
+                    for (let i = 0; i < value; i++) {
+                        stars[i].classList.add('selected');
+                    }
+
+                    // Store the selected rating in the dataset
+                    ratingElement.setAttribute('data-selected-rating', value);
+                });
+            });
+        });
+
+        // Handle comment submission
+        document.querySelectorAll('.submit-button').forEach(button => {
+            button.addEventListener('click', async function () {
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('.product-name').innerText;
+                const commentTextarea = productCard.querySelector('.comment-box');
+                const ratingElement = productCard.querySelector('.rating');
+                const selectedRating = ratingElement.getAttribute('data-selected-rating');
                 const comment = commentTextarea.value;
 
-                // Handle the submission (e.g., send data to the server, or store in local storage, etc.)
-                // For simplicity, we just log it to the console
-                console.log(`Product ID: ${this.closest('tr').children[0].innerText} - Rating: ${rating}, Comment: ${comment}`);
+                if (!selectedRating || !comment) {
+                    alert("Please provide both a rating and a comment before submitting.");
+                    return;
+                }
 
-                // Clear the textarea after submission
-                commentTextarea.value = '';
+                // Prepare data to be sent
+                const feedbackData = {
+                    product_name: productName, // Use product name for demonstration
+                    comment: comment,
+                    rating: selectedRating,
+                };
+
+                try {
+                    // Send data to the server via POST request
+                    const response = await fetch('http://localhost/omar/public/index.php?controller=orders&action=storeFeedback', {  // Make sure to correct the URL
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(feedbackData)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        alert(result.message); // Success message from the server
+                        // Clear the comment and reset the stars
+                        commentTextarea.value = '';
+                        ratingElement.querySelectorAll('.fa-star').forEach(star => star.classList.remove('selected'));
+                    } else {
+                        alert(result.error); // Error message from the server
+                    }
+                } catch (error) {
+                    console.error("An error occurred while submitting feedback:", error);
+                    alert("Failed to submit feedback. Please try again later.");
+                }
             });
         });
     </script>

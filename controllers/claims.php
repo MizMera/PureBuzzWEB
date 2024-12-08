@@ -42,27 +42,25 @@ class claims
         }
     }
     
-    /**
-     * Sends an email notification to the user.
-     */
+    
     private function sendEmailNotification($userEmail, $product, $claimDetails)
     {
-        require '../vendor/autoload.php'; // Path to PHPMailer autoload if using Composer
+        require '../vendor/autoload.php'; 
     
         $mail = new PHPMailer\PHPMailer\PHPMailer();
     
         try {
-            // Server settings
+            
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com'; // Your SMTP server
+            $mail->Host = 'smtp.gmail.com'; 
             $mail->SMTPAuth = true;
-            $mail->Username = 'pure.buzzz@gmail.com'; // Your SMTP username
-            $mail->Password = 'salmawalid123'; // Your SMTP password
+            $mail->Username = 'djangomailer040@gmail.com'; 
+            $mail->Password = 'cdgh rufa gtwr ocqe'; 
             $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587; // SMTP port (usually 587 for TLS)
     
             // Recipient
-            $mail->setFrom('pure.buzzz@gmail.com', 'PureBuzz');
+            $mail->setFrom('djangomailer040@gmail.com', 'PureBuzz');
             $mail->addAddress($userEmail); // Recipient email
     
             // Email content

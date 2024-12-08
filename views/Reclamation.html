@@ -626,6 +626,24 @@
                                     </tbody>
                                 </table>
                             </center>
+                            <h1 style="color: orange; margin-left: 600px; margin-top: 70px;">Feedback Table</h1>
+                            <center>
+                                <table id="feedbackTable" class="table table-bordered table-hover"
+                                    style="width: 1000px; margin-top: 50px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Feedback ID</th>
+                                            <th>Product Name</th>
+                                            <th>Rating</th>
+                                            <th>Comment</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="feedbackBody">
+                                        <!-- Dynamic rows for feedback will be inserted here by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </center>
 
                     </section>
                 </main>
@@ -637,6 +655,174 @@
     </footer>
 
     <script>
+        // Fetch all feedbacks and render them
+        async function fetchFeedbacks() {
+            try {
+                const response = await fetch("http://localhost/omar/public/index.php?controller=orders&action=listFeedbacks");
+                const result = await response.json();
+
+                if (response.ok) {
+                    renderFeedbacks(result.feedbacks);
+                } else {
+                    console.error("Error fetching feedbacks:", result.error);
+                    alert("Failed to load feedbacks. Please try again later.");
+                }
+            } catch (error) {
+                console.error("Error fetching feedbacks:", error);
+                alert("Failed to fetch feedbacks. Please try again later.");
+            }
+        }
+
+        // Render feedbacks into a table
+        function renderFeedbacks(feedbacks) {
+            const tbody = document.getElementById('feedbackBody');
+            tbody.innerHTML = ''; // Clear existing rows
+
+            if (!feedbacks || feedbacks.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6">No feedbacks found</td></tr>';
+                return;
+            }
+
+            feedbacks.forEach(feedback => {
+                const row = document.createElement('tr');
+
+                const feedbackID = feedback.id || "N/A";
+                const productName = feedback.product_name || "N/A";
+                const rating = feedback.rating || "N/A";
+                const comment = feedback.cmt || "N/A";
+                const createdAt = feedback.created_at ? new Date(feedback.created_at).toLocaleString() : "N/A";
+
+                row.innerHTML = `
+            <td>#${feedbackID}</td>
+            <td>${productName}</td>
+            <td>${rating}</td>
+            <td>${comment}</td>
+            <td>${createdAt}</td>
+            <td>
+                <button onclick="editFeedback(this)" class="btn btn-outline-secondary btn-sm mr-1">Edit</button>
+                <button onclick="confirmDeleteFeedback(this)" class="btn btn-outline-danger btn-sm">Delete</button>
+            </td>
+        `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        // Confirm delete action for a feedback
+        function confirmDeleteFeedback(button) {
+            const row = button.closest("tr");
+            const feedbackID = row.cells[0].textContent.trim().replace("#", "");
+
+            if (confirm("Are you sure you want to delete this feedback?")) {
+                deleteFeedback(feedbackID, row);
+            }
+        }
+
+        // Delete feedback from server
+        async function deleteFeedback(feedbackID, row) {
+            try {
+                const response = await fetch(`http://localhost/omar/public/index.php?controller=orders&action=deleteFeedback`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ feedback_id: feedbackID }),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    row.remove();
+                    alert("Feedback deleted successfully.");
+                } else {
+                    console.error("Error deleting feedback:", result.error);
+                    alert("Failed to delete feedback. Please try again.");
+                }
+            } catch (error) {
+                console.error("Error deleting feedback:", error);
+                alert("Failed to delete feedback. Please try again.");
+            }
+        }
+
+        // Edit a feedback record
+        function editFeedback(button) {
+            const row = button.closest("tr");
+
+            Array.from(row.cells).forEach((cell, index) => {
+                if (index === row.cells.length - 1) return; // Skip "Actions" column
+
+                if (!cell.querySelector("input")) {
+                    const currentValue = cell.textContent.trim();
+                    cell.innerHTML = `<input type="text" value="${currentValue}" class="form-control form-control-sm" />`;
+                }
+            });
+
+            button.textContent = "Save";
+            button.onclick = function () {
+                saveFeedback(button);
+            };
+        }
+
+        // Save an edited feedback record
+        async function saveFeedback(button) {
+            const row = button.closest("tr");
+
+            const feedbackID = row.cells[0].querySelector("input").value.trim().replace("#", "");
+            const productName = row.cells[1].querySelector("input").value.trim();
+            const rating = row.cells[2].querySelector("input").value.trim();
+            const comment = row.cells[3].querySelector("input").value.trim();
+
+            const updatedData = {
+                Feedback_ID: feedbackID,
+                Product_Name: productName,
+                Rating: rating,
+                Comment: comment
+            };
+
+            await updateFeedback(updatedData);
+
+            Array.from(row.cells).forEach(cell => {
+                const input = cell.querySelector("input");
+                if (input) {
+                    cell.textContent = input.value; // Set cell text to the input value
+                }
+            });
+
+            button.textContent = "Edit";
+            button.onclick = function () {
+                editFeedback(button);
+            };
+        }
+
+        // Update feedback data via the backend
+        async function updateFeedback(updatedData) {
+            try {
+                const response = await fetch(`http://localhost/omar/public/index.php?controller=orders&action=updateFeedback`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(updatedData),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message);
+                } else {
+                    console.error("Error updating feedback:", result.error);
+                    alert("Failed to update feedback: " + result.error);
+                }
+            } catch (error) {
+                console.error("Error updating feedback:", error);
+                alert("Failed to update feedback. Please try again.");
+            }
+        }
+
+        // Fetch feedbacks on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchClaims();
+            fetchResponses();
+            fetchFeedbacks(); // Fetch feedbacks when the page loads
+        });
         // Fetch all claims and render them
         async function fetchClaims() {
             try {
@@ -677,17 +863,17 @@
                     : "No response yet";
 
                 row.innerHTML = `
-                        <td>#${claimID}</td>
-                        <td>${userName}</td>
-                        <td>${product}</td>
-                        <td>${createdAt}</td>
-                        <td>${details}</td>
-                        <td>
-                            <button onclick="editClaim(this)" class="btn btn-outline-secondary btn-sm mr-1">Edit</button>
-                            <button onclick="confirmDeleteClaim(this)" class="btn btn-outline-danger btn-sm">Delete</button>
-                            <button onclick="respondToClaim(this)" class="btn btn-outline-secondary btn-sm mr-1">Respond</button>
-                        </td>
-                    `;
+                            <td>#${claimID}</td>
+                            <td>${userName}</td>
+                            <td>${product}</td>
+                            <td>${createdAt}</td>
+                            <td>${details}</td>
+                            <td>
+                                <button onclick="editClaim(this)" class="btn btn-outline-secondary btn-sm mr-1">Edit</button>
+                                <button onclick="confirmDeleteClaim(this)" class="btn btn-outline-danger btn-sm">Delete</button>
+                                <button onclick="respondToClaim(this)" class="btn btn-outline-secondary btn-sm mr-1">Respond</button>
+                            </td>
+                        `;
 
                 tbody.appendChild(row);
             });
@@ -773,15 +959,15 @@
                 const createdAt = response.created_at ? new Date(response.created_at).toLocaleString() : "N/A";
 
                 row.innerHTML = `
-                        <td>#${responseID}</td>
-                        <td>#${claimID}</td>
-                        <td>${responseDetail}</td>
-                        <td>${createdAt}</td>
-                        <td>
-                            <button onclick="editResponse(this)" class="btn btn-outline-secondary btn-sm mr-1">Edit</button>
-                            <button onclick="confirmDeleteResponse(this)" class="btn btn-outline-danger btn-sm">Delete</button>
-                        </td>
-                    `;
+                            <td>#${responseID}</td>
+                            <td>#${claimID}</td>
+                            <td>${responseDetail}</td>
+                            <td>${createdAt}</td>
+                            <td>
+                                <button onclick="editResponse(this)" class="btn btn-outline-secondary btn-sm mr-1">Edit</button>
+                                <button onclick="confirmDeleteResponse(this)" class="btn btn-outline-danger btn-sm">Delete</button>
+                            </td>
+                        `;
 
                 tbody.appendChild(row);
             });
@@ -824,20 +1010,23 @@
 
         // Edit a claim record
         function editClaim(button) {
-            const row = button.closest("tr");
+            const row = button.closest("tr"); // Get the row containing the button
+            console.log("Row being edited:", row); // Debugging log
 
+            // Convert table cells into input fields for editing
             Array.from(row.cells).forEach((cell, index) => {
-                if (index === row.cells.length - 1) return; // Skip "Actions" column
+                if (index === row.cells.length - 1) return; // Skip the "Actions" column
 
-                if (!cell.querySelector("input")) {
-                    const currentValue = cell.textContent.trim();
-                    cell.innerHTML = `<input type="text" value="${currentValue}" class="form-control form-control-sm" />`;
+                if (!cell.querySelector("input")) { // Check if the cell already contains an input
+                    const currentValue = cell.textContent.trim(); // Get the current cell value
+                    cell.innerHTML = `<input type="text" value="${currentValue}" class="form-control form-control-sm" />`; // Replace with input
                 }
             });
 
+            // Change the "Edit" button to "Save"
             button.textContent = "Save";
             button.onclick = function () {
-                saveClaim(button);
+                saveClaim(button); // Assign the save functionality to the button
             };
         }
         // Edit a response record
@@ -920,30 +1109,35 @@
 
         // Save an edited claim record
         async function saveClaim(button) {
-            const row = button.closest("tr");
-            const claimID = row.cells[0].querySelector("input").value.trim().replace("#", "");
+            const row = button.closest("tr"); // Get the row containing the button
+            console.log("Row being saved:", row); // Debugging log
 
+            // Extract the Claim ID and other data from the inputs
+            const claimID = row.cells[0].querySelector("input").value.trim().replace("#", ""); // Extract Claim ID
             const updatedData = {
                 Claim_ID: claimID,
-                User_Name: row.cells[1].querySelector("input").value.trim(),
-                Product: row.cells[2].querySelector("input").value.trim(),
-                Details: row.cells[5].querySelector("input").value.trim(),
+                User_Name: row.cells[1].querySelector("input").value.trim(), // User Name
+                Product: row.cells[2].querySelector("input").value.trim(), // Product
+                Details: row.cells[4].querySelector("input").value.trim(), // Details
             };
 
-            Array.from(row.cells).forEach((cell, index) => {
-                if (index === row.cells.length - 1) return;
+            console.log("Updated Claim Data:", updatedData); // Debugging log
 
+            // Revert the input fields back to plain text in the table row
+            Array.from(row.cells).forEach((cell, index) => {
                 const input = cell.querySelector("input");
                 if (input) {
-                    cell.textContent = input.value.trim();
+                    cell.textContent = input.value.trim(); // Set cell text to the input value
                 }
             });
 
+            // Reset the "Save" button back to "Edit"
             button.textContent = "Edit";
             button.onclick = function () {
-                editClaim(button);
+                editClaim(button); // Reassign the edit functionality
             };
 
+            // Call the backend to update the claim
             await updateClaim(claimID, updatedData);
         }
 
@@ -978,9 +1172,8 @@
             const claimID = row.cells[0].textContent.trim().replace("#", "");
             const userName = row.cells[1].textContent.trim();
             const product = row.cells[2].textContent.trim();
-            const status = row.cells[3].textContent.trim();
-            const createdAt = row.cells[4].textContent.trim();
-            const details = row.cells[5].textContent.trim();
+            const createdAt = row.cells[3].textContent.trim();
+            const details = row.cells[4].textContent.trim();
 
             window.location.href = `Response.html?claim-id=${claimID}&user-name=${encodeURIComponent(userName)}&product=${encodeURIComponent(product)}&status=${encodeURIComponent(status)}&details=${encodeURIComponent(details)}&created_at=${encodeURIComponent(createdAt)}`;
         }
