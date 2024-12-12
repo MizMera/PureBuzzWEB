@@ -99,7 +99,7 @@ class ApiaryC
             echo 'Erreur: ' . $e->getMessage();
         }
     }
-    //donner le nombre de apiareies dans la base de donnee 
+    //donner le nombre de apiaries dans la base de donnee 
     public function countApiariesWithSearch($search)
     {
         $sql = "SELECT COUNT(*) AS total FROM apiaries WHERE 

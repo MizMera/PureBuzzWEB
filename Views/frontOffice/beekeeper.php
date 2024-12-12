@@ -222,7 +222,7 @@ body {
                                 <th>Weather</th>
                                 <th>Hive Count</th>
                                 <th>Observation</th>
-                                
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -239,6 +239,9 @@ body {
                                         <td>" . htmlspecialchars($apiary['weather']) . "</td>
                                         <td>" . htmlspecialchars($apiary['hiveCount']) . "</td>
                                         <td>" . htmlspecialchars($apiary['observation']) . "</td>
+                                        <td>
+                                            <a href='map.php?cor=" . $apiary['coordinates'] . "' class='signin'>Show in map</a>
+                                        </td>
 
                                     </tr>";
                                 }
