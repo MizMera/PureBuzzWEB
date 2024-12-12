@@ -1,3 +1,10 @@
+<?php
+require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../controllers/EventController.php';
+
+$eventController = new EventController($access);
+$events = $eventController->getAllEvents();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,12 +17,12 @@
             margin: 0;
             padding: 0;
             background-color: rgba(255, 235, 204, 0.7);
-            color: #3e2723; /* Dark honey tones for text */
+            color: #3e2723;
         }
         header {
             position: fixed;
             width: 100%;
-            background-color: rgba(62, 39, 35, 0.8); /* Transparent header */
+            background-color: rgba(62, 39, 35, 0.8);
             padding: 0;
             display: inline-flex;
             justify-content: space-between;
@@ -27,7 +34,7 @@
             height: 70px;
         }
         header nav a {
-            color: #fbc02d; /* Golden honey tone */
+            color: #fbc02d;
             margin: 0 15px;
             text-decoration: none;
             font-weight: bold;
@@ -43,9 +50,9 @@
             border-radius: 5px;
         }
         .background-section {
-            height: 50vh; /* Full-screen height */
+            height: 50vh;
             background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 70%, rgba(255, 235, 204, 0.7) 100%), 
-            url('ABC.png');
+            url('public/images/ABC.png');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -67,7 +74,7 @@
         }
         section {
             padding: 40px 20px;
-            background-color: rgba(255, 235, 204, 0.7); /* Transparent honey-like background */
+            background-color: rgba(255, 235, 204, 0.7);
             border-radius: 10px;
             margin: 20px auto;
             max-width: 1200px;
@@ -77,8 +84,8 @@
             padding: 40px 20px;
         }
         .event-card {
-            background-color: rgba(255, 236, 179, 0.9); /* Light transparent honey shade for cards */
-            border: 1px solid rgba(215, 204, 200, 0.8); /* Slightly transparent border */
+            background-color: rgba(255, 236, 179, 0.9);
+            border: 1px solid rgba(215, 204, 200, 0.8);
             margin-bottom: 20px;
             padding: 15px;
             border-radius: 10px;
@@ -89,7 +96,7 @@
             width: 100%;
             height: 300px;
             object-fit: cover;
-            border-bottom: 3px solid rgba(251, 192, 45, 0.9); /* Transparent honey border under image */
+            border-bottom: 3px solid rgba(251, 192, 45, 0.9);
             border-radius: 10px 10px 0 0;
         }
         .event-card h3 {
@@ -97,62 +104,44 @@
             margin-top: 15px;
         }
         footer {
-            background-color: rgba(62, 39, 35, 0.8); /* Transparent footer */
+            background-color: rgba(62, 39, 35, 0.8);
             color: #fff8e1;
             text-align: center;
             padding: 20px;
             margin-top: 40px;
         }
-    
     </style>
 </head>
 <body>
+    <header>
+        <img src="public/images/logo.png" alt="PureBuzz Logo">
+        <nav>
+            <a href="#events">Events</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button onclick="location.href='index.php?action=getTickets'" class="boton">Get Tickets</button>
+    </header>
 
-<!-- Fixed Header -->
-<header>
-    <img src="logo.png" alt="PureBuzz Logo">
-    <nav>
-        <a href="#events">Events</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <button onclick="location.href='joinus.html'" class="boton">Get Tickets</button>
-</header>
-
-<!-- Full-Screen Background Section -->
-<div class="background-section">
-    <h1>Welcome to PureBuzz Honey Events</h1>
-</div>
-
-<!-- Events Section -->
-<section id="events" class="events">
-    <h2>Our Events</h2>
-    <!-- Event 1 -->
-    <div class="event-card">
-        <img src="honey.jpg" alt="Honey Tasting Workshop">
-        <h3>Honey Tasting Workshop</h3>
-        <p><strong>Location:</strong> Tunis, Tunisia</p>
-        <p>Experience the finest honey flavors with our expert beekeepers. A sensory journey awaits!</p>
+    <div class="background-section">
+        <h1>Welcome to PureBuzz Honey Events</h1>
     </div>
-    <!-- Event 2 -->
-    <div class="event-card">
-        <img src="guided.webp" alt="Guided Apiary Tours">
-        <h3>Guided Apiary Tours</h3>
-        <p><strong>Location:</strong> Sfax, Tunisia</p>
-        <p>Join us for an insightful tour through our honey apiaries. Learn about the lifecycle of bees and their impact on nature.</p>
-    </div>
-    <!-- Event 3 -->
-    <div class="event-card">
-        <img src="beekeeping.jpg" alt="Beekeeping Classes">
-        <h3>Beekeeping Classes</h3>
-        <p><strong>Location:</strong> Hammamet, Tunisia</p>
-        <p>Dive into the world of beekeeping with professional classes designed for enthusiasts and beginners alike.</p>
-    </div>
-</section>
 
-<!-- Footer -->
-<footer>
-    <p>&copy; 2024 PureBuzz Honey Events. All Rights Reserved.</p>
-</footer>
+    <section id="events" class="events">
+        <h2>Our Events</h2>
+        <?php foreach ($events as $event): ?>
+            <div class="event-card">
+                <img src="<?= htmlspecialchars($event->getImage()) ?>" alt="<?= htmlspecialchars($event->getName()) ?>">
+                <h3><?= htmlspecialchars($event->getName()) ?></h3>
+                <p><strong>Location:</strong> <?= htmlspecialchars($event->getLocation()) ?></p>
+                <p><?= htmlspecialchars($event->getDescription()) ?></p>
+                <p><strong>Tickets Available:</strong> <?= htmlspecialchars($event->getNumTickets()) ?></p>
+            </div>
+        <?php endforeach; ?>
+    </section>
 
+    <footer>
+        <p>&copy; 2024 PureBuzz Honey Events. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
+
