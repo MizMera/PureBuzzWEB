@@ -34,6 +34,7 @@ $totalSales = $rowTotalSales['total_sales'];
     <link rel="stylesheet" href="bck.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="all.css">
+
 </head>
 <body>
 

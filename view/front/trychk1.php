@@ -118,14 +118,28 @@ $stmt->execute([
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout Page</title>
     <link rel="stylesheet" href="all_copy.css?v=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="product-style.css?v=1.0">
 </head>
 <body>
+<nav class="navbar">
+        <div class="logo">
+            <img src="PureBuzzLogo.png" alt="PureBuzz Logo"> <!-- Replace with the actual logo path -->
+        </div>
+        <ul class="menu">
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#benefits" class="nav-link">Benefits</a></li>
+            <li><a href="#support" class="nav-link">Support</a></li>
+            <li><a href="#product-section" class="nav-link">Products</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <a href="#" class="signin">Sign in</a>
+            <a href="#" class="register">Register</a>
+        </div>
+</nav>
     <!-- Header Section -->
     <div class="header">
-        <a class="navbar-brand" href="products.php">
-            <img src="PureBuzzLogo.png" alt="PureBuzz logo" />
-        </a>
+       
         <div class="welcome-message">
             <h1 class="welcome-text">Order Confirmation</h1>
             <h3 class="welcome-sub-text">Almost there! Please take a moment to complete your details and we’ll handle the rest</h3>
@@ -214,12 +228,13 @@ $stmt->execute([
             </tr>
         </div>
     </div>
-    <footer class="footer">
+     <!-- Footer -->
+     <footer class="footer">
         <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">PureBuzz &copy; 2024</span>
-            <span class="text-muted d-block text-center text-sm-right d-sm-inline-block">Honey, Beekeeping & Bee Essentials</span>
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">made <a href="https://www.purebuzz.com/" target="_blank">by team webnovators</a> from Esprit.</span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2024. All rights reserved.</span>
         </div>
-    </footer>
+      </footer>
    
 
     <script>

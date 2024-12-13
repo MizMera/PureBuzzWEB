@@ -24,7 +24,6 @@ class Config
                         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
                     ]
                 );
-                echo " connected successfully";
             } catch (Exception $e) {
                 // Display an error message if the connection fails
                 die('Erreur: ' . $e->getMessage());

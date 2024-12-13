@@ -44,16 +44,29 @@ if (isset($_GET['order_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Confirmation</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="try.css?v=1.0">
+    <link rel="stylesheet" href="product-style.css?v=1.0">
+    <link rel="stylesheet" href="try1.css?v=1.0">
    
 </head>
 <body>
+<nav class="navbar">
+        <div class="logo">
+            <img src="PureBuzzLogo.png" alt="PureBuzz Logo"> <!-- Replace with the actual logo path -->
+        </div>
+        <ul class="menu">
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#benefits" class="nav-link">Benefits</a></li>
+            <li><a href="#support" class="nav-link">Support</a></li>
+            <li><a href="#product-section" class="nav-link">Products</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="auth-buttons">
+      
+        </div>
+    </nav>
     <!-- Header Section -->
-    <div class="header">
-        <a class="navbar-brand" href="products.php">
-            <img src="PureBuzzLogo.png" alt="PureBuzz logo" />
-        </a>
+    <div>
+       
         <div class="welcome-message">
             <h1 class="welcome-text">Thank You for Your PureBuzz Order</h1>
             <h3 class="welcome-sub-text">
@@ -76,7 +89,7 @@ if (isset($_GET['order_id'])) {
     </div>
     
     <!-- Order Details Section -->
-    <div class="order-details">
+    <div style="width:300px; margin-left:550px;margin-bottom:70px" class="order-details">
         <h1>Your Order Details</h1>
         <p><strong>Order Number:</strong> <?php echo htmlspecialchars($order['cart_id']); ?></p>
         <p><strong>Name:</strong> <?php echo htmlspecialchars($order['first_name'] . ' ' . $order['last_name']); ?></p>
@@ -113,7 +126,13 @@ if (isset($_GET['order_id'])) {
         <button class="download-btn">Download PDF</button>
     </a>
 </div>
-
+     <!-- Footer -->
+     <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">made <a href="https://www.purebuzz.com/" target="_blank">by team webnovators</a> from Esprit.</span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2024. All rights reserved.</span>
+        </div>
+      </footer>
 
 </body>
 </html>

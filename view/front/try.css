@@ -8,8 +8,8 @@ body {
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    margin-top: 30px; 
-    padding-top: 100px; /*Ajoute un peu d'espace en haut si nécessaire*/
+   
+  /*Ajoute un peu d'espace en haut si nécessaire*/
 }
 
 /* Header aligné horizontalement avec fond semi-transparent */
