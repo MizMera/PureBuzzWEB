@@ -1,0 +1,146 @@
+/* Conserver l'image de fond mais décalée vers le bas */
+body {
+    background-image: url('background.png');
+    background-size: 80% 99%;
+    background-position: center ; /* Décale l'image de fond vers le bas */
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin-top: 30px; 
+    padding-top: 100px; /*Ajoute un peu d'espace en haut si nécessaire*/
+}
+
+/* Header aligné horizontalement avec fond semi-transparent */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espace entre logo, titre et étapes */
+    padding: 10px 20px;
+    justify-content: left;
+}
+
+/* Logo */
+.navbar-brand img {
+    max-width: 90px;
+    height: auto;
+}
+
+/* Titre de bienvenue */
+.welcome-text {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 24px;
+    margin: 0;
+    text-align: left;
+}
+
+/* Texte sous-titre */
+.welcome-sub-text {
+    font-family: "Manrope", sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #6C757D;
+    margin-top: 5px;
+    max-width: 500px;
+    text-align: left;
+}
+
+/* Indicateur de progression */
+.progress-indicator {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+.step {
+    color: #ccc;
+    display: flex;
+    align-items: center;
+}
+
+.step.active {
+    color: #f6b92b;
+}
+
+.separator {
+    color: #999;
+    margin: 0 10px;
+}
+
+.step-number {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+    background-color: #eee;
+    font-weight: bold;
+}
+
+.step.active .step-number {
+    background-color: #f6b92b;
+    color: white;
+}
+
+/* Conteneur des détails de la commande */
+.order-details {
+    background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    max-width: 80%;
+    width: auto;
+    text-align: left;
+    margin-top: 31vh; /* Baisse la section des détails de la commande pour laisser l'image en arrière-plan visible */
+}
+       
+/* Texte des détails de la commande */
+.order-details p, .order-details h2, .order-details h1 {
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* Titre des détails de la commande */
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+/* Ensure the button within the submit div is styled correctly */
+.submit a {
+    text-decoration: none; /* Remove underline from link */
+    color: white; /* Corrected to use 'color' instead of 'text' */
+}
+
+.submit button.download-btn {
+    background-color:  #f6b92b75;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin-top: 0px; /* Adds space above the button */
+    margin-left: 900px;
+}
+
+.submit button.download-btn:hover {
+    background-color:#f6b92b  ;
+}
+
+
+
+
