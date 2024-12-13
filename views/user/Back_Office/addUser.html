@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Add Userr </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../../../assets/vendors/feather/feather.css">
+    <link rel="stylesheet" href="../../../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../../../assets/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../../../../assets/vendors/typicons/typicons.css">
+    <link rel="stylesheet" href="../../../../assets/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="../../../../assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="../../../../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../../../../assets/js/select.dataTables.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../../../assets/css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../../../../assets/css/Back_office/addUser.css">
+
+    <link rel="shortcut icon" href="../../../../assets/PureBuzzLogo.png" />
+
+
+</head>
+<body>
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+            <div class="me-3">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
+                    <span class="icon-menu"></span>
+                </button>
+            </div>
+            <div>
+                <a class="navbar-brand brand-logo" href="index.html">
+                    <img src="../../../../assets/PureBuzzLogo.png"style="height: 80px;" alt="logo" />
+                </a>
+
+            </div>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-top">
+            <ul class="navbar-nav">
+                <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+                    <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">Miss SHAHD</span></h1>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+
+
+
+
+
+                <li class="nav-item dropdown d-none d-lg-block user-dropdown">
+                    <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="img-xs rounded-circle" src="../../../../assets/images/faces/face8.jpg" alt="Profile image"> </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                        <div class="dropdown-header text-center">
+                            <img class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
+                            <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
+                            <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+                        </div>
+                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
+                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
+                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
+                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
+                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+                    </div>
+                </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
+                <span class="mdi mdi-menu"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+        <div class="theme-setting-wrapper">
+            <div id="settings-trigger"><i class="ti-settings"></i></div>
+            <div id="theme-settings" class="settings-panel">
+                <i class="settings-close ti-close"></i>
+                <p class="settings-heading">SIDEBAR SKINS</p>
+                <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border me-3"></div>Light</div>
+                <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border me-3"></div>Dark</div>
+                <p class="settings-heading mt-2">HEADER SKINS</p>
+                <div class="color-tiles mx-0 px-4">
+                    <div class="tiles success"></div>
+                    <div class="tiles warning"></div>
+                    <div class="tiles danger"></div>
+                    <div class="tiles info"></div>
+                    <div class="tiles dark"></div>
+                    <div class="tiles default"></div>
+                </div>
+            </div>
+        </div>
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../../index.html">
+                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item nav-category">User Managment</li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                        <i class="menu-icon mdi mdi-floor-plan"></i>
+                        <span class="menu-title">User managment</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-basic">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="addUser.html">Add User</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="AllUsers.html">Get All Users</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item nav-category">Forms and Datas</li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+                        <i class="menu-icon mdi mdi-card-text-outline"></i>
+                        <span class="menu-title">Form elements</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="form-elements">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+                        <i class="menu-icon mdi mdi-chart-line"></i>
+                        <span class="menu-title">Charts</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="charts">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="../../../../pages/charts/chartjs.html">ChartJs</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+                        <i class="menu-icon mdi mdi-table"></i>
+                        <span class="menu-title">Tables</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="tables">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="../../../../pages/tables/basic-table.html">Basic table</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item nav-category">pages</li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                        <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                        <span class="menu-title">User Pages</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="auth">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="../../../../pages/samples/login.html"> Login </a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item nav-category">help</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutLink">
+                        <i class="menu-icon mdi mdi-file-document"></i>
+                        <span class="menu-title">Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel" style="background-color:#FDD670 ">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="home-tab">
+                            <div class="d-sm-flex align-items-center justify-content-between border-bottom">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="" role="tab" aria-controls="overview" aria-selected="true">Add user </a>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                            <div class="tab-content tab-content-basic">
+                                <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview">
+
+                                    <div class="row">
+
+
+                                        <div class="row flex-grow">
+                                            <div class="col-12 grid-margin stretch-card">
+                                                <div class="card card-rounded">
+                                                    <div class="card-body">
+                                                        <div class="d-sm-flex justify-content-between align-items-start">
+
+                                                        </div>
+                                                        <div class="table-responsive  mt-1">
+                                                            <div class="form-container">
+                                                                <form id="userForm" enctype="multipart/form-data" novalidate>
+                                                                    <!-- Nom -->
+                                                                    <input type="text" name="first_name" class="form-control" placeholder="Name">
+                                                                    <div class="error-message"></div>
+
+                                                                    <!-- Prénom -->
+                                                                    <input type="text" name="last_name" class="form-control" placeholder="Last name">
+                                                                    <div class="error-message"></div>
+
+                                                                    <!-- Date de Naissance -->
+                                                                    <input type="date" name="date_of_birth" class="form-control">
+                                                                    <div class="error-message"></div>
+
+                                                                    <!-- Email -->
+                                                                    <input type="email" name="email" class="form-control" placeholder="Email">
+                                                                    <div class="error-message"></div>
+
+                                                                    <!-- Mot de Passe -->
+                                                                    <input type="password" name="password" class="form-control" placeholder="Password">
+                                                                    <div class="error-message"></div>
+
+                                                                    <!-- Role -->
+                                                                    <select name="role" class="form-control-select">
+                                                                        <option value="" disabled selected>Role</option>
+                                                                        <option value="beekeeper">Beekeeper</option>
+                                                                        <option value="Client">Client</option>
+                                                                        <option value="Farmer">Farmer</option>
+                                                                        <option value="Seller">Seller</option>
+                                                                    </select>
+                                                                    <div class="error-message"></div>
+
+                                                                    <!-- Sexe -->
+                                                                    <select name="gender" class="form-control-select">
+                                                                        <option value="" disabled selected>Gender</option>
+                                                                        <option name="gender" value="male">Men</option>
+                                                                        <option name="gender" value="female">Woman</option>
+                                                                    </select>
+                                                                    <div class="error-message"></div>
+
+                                                                    <!-- Localisation -->
+                                                                    <input type="text" name="location" class="form-control" placeholder="Location">
+                                                                    <div class="error-message"></div>
+
+                                                                    <!-- Photo Profil -->
+                                                                    <input type="file" name="photo" class="form-control">
+                                                                    <div class="error-message"></div>
+
+                                                                    <!-- Téléphone -->
+                                                                    <input type="tel" name="mobile" class="form-control" placeholder="Mobile">
+                                                                    <div class="error-message"></div>
+
+                                                                    <!-- Bouton Submit -->
+                                                                    <button type="submit" class="btn-submit">Create account</button>
+                                                                </form>
+
+
+
+                                                            </div>                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+                <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash.</span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All rights reserved.</span>
+                </div>
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Check session before executing any operations
+        fetch('../../../controller/user/checkSession.php') // Path to checkSession.php
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(sessionData => {
+                if (!sessionData.success) {
+                    // If the session is not valid, redirect to the login page
+                    alert(sessionData.message || "User not logged in.");
+                    window.location.href = "../../Front_Office/User/log_in.html"; // Redirect to login page
+                } else {
+                    // If session is valid, proceed with the form logic
+                    initializeForm();
+                }
+            })
+            .catch(error => {
+                console.error("Error checking session:", error);
+                alert("An error occurred while checking the session. Redirecting to login.");
+                window.location.href = "../../Front_Office/User/log_in.html"; // Redirect to login page
+            });
+
+        function initializeForm() {
+            const form = document.getElementById("userForm");
+            const errorMessages = {
+                first_name: "Name must only contain letters.",
+                last_name: "Last name must only contain letters.",
+                date_of_birth: "You must be at least 18 years old.",
+                email: "Please enter a valid email address.",
+                password: "Password must be at least 8 characters, contain a number, uppercase and lowercase letters.",
+                role: "Please select a role.",
+                gender: "Please select a gender.",
+                mobile: "Mobile number must be at least 8 digits.",
+            };
+
+            const validators = {
+                first_name: (value) => /^[A-Za-z]+$/.test(value),
+                last_name: (value) => /^[A-Za-z]+$/.test(value),
+                date_of_birth: (value) => {
+                    if (!value) return false;
+                    const today = new Date();
+                    const birthDate = new Date(value);
+                    const age = today.getFullYear() - birthDate.getFullYear();
+                    const monthDifference = today.getMonth() - birthDate.getMonth();
+                    return age > 18 || (age === 18 && monthDifference >= 0);
+                },
+                email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+                password: (value) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(value),
+                role: (value) => value !== "",
+                gender: (value) => value !== "",
+                mobile: (value) => /^\d{8,}$/.test(value),
+            };
+
+            form.addEventListener("input", (e) => {
+                const input = e.target;
+                const errorDiv = input.nextElementSibling;
+
+                if (validators[input.name] && !validators[input.name](input.value)) {
+                    errorDiv.textContent = errorMessages[input.name];
+                    errorDiv.style.color = "red";
+                } else if (errorDiv) {
+                    errorDiv.textContent = "";
+                }
+            });
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                let isValid = true;
+
+                [...form.elements].forEach((input) => {
+                    const errorDiv = input.nextElementSibling;
+                    if (validators[input.name] && !validators[input.name](input.value)) {
+                        errorDiv.textContent = errorMessages[input.name];
+                        errorDiv.style.color = "red";
+                        isValid = false;
+                    } else if (errorDiv) {
+                        errorDiv.textContent = "";
+                    }
+                });
+
+                if (isValid) {
+                    const formData = new FormData(form);
+                    fetch("../../../controller/user/addUser.php", {
+                        method: "POST",
+                        body: formData,
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data.success) {
+                                alert("User created successfully!");
+                                window.location.href = "AllUsers.html";
+                            } else {
+                                alert("Error: " + (data.message || "An unexpected error occurred."));
+                            }
+                        })
+                        .catch((error) => {
+                            console.error("Error:", error);
+                            alert("Error: Unable to add user. Please try again.");
+                        });
+                }
+            });
+
+            // Logout functionality
+            document.getElementById("logoutLink").addEventListener("click", function (event) {
+                event.preventDefault(); // Prevent the default link behavior
+
+                // Use Fetch API to call the logout PHP script
+                fetch('../../../controller/user/Back_Office/logOut.php', {
+                    method: 'POST', // POST request to handle logout
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // Redirect to the login page
+                            window.location.href = '../../Front_Office/User/log_in.html';
+                        } else {
+                            console.error("Failed to log out:", response.statusText);
+                            alert("An error occurred while logging out. Please try again.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error during logout:", error);
+                        alert("An error occurred while logging out. Please try again.");
+                    });
+            });
+        }
+    });
+
+</script><!-- plugins:js -->
+<script src="../../../../assets/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="../../../../assets/vendors/chart.js/Chart.min.js"></script>
+<script src="../../../../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="../../../../assets/vendors/progressbar.js/progressbar.min.js"></script>
+
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="../../../../assets/js/off-canvas.js"></script>
+<script src="../../../../assets/js/hoverable-collapse.js"></script>
+<script src="../../../../assets/js/template.js"></script>
+<script src="../../../../assets/js/settings.js"></script>
+<script src="../../../../assets/js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="../../../../assets/js/dashboard.js"></script>
+<script src="../../../../assets/js/Chart.roundedBarCharts.js"></script>
+<!-- End custom js for this page-->
+</body>
+
+</html>
