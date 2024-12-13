@@ -32,7 +32,7 @@ class claims
         try {
             $claimModel->saveClaim($userName, $product, $claimDetails); // Save the claim
     
-            // Send email notification
+            
             $this->sendEmailNotification($userName, $product, $claimDetails);
     
             echo json_encode(["message" => "Claim submitted successfully! An email has been sent to you."]);
@@ -57,13 +57,13 @@ class claims
             $mail->Username = 'djangomailer040@gmail.com'; 
             $mail->Password = 'cdgh rufa gtwr ocqe'; 
             $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587; // SMTP port (usually 587 for TLS)
+            $mail->Port = 587; 
     
-            // Recipient
+          
             $mail->setFrom('djangomailer040@gmail.com', 'PureBuzz');
-            $mail->addAddress($userEmail); // Recipient email
+            $mail->addAddress($userEmail); 
     
-            // Email content
+          
             $mail->isHTML(true);
             $mail->Subject = 'Claim Submission Confirmation';
             $mail->Body = "
@@ -76,7 +76,7 @@ class claims
                 <p>PureBuzz</p>
             ";
     
-            // Send email
+           
             $mail->send();
         } catch (Exception $e) {
             error_log("Email could not be sent. Mailer Error: {$mail->ErrorInfo}");
@@ -119,7 +119,7 @@ class claims
         $claimModel = new ClaimModel();
 
         try {
-            // Call the model's method to update the claim
+            
             $claimModel->updateClaim($claimID, $userName, $product, $details);
             echo json_encode(["message" => "Claim updated successfully."]);
         } catch (Exception $e) {

@@ -47,33 +47,32 @@ class Responses
     }
     private function sendEmailResponse($claimId, $responseDetails)
     {
-        require '../vendor/autoload.php'; // Load Composer autoloader if necessary
-    
-        // Retrieve claim details and user email using the claim ID
-        $claimDetails = $this->responseModel->getResponsesByClaimId(); // Replace with actual model method
+        require '../vendor/autoload.php'; 
+ 
+        $claimDetails = $this->responseModel->getResponsesByClaimId(); 
         if (!$claimDetails) {
             error_log("Claim details not found for claim ID: $claimId");
             return;
         }
     
-        $userEmail ="omar.hamdi204@gmail.com"; // Assuming 'user_email' exists in the claim details
-        $product = $claimDetails['product_name']; // Assuming 'product_name' exists in the claim details
+        $userEmail ="omar.hamdi204@gmail.com" ; 
+        $product = $claimDetails['product_name']; 
     
         $mail = new PHPMailer\PHPMailer\PHPMailer();
     
         try {
-            // SMTP configuration
+
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com'; // Gmail SMTP server
+            $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'djangomailer040@gmail.com'; // Your email address
-            $mail->Password = 'cdgh rufa gtwr ocqe'; // Your email password or app-specific password
+            $mail->Username = 'djangomailer040@gmail.com';
+            $mail->Password = 'cdgh rufa gtwr ocqe'; 
             $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
     
             // Email headers and content
             $mail->setFrom('djangomailer040@gmail.com', 'PureBuzz');
-            $mail->addAddress($userEmail); // Recipient email
+            $mail->addAddress($userEmail); 
     
             $mail->isHTML(true);
             $mail->Subject = 'Response to Your Claim';
@@ -86,7 +85,7 @@ class Responses
                 <p>PureBuzz</p>
             ";
     
-            // Send the email
+            
             $mail->send();
             error_log("Email sent successfully to: $userEmail");
         } catch (Exception $e) {
@@ -115,7 +114,7 @@ class Responses
             return;
         }
 
-        // Extract Response_ID and Response_Detail from the input data
+
         $responseID = ltrim($data['Response_ID'], '#'); // Remove '#' if present
         $responseDetail = $data['Response_Detail'] ?? null;
 
@@ -128,16 +127,16 @@ class Responses
         $responseModel = new ResponseModel();
 
         try {
-            // Call the model's method to update the response
+
             if ($responseModel->updateResponse($responseID, $responseDetail)) {
                 echo json_encode(["message" => "Response updated successfully."]);
             } else {
-                // Handle the case where no rows were affected
+        
                 http_response_code(404);
                 echo json_encode(["error" => "Response not found or no changes made."]);
             }
         } catch (Exception $e) {
-            // Log the error message for debugging
+    
             error_log("Error in update_response: " . $e->getMessage());
             http_response_code(500);
             echo json_encode(["error" => "Failed to update response. " . $e->getMessage()]);
@@ -147,7 +146,7 @@ class Responses
     {
         $data = json_decode(file_get_contents("php://input"), true);
 
-        // Check if the data is valid and contains the response_id
+    
         if (!$data || !isset($data['response_id'])) {
             http_response_code(400);
             echo json_encode(["error" => "Invalid request. Response ID is required."]);
@@ -159,7 +158,6 @@ class Responses
         $responseModel = new ResponseModel();
 
         try {
-            // Call the delete method on the ResponseModel
             if ($responseModel->deleteResponse($responseID)) {
                 echo json_encode(["message" => "Response deleted successfully."]);
             } else {
