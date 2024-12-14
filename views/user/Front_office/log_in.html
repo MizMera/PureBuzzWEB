@@ -5,18 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Log In</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="../../../../assets/vendors/feather/feather.css">
-    <link rel="stylesheet" href="../../../../assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../../../assets/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="../../../../assets/vendors/typicons/typicons.css">
-    <link rel="stylesheet" href="../../../../assets/vendors/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="../../../../assets/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="../../../../assets/css/vertical-layout-light/style.css">
-    <link rel="stylesheet" href="../../../../assets/css/Front_Office/logIn.css">
-    <!-- endinject -->
-    <link rel="shortcut icon" href="../../../../assets/PureBuzzLogo.png" />
+
+    <link rel="stylesheet" href="../../../assets/css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../../../assets/css/Front_Office/user/logIn.css">
+    <link rel="shortcut icon" href="../../../assets/PureBuzzLogo.png" />
 </head>
 <style>
     .showPwd {
@@ -28,7 +20,7 @@
 <div class="content-wrapper">
     <!-- Logo Section -->
     <div class="logo-section text-center">
-        <img src="../../../../assets/PureBuzzLogo.png" alt="PureBuzz Logo" class="logo-img">
+        <img src="../../../assets/PureBuzzLogo.png" alt="PureBuzz Logo" class="logo-img">
     </div>
 
     <!-- Form Container -->
@@ -107,7 +99,7 @@
         formData.append('keepMeSignedIn', keepMeSignedIn);
 
         // Send login request to the server
-        fetch('../../../controller/user/login.php', {
+        fetch('../../../controllers/user/login.php', {
             method: 'POST',
             body: formData
         })
@@ -130,7 +122,7 @@
                     alert('Login successful!');
 
                     // Effectue une autre requête pour obtenir le rôle de l'utilisateur à partir de la session.
-                    fetch('../../../controller/user/getoneUser.php')
+                    fetch('../../../controllers/user/getoneUser.php')
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -144,9 +136,9 @@
 
                                 // Redirect based on user role
                                 if (role === 'admin') {
-                                    window.location.href = '../../../../index.html'; // Redirect to admin page
+                                    window.location.href = '../back_Office/stat.html'; // Redirect to admin page
                                 } else if (role != null && role !== '') {
-                                    window.location.href = '../../../../buzzpage.html'; // Redirect to user page
+                                    window.location.href = '../../../Public/Product-pages/product.html'; // Redirect to user page
                                 } else {
                                     alert('Unknown role. Contact support.');
                                 }

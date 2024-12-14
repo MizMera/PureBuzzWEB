@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="../../../../assets/css/vertical-layout-light/style.css">
-    <link rel="stylesheet" href="../../../../assets/css/Front_Office/signUp.css">
-    <link rel="shortcut icon" href="../../../../assets/PureBuzzLogo.png">
+    <link rel="stylesheet" href="../../../assets/css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../../../assets/css/Front_Office/user/signUp.css">
+    <link rel="shortcut icon" href="../../../assets/PureBuzzLogo.png">
 </head>
 
 <body class="bg-light p-5 text-center">
@@ -130,7 +130,7 @@
     document.getElementById('submitButton').addEventListener('click', function () {
         const formData = new FormData(document.getElementById('multiStepForm'));
 
-        fetch('../../../controller/user/register.php', {
+        fetch('../../../controllers/user/register.php', {
             method: 'POST',
             body: formData,
         })
@@ -149,7 +149,7 @@
             });
     });
 </script>
-<script src="../../../../assets/js/Front_Office/User/SignUp.js"></script>
+<script src="../../../assets/js/Front_Office/User/SignUp.js"></script>
 </body>
 
 </html>
