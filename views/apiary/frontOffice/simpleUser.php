@@ -1,8 +1,8 @@
 <?php
 
-include_once "../../config.php";
-include_once "../../Controllers/apiariesC.php";
-include_once "../../Controllers/harvestsC.php";
+include_once "../../../config/database.php";
+include_once "../../../Controllers/apiariesC.php";
+include_once "../../../Controllers/harvestsC.php";
 
 
 $harvestC = new HarvestC();
