@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claims Overview</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="header-title">Gestion des Réclamations</h1>
+        <nav class="nav">
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="add-claim.html" class="nav-link">Add Claim</a>
+            <a href="login.html" class="nav-link">Logout</a>
+        </nav>
+        <div class="container-scroller">
+            <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+                <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+                    <div class="me-3">
+                        <button class="navbar-toggler navbar-toggler align-self-center" type="button"
+                            data-bs-toggle="minimize">
+                            <span class="icon-menu"></span>
+                        </button>
+                    </div>
+                    <div>
+                        <a class="navbar-brand brand-logo" href="index.html">
+                            <img src="logo.png" style="height: 80px;" alt="logo">
+                        </a>
+
+                    </div>
+                </div>
+                <div class="navbar-menu-wrapper d-flex align-items-top">
+                    <ul class="navbar-nav">
+                        <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+                            <h1 style="margin-left:470px; ;" class="welcome-text"> Claims Overview
+                            </h1>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown d-none d-lg-block">
+                            <a class="nav-link dropdown-bordered dropdown-toggle dropdown-toggle-split"
+                                id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false"> Select
+                                Category </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
+                                aria-labelledby="messageDropdown">
+                                <a class="dropdown-item py-3">
+                                    <p class="mb-0 font-weight-medium float-left">Select category</p>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-item-content flex-grow py-2">
+                                        <p class="preview-subject ellipsis font-weight-medium text-dark">Bootstrap
+                                            Bundle </p>
+                                        <p class="fw-light small-text mb-0">This is a Bundle featuring 16 unique
+                                            dashboards</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-item-content flex-grow py-2">
+                                        <p class="preview-subject ellipsis font-weight-medium text-dark">Angular Bundle
+                                        </p>
+                                        <p class="fw-light small-text mb-0">Everything you’ll ever need for your Angular
+                                            projects</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-item-content flex-grow py-2">
+                                        <p class="preview-subject ellipsis font-weight-medium text-dark">VUE Bundle</p>
+                                        <p class="fw-light small-text mb-0">Bundle of 6 Premium Vue Admin Dashboard</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-item-content flex-grow py-2">
+                                        <p class="preview-subject ellipsis font-weight-medium text-dark">React Bundle
+                                        </p>
+                                        <p class="fw-light small-text mb-0">Bundle of 8 Premium React Admin Dashboard
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item d-none d-lg-block">
+                            <div id="datepicker-popup" class="input-group date datepicker navbar-date-picker">
+                                <span class="input-group-addon input-group-prepend border-right">
+                                    <span class="icon-calendar input-group-text calendar-icon"></span>
+                                </span>
+                                <input type="text" class="form-control">
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <form class="search-form" action="#">
+                                <i class="icon-search"></i>
+                                <input type="search" class="form-control" placeholder="Search Here" title="Search here">
+                            </form>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link count-indicator" id="notificationDropdown" href="#"
+                                data-bs-toggle="dropdown">
+                                <i class="icon-mail icon-lg"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
+                                aria-labelledby="notificationDropdown">
+                                <a class="dropdown-item py-3 border-bottom">
+                                    <p class="mb-0 font-weight-medium float-left">You have 4 new notifications </p>
+                                    <span class="badge badge-pill badge-primary float-right">View all</span>
+                                </a>
+                                <a class="dropdown-item preview-item py-3">
+                                    <div class="preview-thumbnail">
+                                        <i class="mdi mdi-alert m-auto text-primary"></i>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <h6 class="preview-subject fw-normal text-dark mb-1">Application Error</h6>
+                                        <p class="fw-light small-text mb-0"> Just now </p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item preview-item py-3">
+                                    <div class="preview-thumbnail">
+                                        <i class="mdi mdi-settings m-auto text-primary"></i>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <h6 class="preview-subject fw-normal text-dark mb-1">Settings</h6>
+                                        <p class="fw-light small-text mb-0"> Private message </p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item preview-item py-3">
+                                    <div class="preview-thumbnail">
+                                        <i class="mdi mdi-airballoon m-auto text-primary"></i>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <h6 class="preview-subject fw-normal text-dark mb-1">New user registration</h6>
+                                        <p class="fw-light small-text mb-0"> 2 days ago </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="icon-bell"></i>
+                                <span class="count"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
+                                aria-labelledby="countDropdown">
+                                <a class="dropdown-item py-3">
+                                    <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
+                                    <span class="badge badge-pill badge-primary float-right">View all</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <img src="facebook.jpg  " alt="image" class="img-sm profile-pic">
+                                    </div>
+                                    <div class="preview-item-content flex-grow py-2">
+                                        <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner
+                                        </p>
+                                        <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <img src="images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
+                                    </div>
+                                    <div class="preview-item-content flex-grow py-2">
+                                        <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
+                                        <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <img src="images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
+                                    </div>
+                                    <div class="preview-item-content flex-grow py-2">
+                                        <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins
+                                        </p>
+                                        <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown d-none d-lg-block user-dropdown">
+                            <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <img class="img-xs rounded-circle" src="facebook.jpg" alt="Profile image">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                                aria-labelledby="UserDropdown">
+                                <div class="dropdown-header text-center">
+                                    <img class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
+                                    <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
+                                    <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+                                </div>
+                                <a class="dropdown-item"><i
+                                        class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My
+                                    Profile <span class="badge badge-pill badge-danger">1</span></a>
+                                <a class="dropdown-item"><i
+                                        class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i>
+                                    Messages</a>
+                                <a class="dropdown-item"><i
+                                        class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i>
+                                    Activity</a>
+                                <a class="dropdown-item"><i
+                                        class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i>
+                                    FAQ</a>
+                                <a class="dropdown-item"><i
+                                        class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                        data-bs-toggle="offcanvas">
+                        <span class="mdi mdi-menu"></span>
+                    </button>
+                </div>
+            </nav>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+
+                <div class="theme-setting-wrapper">
+                    <div id="settings-trigger"><i class="ti-settings"></i></div>
+                    <div id="theme-settings" class="settings-panel">
+                        <i class="settings-close ti-close"></i>
+                        <p class="settings-heading">SIDEBAR SKINS</p>
+                        <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+                            <div class="img-ss rounded-circle bg-light border me-3"></div>Light
+                        </div>
+                        <div class="sidebar-bg-options" id="sidebar-dark-theme">
+                            <div class="img-ss rounded-circle bg-dark border me-3"></div>Dark
+                        </div>
+                        <p class="settings-heading mt-2">HEADER SKINS</p>
+                        <div class="color-tiles mx-0 px-4">
+                            <div class="tiles success"></div>
+                            <div class="tiles warning"></div>
+                            <div class="tiles danger"></div>
+                            <div class="tiles info"></div>
+                            <div class="tiles dark"></div>
+                            <div class="tiles default"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="right-sidebar" class="settings-panel">
+                    <i class="settings-close ti-close"></i>
+                    <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section"
+                                role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab"
+                                aria-controls="chats-section">CHATS</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="setting-content">
+                        <div class="tab-pane fade show active scroll-wrapper ps" id="todo-section" role="tabpanel"
+                            aria-labelledby="todo-section">
+                            <div class="add-items d-flex px-3 mb-0">
+                                <form class="form w-100">
+                                    <div class="form-group d-flex">
+                                        <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
+                                        <button type="submit" class="add btn btn-primary todo-list-add-btn"
+                                            id="add-task">Add</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="list-wrapper px-3">
+                                <ul class="d-flex flex-column-reverse todo-list">
+                                    <li>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="checkbox" type="checkbox">
+                                                Team review meeting at 3.00 PM
+                                                <i class="input-helper"></i></label>
+                                        </div>
+                                        <i class="remove ti-close"></i>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="checkbox" type="checkbox">
+                                                Prepare for presentation
+                                                <i class="input-helper"></i></label>
+                                        </div>
+                                        <i class="remove ti-close"></i>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="checkbox" type="checkbox">
+                                                Resolve all the low priority tickets due today
+                                                <i class="input-helper"></i></label>
+                                        </div>
+                                        <i class="remove ti-close"></i>
+                                    </li>
+                                    <li class="completed">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="checkbox" type="checkbox" checked="">
+                                                Schedule meeting for next week
+                                                <i class="input-helper"></i></label>
+                                        </div>
+                                        <i class="remove ti-close"></i>
+                                    </li>
+                                    <li class="completed">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="checkbox" type="checkbox" checked="">
+                                                Project review
+                                                <i class="input-helper"></i></label>
+                                        </div>
+                                        <i class="remove ti-close"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                            <h4 class="px-3 text-muted mt-5 fw-light mb-0">Events</h4>
+                            <div class="events pt-4 px-3">
+                                <div class="wrapper d-flex mb-2">
+                                    <i class="ti-control-record text-primary me-2"></i>
+                                    <span>Feb 11 2018</span>
+                                </div>
+                                <p class="mb-0 font-weight-thin text-gray">Creating component page build a js</p>
+                                <p class="text-gray mb-0">The total number of sessions</p>
+                            </div>
+                            <div class="events pt-4 px-3">
+                                <div class="wrapper d-flex mb-2">
+                                    <i class="ti-control-record text-primary me-2"></i>
+                                    <span>Feb 7 2018</span>
+                                </div>
+                                <p class="mb-0 font-weight-thin text-gray">Meeting with Alisa</p>
+                                <p class="text-gray mb-0 ">Call Sarah Graves</p>
+                            </div>
+                            <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                            </div>
+                            <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                                <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                            </div>
+                        </div>
+                        <!-- To do section tab ends -->
+                        <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
+                            <div class="d-flex align-items-center justify-content-between border-bottom">
+                                <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
+                                <small
+                                    class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 fw-normal">See
+                                    All</small>
+                            </div>
+                            <ul class="chat-list">
+                                <li class="list active">
+                                    <div class="profile"><img src="images/faces/face1.jpg" alt="image"><span
+                                            class="online"></span></div>
+                                    <div class="info">
+                                        <p>Thomas Douglas</p>
+                                        <p>Available</p>
+                                    </div>
+                                    <small class="text-muted my-auto">19 min</small>
+                                </li>
+                                <li class="list">
+                                    <div class="profile"><img src="images/faces/face2.jpg" alt="image"><span
+                                            class="offline"></span></div>
+                                    <div class="info">
+                                        <div class="wrapper d-flex">
+                                            <p>Catherine</p>
+                                        </div>
+                                        <p>Away</p>
+                                    </div>
+                                    <div class="badge badge-success badge-pill my-auto mx-2">4</div>
+                                    <small class="text-muted my-auto">23 min</small>
+                                </li>
+                                <li class="list">
+                                    <div class="profile"><img src="images/faces/face3.jpg" alt="image"><span
+                                            class="online"></span></div>
+                                    <div class="info">
+                                        <p>Daniel Russell</p>
+                                        <p>Available</p>
+                                    </div>
+                                    <small class="text-muted my-auto">14 min</small>
+                                </li>
+                                <li class="list">
+                                    <div class="profile"><img src="images/faces/face4.jpg" alt="image"><span
+                                            class="offline"></span></div>
+                                    <div class="info">
+                                        <p>James Richardson</p>
+                                        <p>Away</p>
+                                    </div>
+                                    <small class="text-muted my-auto">2 min</small>
+                                </li>
+                                <li class="list">
+                                    <div class="profile"><img src="images/faces/face5.jpg" alt="image"><span
+                                            class="online"></span></div>
+                                    <div class="info">
+                                        <p>Madeline Kennedy</p>
+                                        <p>Available</p>
+                                    </div>
+                                    <small class="text-muted my-auto">5 min</small>
+                                </li>
+                                <li class="list">
+                                    <div class="profile"><img src="images/faces/face6.jpg" alt="image"><span
+                                            class="online"></span></div>
+                                    <div class="info">
+                                        <p>Sarah Graves</p>
+                                        <p>Available</p>
+                                    </div>
+                                    <small class="text-muted my-auto">47 min</small>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- chat tab ends -->
+                    </div>
+                </div>
+                <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                    <ul class="nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item nav-category">UI Elements</li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                                aria-controls="ui-basic">
+                                <i class="menu-icon mdi mdi-floor-plan"></i>
+                                <span class="menu-title">UI Elements</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="ui-basic">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a class="nav-link" href="Analyse.html">Buttons</a></li>
+                                    <li class="nav-item"> <a class="nav-link"
+                                            href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                                    <li class="nav-item"> <a class="nav-link"
+                                            href="pages/ui-features/typography.html">Typography</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item nav-category">Forms and Datas</li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
+                                aria-controls="form-elements">
+                                <i class="menu-icon mdi mdi-card-text-outline"></i>
+                                <span class="menu-title">Form elements</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="form-elements">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="pages/forms/basic_elements.html">Basic Elements</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false"
+                                aria-controls="charts">
+                                <i class="menu-icon mdi mdi-chart-line"></i>
+                                <span class="menu-title">Charts</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="charts">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a class="nav-link"
+                                            href="pages/charts/chartjs.html">ChartJs</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false"
+                                aria-controls="tables">
+                                <i class="menu-icon mdi mdi-table"></i>
+                                <span class="menu-title">Tables</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="tables">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic
+                                            table</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false"
+                                aria-controls="icons">
+                                <i class="menu-icon mdi mdi-layers-outline"></i>
+                                <span class="menu-title">Icons</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="icons">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item nav-category">pages</li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false"
+                                aria-controls="auth">
+                                <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                                <span class="menu-title">User Pages</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="auth">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item nav-category">help</li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html">
+                                <i class="menu-icon mdi mdi-file-document"></i>
+                                <span class="menu-title">Documentation</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- partial -->
+                <div class="main-panel">
+                </div>
+                <main class="main-content">
+                    <section class="claims-overview-section large-section" style="margin-right: 500px;">
+                        <div style="margin-bottom: 100px; margin-left: 500px;" class="filters">
+                            <label id="label" for="filter-status" class="filter-label">Filter by Status:</label>
+                            <select name="filter-status" onchange="filterByStatus()" class="filter-select">
+                                <option value="all">All</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Responded">Responded</option>
+                                <option value="Closed">Closed</option>
+                            </select>
+
+                            <input type="text" id="search-bar" onchange="searchById()" class="search-input"
+                                placeholder="Search by User or Claim ID">
+                            <button onclick="applyFilters()" id="search-button" class="btn btn-primary">Search</button>
+                        </div>
+                        <!-- table -->
+                        <!-- <table id="tbl" class="table table-bordered table-hover"
+                            style="width: 1600px; margin-left:70px;">
+                            <thead>
+                                <tr>
+                                    <th>Claim ID</th>
+                                    <th>User Name</th>
+                                    <th>Product</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#12345</td>
+                                    <td>John Doe</td>
+                                    <td>Honey Jar 500ml</td>
+                                    <td>Pending</td>
+                                    <td>2024-11-10</td>
+                                    <td>
+                                        <button onclick="editRecord(this)"
+                                            class="btn btn-outline-secondary btn-sm mr-1">Edit</button>
+                                        <button onclick="deleteRecord(this)"
+                                            class="btn btn-outline-danger btn-sm">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#12346</td>
+                                    <td>Jane Smith</td>
+                                    <td>Beeswax Candle</td>
+                                    <td>Responded</td>
+                                    <td>2024-11-11</td>
+                                    <td>
+                                        <button onclick="editRecord(this)"
+                                            class="btn btn-outline-secondary btn-sm mr-1">Edit</button>
+                                        <button onclick="deleteRecord(this)"
+                                            class="btn btn-outline-danger btn-sm">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#12347</td>
+                                    <td>Tom Hardy</td>
+                                    <td>Royal Jelly 250g</td>
+                                    <td>Closed</td>
+                                    <td>2024-11-12</td>
+                                    <td>
+                                        <button onclick="editRecord(this)"
+                                            class="btn btn-outline-secondary btn-sm mr-1">Edit</button>
+                                        <button onclick="deleteRecord(this)"
+                                            class="btn btn-outline-danger btn-sm">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table> -->
+                        <table id="tbl" class="table table-bordered table-hover"
+                            style="width: 1600px; margin-left:70px;">
+                            <thead>
+                                <tr>
+                                    <th>Claim ID</th>
+                                    <th>User Name</th>
+                                    <th>Product</th>
+                                    <th>Created At</th>
+                                    <th>Details</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="claimsBody">
+                                <!-- Dynamic rows for claims will be inserted here by JavaScript -->
+                            </tbody>
+                        </table>
+
+                        <!-- Responses Table -->
+                        <h1 style="color: orange; margin-left: 600px;margin-top: 70px;">Response Table</h3>
+                            <center>
+                                <table id="responsesTable" class="table table-bordered table-hover"
+                                    style="width: 1000px; margin-top: 50px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Response ID</th>
+                                            <th>Claim ID</th>
+                                            <th>Response Detail</th>
+                                            <th>Created At</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="responsesBody">
+                                        <!-- Dynamic rows for standalone responses will be inserted here by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </center>
+                            <h1 style="color: orange; margin-left: 600px; margin-top: 70px;">Feedback Table</h1>
+                            <center>
+                                <table id="feedbackTable" class="table table-bordered table-hover"
+                                    style="width: 1000px; margin-top: 50px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Feedback ID</th>
+                                            <th>Product Name</th>
+                                            <th>Rating</th>
+                                            <th>Comment</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="feedbackBody">
+                                        <!-- Dynamic rows for feedback will be inserted here by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </center>
+
+                    </section>
+                </main>
+            </div>
+    </header>
+
+    <footer style="margin-bottom: 1px;" class="footer">
+        <p class="footer-text">&copy; 2024 PureBuzz. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Fetch all feedbacks and render them
+        async function fetchFeedbacks() {
+            try {
+                const response = await fetch("http://localhost/PureBuzzWEB-integration/Public/index.php?controller=listFeedbacks");
+                const result = await response.json();
+
+                if (response.ok) {
+                    renderFeedbacks(result.feedbacks);
+                } else {
+                    console.error("Error fetching feedbacks:", result.error);
+                    alert("Failed to load feedbacks. Please try again later.");
+                }
+            } catch (error) {
+                console.error("Error fetching feedbacks:", error);
+                alert("Failed to fetch feedbacks. Please try again later.");
+            }
+        }
+
+        // Render feedbacks into a table
+        function renderFeedbacks(feedbacks) {
+            const tbody = document.getElementById('feedbackBody');
+            tbody.innerHTML = ''; // Clear existing rows
+
+            if (!feedbacks || feedbacks.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6">No feedbacks found</td></tr>';
+                return;
+            }
+
+            feedbacks.forEach(feedback => {
+                const row = document.createElement('tr');
+
+                const feedbackID = feedback.id || "N/A";
+                const productName = feedback.product_name || "N/A";
+                const rating = feedback.rating || "N/A";
+                const comment = feedback.cmt || "N/A";
+                const createdAt = feedback.created_at ? new Date(feedback.created_at).toLocaleString() : "N/A";
+
+                row.innerHTML = `
+            <td>#${feedbackID}</td>
+            <td>${productName}</td>
+            <td>${rating}</td>
+            <td>${comment}</td>
+            <td>${createdAt}</td>
+            <td>
+                <button onclick="editFeedback(this)" class="btn btn-outline-secondary btn-sm mr-1">Edit</button>
+                <button onclick="confirmDeleteFeedback(this)" class="btn btn-outline-danger btn-sm">Delete</button>
+            </td>
+        `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        // Confirm delete action for a feedback
+        function confirmDeleteFeedback(button) {
+            const row = button.closest("tr");
+            const feedbackID = row.cells[0].textContent.trim().replace("#", "");
+
+            if (confirm("Are you sure you want to delete this feedback?")) {
+                deleteFeedback(feedbackID, row);
+            }
+        }
+
+        // Delete feedback from server
+        async function deleteFeedback(feedbackID, row) {
+            try {
+                const response = await fetch(`http://localhost/PureBuzzWEB-integration/Public/index.php?controller=orders&action=deleteFeedback`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ feedback_id: feedbackID }),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    row.remove();
+                    alert("Feedback deleted successfully.");
+                } else {
+                    console.error("Error deleting feedback:", result.error);
+                    alert("Failed to delete feedback. Please try again.");
+                }
+            } catch (error) {
+                console.error("Error deleting feedback:", error);
+                alert("Failed to delete feedback. Please try again.");
+            }
+        }
+
+        // Edit a feedback record
+        function editFeedback(button) {
+            const row = button.closest("tr");
+
+            Array.from(row.cells).forEach((cell, index) => {
+                if (index === row.cells.length - 1) return; // Skip "Actions" column
+
+                if (!cell.querySelector("input")) {
+                    const currentValue = cell.textContent.trim();
+                    cell.innerHTML = `<input type="text" value="${currentValue}" class="form-control form-control-sm" />`;
+                }
+            });
+
+            button.textContent = "Save";
+            button.onclick = function () {
+                saveFeedback(button);
+            };
+        }
+
+        // Save an edited feedback record
+        async function saveFeedback(button) {
+            const row = button.closest("tr");
+
+            const feedbackID = row.cells[0].querySelector("input").value.trim().replace("#", "");
+            const productName = row.cells[1].querySelector("input").value.trim();
+            const rating = row.cells[2].querySelector("input").value.trim();
+            const comment = row.cells[3].querySelector("input").value.trim();
+
+            const updatedData = {
+                Feedback_ID: feedbackID,
+                Product_Name: productName,
+                Rating: rating,
+                Comment: comment
+            };
+
+            await updateFeedback(updatedData);
+
+            Array.from(row.cells).forEach(cell => {
+                const input = cell.querySelector("input");
+                if (input) {
+                    cell.textContent = input.value; // Set cell text to the input value
+                }
+            });
+
+            button.textContent = "Edit";
+            button.onclick = function () {
+                editFeedback(button);
+            };
+        }
+
+        // Update feedback data via the backend
+        async function updateFeedback(updatedData) {
+            try {
+                const response = await fetch(`http://localhost/PureBuzzWEB-integration/Public/index.php?controller=orders&action=updateFeedback`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(updatedData),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message);
+                } else {
+                    console.error("Error updating feedback:", result.error);
+                    alert("Failed to update feedback: " + result.error);
+                }
+            } catch (error) {
+                console.error("Error updating feedback:", error);
+                alert("Failed to update feedback. Please try again.");
+            }
+        }
+
+        // Fetch feedbacks on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchClaims();
+            fetchResponses();
+            fetchFeedbacks(); // Fetch feedbacks when the page loads
+        });
+        // Fetch all claims and render them
+        async function fetchClaims() {
+            try {
+                const response = await fetch("http://localhost/PureBuzzWEB-integration/Public/index.php?controller=claims&action=list");
+                const result = await response.json();
+
+                if (response.ok) {
+                    renderClaims(result.claims);
+                } else {
+                    console.error("Error fetching claims:", result.error);
+                    alert("Failed to load claims. Please try again later.");
+                }
+            } catch (error) {
+                console.error("Error fetching claims:", error);
+                alert("Failed to fetch claims. Please try again later.");
+            }
+        }
+
+        // Render claims into a table
+        function renderClaims(claims) {
+            const tbody = document.getElementById('claimsBody');
+            tbody.innerHTML = ''; // Clear existing rows
+
+            claims.forEach(claim => {
+                const row = document.createElement('tr');
+
+                // Handle potential null or invalid values
+                const claimID = claim.Claim_ID || "N/A";
+                const userName = claim.User_Name || "N/A";
+                const product = claim.Product || "N/A";
+                const status = claim.Status || "N/A";
+                const details = claim.Details || "N/A";
+                const createdAt = claim.Created_At ? new Date(claim.Created_At).toLocaleString() : "N/A";
+
+                // Render responses
+                const responses = claim.Responses && claim.Responses.length > 0
+                    ? claim.Responses.join('<br>')
+                    : "No response yet";
+
+                row.innerHTML = `
+                            <td>#${claimID}</td>
+                            <td>${userName}</td>
+                            <td>${product}</td>
+                            <td>${createdAt}</td>
+                            <td>${details}</td>
+                            <td>
+                                <button onclick="editClaim(this)" class="btn btn-outline-secondary btn-sm mr-1">Edit</button>
+                                <button onclick="confirmDeleteClaim(this)" class="btn btn-outline-danger btn-sm">Delete</button>
+                                <button onclick="respondToClaim(this)" class="btn btn-outline-secondary btn-sm mr-1">Respond</button>
+                            </td>
+                        `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        // Confirm delete action for a claim
+        // Confirm delete action for a claim
+        // Confirm delete action for a claim
+        function confirmDeleteClaim(button) {
+            const row = button.closest("tr");
+            const claimID = row.cells[0].textContent.trim().replace("#", ""); // Extract Claim ID without the "#"
+
+            console.log("Attempting to delete Claim ID:", claimID); // Debug log
+
+            if (confirm("Are you sure you want to delete this claim?")) {
+                deleteClaim(claimID, row);
+            }
+        }
+
+        // Delete claim from server
+        async function deleteClaim(claimID, row) {
+            try {
+                const payload = { claim_id: claimID }; // Prepare payload with 'claim_id'
+                console.log("Payload being sent to server:", JSON.stringify(payload)); // Debug log
+
+                const response = await fetch(`http://localhost/PureBuzzWEB-integration/Public/index.php?controller=claims&action=deleteClaim`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(payload), // Ensure the body structure is correct
+                });
+
+                const result = await response.json();
+                console.log("Response from server:", result); // Debug log
+                if (response.ok) {
+                    row.remove();
+                    alert("Claim deleted successfully.");
+                } else {
+                    console.error("Error deleting claim:", result.error);
+                    alert("Failed to delete claim: " + result.error);
+                }
+            } catch (error) {
+                console.error("Error deleting claim:", error);
+                alert("Failed to delete claim. Please try again.");
+            }
+        }
+
+        // Fetch all responses and render them
+        async function fetchResponses() {
+            try {
+                const response = await fetch("http://localhost/PureBuzzWEB-integration/Public/index.php?controller=responses&action=list_response");
+                const result = await response.json();
+
+                if (response.ok) {
+                    renderResponses(result.responses);
+                } else {
+                    console.error("Error fetching responses:", result.error);
+                    alert("Failed to load responses. Please try again later.");
+                }
+            } catch (error) {
+                console.error("Error fetching responses:", error);
+                alert("Failed to fetch responses. Please try again later.");
+            }
+        }
+
+        // Render responses into a table
+        function renderResponses(responses) {
+            const tbody = document.getElementById('responsesBody');
+            tbody.innerHTML = ''; // Clear existing rows
+
+            if (!responses || responses.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5">No responses found</td></tr>';
+                return;
+            }
+
+            responses.forEach(response => {
+                const row = document.createElement('tr');
+
+                const responseID = response.id || "N/A";
+                const claimID = response.claim_id || "N/A";
+                const responseDetail = response.response_detail || "N/A";
+                const createdAt = response.created_at ? new Date(response.created_at).toLocaleString() : "N/A";
+
+                row.innerHTML = `
+                            <td>#${responseID}</td>
+                            <td>#${claimID}</td>
+                            <td>${responseDetail}</td>
+                            <td>${createdAt}</td>
+                            <td>
+                                <button onclick="editResponse(this)" class="btn btn-outline-secondary btn-sm mr-1">Edit</button>
+                                <button onclick="confirmDeleteResponse(this)" class="btn btn-outline-danger btn-sm">Delete</button>
+                            </td>
+                        `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        // Confirm delete action for a response
+        function confirmDeleteResponse(button) {
+            const row = button.closest("tr");
+            const responseID = row.cells[0].textContent.trim().replace("#", "");
+
+            if (confirm("Are you sure you want to delete this response?")) {
+                deleteResponse(responseID, row);
+            }
+        }
+
+        // Delete response from server
+        async function deleteResponse(responseID, row) {
+            try {
+                const response = await fetch(`http://localhost/PureBuzzWEB-integration/Public/index.php?controller=responses&action=deleteResponse`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ response_id: responseID }),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    row.remove();
+                    alert("Response deleted successfully.");
+                } else {
+                    console.error("Error deleting response:", result.error);
+                    alert("Failed to delete response. Please try again.");
+                }
+            } catch (error) {
+                console.error("Error deleting response:", error);
+                alert("Failed to delete response. Please try again.");
+            }
+        }
+
+        // Edit a claim record
+        function editClaim(button) {
+            const row = button.closest("tr"); // Get the row containing the button
+            console.log("Row being edited:", row); // Debugging log
+
+            // Convert table cells into input fields for editing
+            Array.from(row.cells).forEach((cell, index) => {
+                if (index === row.cells.length - 1) return; // Skip the "Actions" column
+
+                if (!cell.querySelector("input")) { // Check if the cell already contains an input
+                    const currentValue = cell.textContent.trim(); // Get the current cell value
+                    cell.innerHTML = `<input type="text" value="${currentValue}" class="form-control form-control-sm" />`; // Replace with input
+                }
+            });
+
+            // Change the "Edit" button to "Save"
+            button.textContent = "Save";
+            button.onclick = function () {
+                saveClaim(button); // Assign the save functionality to the button
+            };
+        }
+        // Edit a response record
+        function editResponse(button) {
+            const row = button.closest("tr");
+
+            // Change cells to inputs for editing
+            Array.from(row.cells).forEach((cell, index) => {
+                if (index === row.cells.length - 1) return; // Skip "Actions" column
+
+                if (!cell.querySelector("input")) {
+                    const currentValue = cell.textContent.trim();
+                    cell.innerHTML = `<input type="text" value="${currentValue}" class="form-control form-control-sm" />`;
+                }
+            });
+
+            button.textContent = "Save";
+            button.onclick = function () {
+                saveResponse(button);
+            };
+        }
+
+        // Save an edited response record
+        async function saveResponse(button) {
+            const row = button.closest("tr");
+
+            // Extract the Response ID and Response Detail from the input fields
+            const responseID = row.cells[0].querySelector("input").value.trim(); // Adjust this if necessary
+            const responseDetail = row.cells[2].querySelector("input").value.trim(); // Adjust index as needed
+
+            // Prepare the data to be sent
+            const updatedData = {
+                Response_ID: responseID,
+                Response_Detail: responseDetail
+            };
+
+            // Log the data to verify
+            console.log("Payload being sent to update response:", updatedData);
+
+            // Call the function to update the response
+            await updateResponse(updatedData);
+
+            // Reset the UI after saving
+            Array.from(row.cells).forEach(cell => {
+                const input = cell.querySelector("input");
+                if (input) {
+                    cell.textContent = input.value; // Set cell text to the input value
+                }
+            });
+
+            button.textContent = "Edit";
+            button.onclick = function () {
+                editResponse(button); // Reassign the edit function
+            };
+        }
+
+        // Update response data via the backend
+        async function updateResponse(updatedData) {
+            try {
+                const response = await fetch(`http://localhost/PureBuzzWEB-integration/Public/index.php?controller=Responses&action=update_Response`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(updatedData),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message);
+                } else {
+                    console.error("Error updating response:", result.error);
+                    alert("Failed to update response: " + result.error);
+                }
+            } catch (error) {
+                console.error("Error updating response:", error);
+                alert("Failed to update response. Please try again.");
+            }
+        }
+
+        // Save an edited claim record
+        async function saveClaim(button) {
+            const row = button.closest("tr"); // Get the row containing the button
+            console.log("Row being saved:", row); // Debugging log
+
+            // Extract the Claim ID and other data from the inputs
+            const claimID = row.cells[0].querySelector("input").value.trim().replace("#", ""); // Extract Claim ID
+            const updatedData = {
+                Claim_ID: claimID,
+                User_Name: row.cells[1].querySelector("input").value.trim(), // User Name
+                Product: row.cells[2].querySelector("input").value.trim(), // Product
+                Details: row.cells[4].querySelector("input").value.trim(), // Details
+            };
+
+            console.log("Updated Claim Data:", updatedData); // Debugging log
+
+            // Revert the input fields back to plain text in the table row
+            Array.from(row.cells).forEach((cell, index) => {
+                const input = cell.querySelector("input");
+                if (input) {
+                    cell.textContent = input.value.trim(); // Set cell text to the input value
+                }
+            });
+
+            // Reset the "Save" button back to "Edit"
+            button.textContent = "Edit";
+            button.onclick = function () {
+                editClaim(button); // Reassign the edit functionality
+            };
+
+            // Call the backend to update the claim
+            await updateClaim(claimID, updatedData);
+        }
+
+        // Update claim data via the backend
+        async function updateClaim(claimID, updatedData) {
+            try {
+                const response = await fetch(`http://localhost/PureBuzzWEB-integration/Public/index.php?controller=claims&action=update`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(updatedData),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message);
+                } else {
+                    console.error("Error updating claim:", result.error);
+                    alert("Failed to update claim: " + result.error);
+                }
+            } catch (error) {
+                console.error("Error updating claim:", error);
+                alert("Failed to update claim. Please try again.");
+            }
+        }
+
+        // Redirect to the response page
+        function respondToClaim(button) {
+            const row = button.closest("tr");
+
+            const claimID = row.cells[0].textContent.trim().replace("#", "");
+            const userName = row.cells[1].textContent.trim();
+            const product = row.cells[2].textContent.trim();
+            const createdAt = row.cells[3].textContent.trim();
+            const details = row.cells[4].textContent.trim();
+
+            window.location.href = `Response.html?claim-id=${claimID}&user-name=${encodeURIComponent(userName)}&product=${encodeURIComponent(product)}&status=${encodeURIComponent(status)}&details=${encodeURIComponent(details)}&created_at=${encodeURIComponent(createdAt)}`;
+        }
+
+        // Fetch claims and responses on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchClaims();
+            fetchResponses();
+        });
+        function searchById() {
+            const id = document.getElementById("search-bar").value.trim(); // Get the value of the search bar and trim spaces
+            var table = document.getElementById("tbl");
+            var rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+
+            // If the search input is empty, show all rows, otherwise apply search filter
+            Array.from(rows).forEach(row => {
+                var IdCell = row.cells[0]; // Assuming the ID is in the first cell
+                if (id === "" || IdCell.textContent.trim() === id) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</html>
