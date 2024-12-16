@@ -1,11 +1,9 @@
 <?php
+include_once "../../../config/database.php";
+include_once "../../../Controllers/apiariesC.php";
 
-include_once "../../config.php";
-include_once "../../Controllers/apiariesC.php";
-include_once "../../Controllers/harvestsC.php";
+$current_beekeper_email = "sarrabenothmen@gmail.com";
 
-
-$harvestC = new HarvestC();
 $apiaryC = new ApiaryC();
 
 $search = isset($_GET['search']) ? $_GET['search'] : '';
@@ -17,26 +15,35 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page
 $offset = ($page - 1) * $limit;
 
 // Fetch the total count of apiaries for search
-$totalApiaries = $apiaryC->countApiariesWithSearch($search);
+$totalApiaries = $apiaryC->countApiariesWithSearch1($current_beekeper_email,$search);
 $totalPages = ceil($totalApiaries / $limit);
 
 // Fetch the filtered and sorted list of apiaries
-$listApiaries = $apiaryC->fetchFilteredSortedApiaries($search, $sort, $limit, $offset);
+$listApiaries = $apiaryC->fetchFilteredSortedApiaries1($current_beekeper_email,$search, $sort, $limit, $offset);
 
 
-$search1 = isset($_GET['search1']) ? $_GET['search1'] : '';
-$sort1 = isset($_GET['sort1']) ? $_GET['sort1'] : 'ASC'; // Default sorting order
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_apiary'])) {
+    $apiaryName = $_POST['apiaryName'];
+    $beekeeper = $current_beekeper_email;
+    $location = $_POST['location'];
+    $coordinates = $_POST['coordinates'];
+    $date = $_POST['date'];
+    $weather = $_POST['weather'];
+    $hiveCount = $_POST['hiveCount'];
+    $observation = $_POST['observation'];
 
-// Pagination settings
-$limit1 = 4; // Items per page
-$page1 = isset($_GET['page1']) ? (int)$_GET['page1'] : 1; // Current page
-$offset1 = ($page1 - 1) * $limit1;
-// Fetch the total count of harvests for search
-$totalHarvests = $harvestC->countHarvestsWithSearch($search1);
-$totalPages = ceil($totalHarvests / $limit1);
+    // Create the Apiary object
+    $apiary = new Apiary(null, $apiaryName, $beekeeper, $location, $coordinates, $date, $weather, $hiveCount, $observation);
 
-// Fetch the filtered and sorted list of harvests
-$listHarvests = $harvestC->fetchFilteredSortedHarvests($search1, $sort1, $limit1, $offset1);
+    // Add the Apiary to the database
+    $apiaryC->ajouterApiary($apiary);
+
+    // Redirect to the apiaries list page or show a success message
+    header("Location: beekeeper.php");
+    exit();
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -264,76 +271,42 @@ body {
 </div>
 
     </section>
-        <!-- About Us Section -->
-        <section id="about" class="info-section">
-        <div class="row">
-    <div class="col">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">List of Harvests</h4>
-                <!-- Search and Sort -->
-                <form method="GET" class="search-sort-bar">
-                    <input type="text" name="search1" class="search-input" placeholder="Search..." value="<?php echo htmlspecialchars($search1); ?>">
-                    <select name="sort1" class="sort-select">
-                        <option value="ASC" <?php echo $sort1 == 'ASC' ? 'selected' : ''; ?>>Date Ascending</option>
-                        <option value="DESC" <?php echo $sort1 == 'DESC' ? 'selected' : ''; ?>>Date Descending</option>
-                    </select>
-                    <button type="submit" class="btn-submit">Search</button>
-                </form>
-                <div class="table-wrapper">
-                <table class="custom-table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Date</th>
-                                <th>Location</th>
-                                <th>Quantity</th>
-                                <th>Quality</th>
-                                <th>Apiary Name</th>
-       
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            if (!empty($listHarvests)) {
-                                foreach ($listHarvests as $index => $harvest) {
-                                    echo "<tr>
-                                        <td>" . ($offset + $index + 1) . "</td>
-                                        <td>" . htmlspecialchars($harvest['date']) . "</td>
-                                        <td>" . htmlspecialchars($harvest['location']) . "</td>
-                                        <td>" . htmlspecialchars($harvest['quantity']) . "</td>
-                                        <td>" . htmlspecialchars($harvest['quality']) . "</td>
-                                        <td>" . htmlspecialchars($harvest['apiaryName']) . "</td>
-                                      
-                                    </tr>";
-                                }
-                            } else {
-                                echo "<tr><td colspan='7' class='text-center'>No harvests found.</td></tr>";
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-               <!-- Pagination -->
-               <div class="pagination">
-                    <?php if ($page1 > 1): ?>
-                        <a href="?page1=<?php echo $page1 - 1; ?>&search1=<?php echo urlencode($search1); ?>&sort1=<?php echo $sort1; ?>" class="pagination-link">Previous</a>
-                    <?php endif; ?>
-                    
-                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                        <a href="?page1=<?php echo $i; ?>&search1=<?php echo urlencode($search1); ?>&sort1=<?php echo $sort1; ?>" class="pagination-link <?php echo $i == $page1 ? 'active' : ''; ?>"><?php echo $i; ?></a>
-                    <?php endfor; ?>
-                    
-                    <?php if ($page1 < $totalPages): ?>
-                        <a href="?page1=<?php echo $page1 + 1; ?>&search1=<?php echo urlencode($search1); ?>&sort1=<?php echo $sort1; ?>" class="pagination-link">Next</a>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    <section id="add-apiary" class="contact-section">
+    <h2>Add New Apiary</h2>
+    
+    <form action="beekeeper.php" method="POST" onsubmit="return validateForm()" class="contact-form" novalidate>
+        <label for="apiaryName">Apiary Name</label>
+        <input type="text" id="apiaryName" name="apiaryName" placeholder="Enter Apiary Name" required>
+        <small style="color:red;" id="apiaryNameError"></small>
+        
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" placeholder="Enter Location" required>
+        <small style="color:red;" id="locationError"></small>
+        
+        <label for="coordinates">Coordinates</label>
+        <input type="text" id="coordinates" name="coordinates" placeholder="Enter Coordinates">
+        <small style="color:red;" id="coordinatesError"></small>
+        
+        <label for="date">Establishment Date</label>
+        <input type="date" id="date" name="date" required>
+        <small style="color:red;" id="dateError"></small>
+        
+        <label for="weather">Weather Condition</label>
+        <input type="text" id="weather" name="weather" placeholder="Enter Weather Condition">
+        <small style="color:red;" id="weatherError"></small>
+        
+        <label for="hiveCount">Hive Count</label>
+        <input type="number" id="hiveCount" name="hiveCount" placeholder="Enter Number of Hives" required>
+        <small style="color:red;" id="hiveCountError"></small>
+        
+        <label for="observation">Observation</label>
+        <textarea id="observation" name="observation" placeholder="Enter Observations" rows="4"></textarea>
+        <small style="color:red;" id="observationError"></small>
+        
+        <button type="submit" name="add_apiary">Add Apiary</button>
+    </form>
+</section>
 
-    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -373,5 +346,61 @@ body {
             checkScroll(); // Initial check in case the section is already in view
         });
     </script>
+        <script>
+    function validateForm() {
+        let isValid = true;
+
+        document.querySelectorAll('small.text-danger').forEach(error => error.textContent = '');
+
+        const apiaryName = document.getElementById('apiaryName').value.trim();
+        const location = document.getElementById('location').value.trim();
+        const coordinates = document.getElementById('coordinates').value.trim();
+        const date = document.getElementById('date').value.trim();
+        const weather = document.getElementById('weather').value.trim();
+        const hiveCount = document.getElementById('hiveCount').value.trim();
+        const observation = document.getElementById('observation').value.trim();
+
+        // Validation rules
+        if (apiaryName === '') {
+            document.getElementById('apiaryNameError').textContent = "Apiary Name is required.";
+            isValid = false;
+        }
+
+        if (location === '') {
+            document.getElementById('locationError').textContent = "Location is required.";
+            isValid = false;
+        }
+
+        if (coordinates === '') {
+            document.getElementById('coordinatesError').textContent = "Coordinates are required.";
+            isValid = false;
+        } else if (!/^-?\d{1,3}\.\d+,\s*-?\d{1,3}\.\d+$/.test(coordinates)) {
+            document.getElementById('coordinatesError').textContent = "Coordinates must be in the format: latitude, longitude (e.g., 36.7783, -119.4179).";
+            isValid = false;
+        }
+
+        if (date === '') {
+            document.getElementById('dateError').textContent = "Establishment Date is required.";
+            isValid = false;
+        }
+
+        if (weather === '') {
+            document.getElementById('weatherError').textContent = "Weather condition is required.";
+            isValid = false;
+        }
+
+        if (hiveCount === '' || isNaN(hiveCount) || hiveCount <= 0) {
+            document.getElementById('hiveCountError').textContent = "Hive Count must be a positive number.";
+            isValid = false;
+        }
+
+        if (observation.length > 255) {
+            document.getElementById('observationError').textContent = "Observation cannot exceed 255 characters.";
+            isValid = false;
+        }
+
+        return isValid; 
+    }
+</script>
 </body>
 </html>
