@@ -1,5 +1,5 @@
 <?php
-include_once "../../controllers/apiariesC.php";
+include_once "../../../controllers/apiariesC.php";
 
 $apiaryC = new ApiaryC();
 
