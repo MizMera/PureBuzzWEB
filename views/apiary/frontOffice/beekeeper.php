@@ -1,7 +1,6 @@
 <?php
-
-include_once "../../config.php";
-include_once "../../Controllers/apiariesC.php";
+include_once "../../../config/database.php";
+include_once "../../../Controllers/apiariesC.php";
 
 $current_beekeper_email = "sarrabenothmen@gmail.com";
 
