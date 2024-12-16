@@ -1,49 +1,34 @@
 <?php
+include_once "../../../controllers/harvestsC.php";
 
-include_once "../../../config/database.php";
-include_once "../../../Controllers/apiariesC.php";
+$harvestC = new HarvestC();
 
-
-$apiaryC = new ApiaryC();
-
-$search = isset($_GET['search']) ? $_GET['search'] : '';
-$sort = isset($_GET['sort']) ? $_GET['sort'] : 'ASC'; // Default sorting order
-
-// Pagination settings
-$limit = 4; // Items per page
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page
-$offset = ($page - 1) * $limit;
-
-// Fetch the total count of apiaries for search
-$totalApiaries = $apiaryC->countApiariesWithSearch($search);
-$totalPages = ceil($totalApiaries / $limit);
-
-// Fetch the filtered and sorted list of apiaries
-$listApiaries = $apiaryC->fetchFilteredSortedApiaries($search, $sort, $limit, $offset);
-
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_apiary'])) {
-    $apiaryName = $_POST['apiaryName'];
-    $beekeeper = $_POST['beekeeper'];
-    $location = $_POST['location'];
-    $coordinates = $_POST['coordinates'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Collecting POST data
+    $idHarvest = $_POST['id'];
     $date = $_POST['date'];
-    $weather = $_POST['weather'];
-    $hiveCount = $_POST['hiveCount'];
-    $observation = $_POST['observation'];
+    $location = $_POST['location'];
+    $quantity = $_POST['quantity'];
+    $quality = $_POST['quality'];
+    $apiary = $_POST['idApiary'];
 
-    // Create the Apiary object
-    $apiary = new Apiary(null, $apiaryName, $beekeeper, $location, $coordinates, $date, $weather, $hiveCount, $observation);
+    // Create the Harvest object
+    $harvest = new Harvest($idHarvest, $date, $location, $quantity, $quality,$apiary);
 
-    // Add the Apiary to the database
-    $apiaryC->ajouterApiary($apiary);
+    // Update the Harvest in the database
+    $harvestC->modifierHarvest($harvest, $idHarvest);
 
-    // Redirect to the apiaries list page or show a success message
-    header("Location: apiaries.php");
+    // Redirect to the harvest list page
+    header("Location: harvests.php");
     exit();
 }
+
+if (isset($_GET['id'])) {
+    // Retrieve the Harvest object by ID
+    $idHarvest = $_GET['id'];
+    $harvest = $harvestC->recupererHarvest($idHarvest);
+}
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <!-- Required meta tags -->
@@ -54,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_apiary'])) {
     <link rel="stylesheet" href="vendors/feather/feather.css">
     <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="vendors/typicons/typicons.css">
+    <link rel="stylesheet" href=vendors/typicons/typicons.css"">
     <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
@@ -439,143 +424,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_apiary'])) {
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="home-tab">
-                                
+                               
                                 <div class="tab-content tab-content-basic">
                                     <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview">
+
                                         <div class="row">
                                             <div class="col-12 grid-margin stretch-card">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h4 class="card-title">Add Apiary</h4>
-                                                        <form action="apiaries.php" method="POST" onsubmit="return validateForm()">
-                                                            <div class="form-group">
-                                                                <label for="apiaryName">Apiary Name</label>
-                                                                <input type="text" class="form-control" id="apiaryName" name="apiaryName" placeholder="Enter Apiary Name">
-                                                                <small class="text-danger" id="apiaryNameError"></small>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="beekeeper">Beekeeper Email</label>
-                                                                <input type="email" class="form-control" id="beekeeper" name="beekeeper" placeholder="Enter Beekeeper Email">
-                                                                <small class="text-danger" id="beekeeperError"></small>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="location">Location</label>
-                                                                <input type="text" class="form-control" id="location" name="location" placeholder="Enter Location">
-                                                                <small class="text-danger" id="locationError"></small>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="coordinates">Coordinates</label>
-                                                                <input type="text" class="form-control" id="coordinates" name="coordinates" placeholder="Enter Coordinates">
-                                                                <small class="text-danger" id="coordinatesError"></small>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="date">Establishment Date</label>
-                                                                <input type="date" class="form-control" id="date" name="date">
-                                                                <small class="text-danger" id="dateError"></small>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="weather">Weather Condition</label>
-                                                                <input type="text" class="form-control" id="weather" name="weather" placeholder="Enter Weather Condition">
-                                                                <small class="text-danger" id="weatherError"></small>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="hiveCount">Hive Count</label>
-                                                                <input type="number" class="form-control" id="hiveCount" name="hiveCount" placeholder="Enter Number of Hives">
-                                                                <small class="text-danger" id="hiveCountError"></small>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="observation">Observation</label>
-                                                                <textarea class="form-control" id="observation" name="observation" placeholder="Enter Observations" rows="4"></textarea>
-                                                                <small class="text-danger" id="observationError"></small>
-                                                            </div>
-                                                            <button type="submit" name="add_apiary" class="btn btn-primary">Add Apiary</button>
-                                                        </form>
+                                                    <h4 class="card-title">Modify Harvest</h4>
+<form action="modify_harvest.php?id=<?php echo $harvest['id']; ?>" method="POST" onsubmit="return validateForm()">
+    <input type="hidden" name="id" value="<?php echo htmlspecialchars($harvest['id']); ?>">
+    <input type="hidden" name="idApiary" value="<?php echo htmlspecialchars($harvest['apiary']); ?>">
+    
+    <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" class="form-control" id="date" name="date" value="<?php echo htmlspecialchars($harvest['date']); ?>" placeholder="Enter Date">
+        <small class="text-danger" id="dateError"></small>
+    </div>
+
+    <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" class="form-control" name="location" id="location" value="<?php echo htmlspecialchars($harvest['location']); ?>" placeholder="Enter Location">
+        <small class="text-danger" id="locationError"></small>
+    </div>
+
+    <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" class="form-control" name="quantity" id="quantity" value="<?php echo htmlspecialchars($harvest['quantity']); ?>" placeholder="Enter Quantity">
+        <small class="text-danger" id="quantityError"></small>
+    </div>
+
+    <div class="form-group">
+        <label for="quality">Quality</label>
+        <input type="text" class="form-control" name="quality" id="quality" value="<?php echo htmlspecialchars($harvest['quality']); ?>" placeholder="Enter Quality">
+        <small class="text-danger" id="qualityError"></small>
+    </div>
+
+    <button type="submit" name="update_harvest" class="btn btn-primary">Update Harvest</button>
+</form>
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-    <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">List of Apiaries</h4>
-                <!-- Search and Sort -->
-                <form method="GET" class="d-flex mb-3">
-                    <input type="text" name="search" class="form-control me-2" placeholder="Search..." value="<?php echo htmlspecialchars($search); ?>">
-                    <select name="sort" class="form-control me-2">
-                        <option value="ASC" <?php echo $sort == 'ASC' ? 'selected' : ''; ?>>Date Ascending</option>
-                        <option value="DESC" <?php echo $sort == 'DESC' ? 'selected' : ''; ?>>Date Descending</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </form>
-                <div class="table-responsive pt-3">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Apiary Name</th>
-                                <th>Beekeeper</th>
-                                <th>Location</th>
-                                <th>Coordinates</th>
-                                <th>Date</th>
-                                <th>Weather</th>
-                                <th>Hive Count</th>
-                                <th>Observation</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            if (!empty($listApiaries)) {
-                                foreach ($listApiaries as $index => $apiary) {
-                                    echo "<tr>
-                                        <td>" . ($offset + $index + 1) . "</td>
-                                        <td>" . htmlspecialchars($apiary['apiaryName']) . "</td>
-                                        <td>" . htmlspecialchars($apiary['beekeeper']) . "</td>
-                                        <td>" . htmlspecialchars($apiary['location']) . "</td>
-                                        <td>" . htmlspecialchars($apiary['coordinates']) . "</td>
-                                        <td>" . htmlspecialchars($apiary['date']) . "</td>
-                                        <td>" . htmlspecialchars($apiary['weather']) . "</td>
-                                        <td>" . htmlspecialchars($apiary['hiveCount']) . "</td>
-                                        <td>" . htmlspecialchars($apiary['observation']) . "</td>
-                                        <td>
-                                            <a href='modify_apiary.php?id=" . $apiary['idApiary'] . "' class='btn btn-warning btn-sm'>Modify</a>
-                                            <a href='delete_apiary.php?id=" . $apiary['idApiary'] . "' onclick='return confirm(\"Are you sure you want to delete this apiary?\")' class='btn btn-danger btn-sm'>Delete</a>
-                                            <a href='add_harvest.php?id=" . $apiary['idApiary'] . "' class='btn btn-success btn-sm'>Add Harvest</a>
-                                        </td>
-                                    </tr>";
-                                }
-                            } else {
-                                echo "<tr><td colspan='10' class='text-center'>No apiaries found.</td></tr>";
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- Pagination -->
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <?php if ($page > 1): ?>
-                            <li class="page-item"><a class="page-link" href="?page=<?php echo $page - 1; ?>&search=<?php echo urlencode($search); ?>&sort=<?php echo $sort; ?>">Previous</a></li>
-                        <?php endif; ?>
-                        
-                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                            <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>">
-                                <a class="page-link" href="?page=<?php echo $i; ?>&search=<?php echo urlencode($search); ?>&sort=<?php echo $sort; ?>"><?php echo $i; ?></a>
-                            </li>
-                        <?php endfor; ?>
-                        
-                        <?php if ($page < $totalPages): ?>
-                            <li class="page-item"><a class="page-link" href="?page=<?php echo $page + 1; ?>&search=<?php echo urlencode($search); ?>&sort=<?php echo $sort; ?>">Next</a></li>
-                        <?php endif; ?>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div>
-
-
+                                        
 
                                     </div>
                                 </div>
@@ -623,29 +516,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_apiary'])) {
     function validateForm() {
         let isValid = true;
 
+        // Clear previous error messages
         document.querySelectorAll('small.text-danger').forEach(error => error.textContent = '');
 
-        const apiaryName = document.getElementById('apiaryName').value.trim();
-        const beekeeper = document.getElementById('beekeeper').value.trim();
-        const location = document.getElementById('location').value.trim();
-        const coordinates = document.getElementById('coordinates').value.trim();
+        // Get form values
         const date = document.getElementById('date').value.trim();
-        const weather = document.getElementById('weather').value.trim();
-        const hiveCount = document.getElementById('hiveCount').value.trim();
-        const observation = document.getElementById('observation').value.trim();
+        const location = document.getElementById('location').value.trim();
+        const quantity = document.getElementById('quantity').value.trim();
+        const quality = document.getElementById('quality').value.trim();
 
         // Validation rules
-        if (apiaryName === '') {
-            document.getElementById('apiaryNameError').textContent = "Apiary Name is required.";
-            isValid = false;
-        }
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
-        if (beekeeper === '') {
-            document.getElementById('beekeeperError').textContent = 'Beekeeper email is required.';
-            isValid = false;
-        } 
-        if (!emailRegex.test(beekeeper)) {
-            document.getElementById('beekeeperError').textContent = 'Invalid email format.';
+        if (date === '') {
+            document.getElementById('dateError').textContent = "Date is required.";
             isValid = false;
         }
 
@@ -654,35 +536,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_apiary'])) {
             isValid = false;
         }
 
-        if (coordinates === '') {
-            document.getElementById('coordinatesError').textContent = "Coordinates are required.";
-            isValid = false;
-        } else if (!/^-?\d{1,3}\.\d+,\s*-?\d{1,3}\.\d+$/.test(coordinates)) {
-            document.getElementById('coordinatesError').textContent = "Coordinates must be in the format: latitude, longitude (e.g., 36.7783, -119.4179).";
+        if (quantity === '' || isNaN(quantity) || quantity <= 0) {
+            document.getElementById('quantityError').textContent = "Quantity must be a positive number.";
             isValid = false;
         }
 
-        if (date === '') {
-            document.getElementById('dateError').textContent = "Establishment Date is required.";
+        if (quality === '') {
+            document.getElementById('qualityError').textContent = "Quality is required.";
+            isValid = false;
+        } else if (quality.length > 50) {
+            document.getElementById('qualityError').textContent = "Quality cannot exceed 50 characters.";
             isValid = false;
         }
 
-        if (weather === '') {
-            document.getElementById('weatherError').textContent = "Weather condition is required.";
-            isValid = false;
-        }
-
-        if (hiveCount === '' || isNaN(hiveCount) || hiveCount <= 0) {
-            document.getElementById('hiveCountError').textContent = "Hive Count must be a positive number.";
-            isValid = false;
-        }
-
-        if (observation.length > 255) {
-            document.getElementById('observationError').textContent = "Observation cannot exceed 255 characters.";
-            isValid = false;
-        }
-
-        return isValid; 
+        return isValid; // Prevent form submission if validation fails
     }
 </script>
 </body>
