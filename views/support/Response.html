@@ -550,10 +550,7 @@
                 <!-- partial -->
                 <div class="main-panel">
                 </div>
-                <div style="margin-right: 700px;" class="container">
-                    <h1 class="text-center">Respond to Claim</h1>
-
-                    <!-- Claim Details Section -->
+                <div style="margin-top: 100px; margin-right: 700px;width: 600px;">
                     <section class="claim-details">
                         <h3>Claim Details</h3>
                         <p><strong>Claim ID:</strong> <span id="claim-id">Loading...</span></p>
@@ -564,7 +561,7 @@
                     </section>
 
                     <!-- Response Form Section -->
-                    <section class="form-section">
+                    <section class="form-section" style="width: 800px;">
                         <h3>Submit Your Response</h3>
                         <form id="responseForm">
                             <input type="hidden" id="hidden-claim-id" name="claim_id" value="">
@@ -572,7 +569,8 @@
                                 <textarea class="text" id="response" name="response"
                                     placeholder="Type your response here..."></textarea>
                             </div>
-                            <button onclick="validation(),window.location.href='Reclamation.html'" type="submit"
+                            <button style="width: 200px; background-color: orange;"
+                                onclick="validation(),window.location.href='Reclamation.html'" type="submit"
                                 class="btn">Submit Response</button>
                         </form>
                     </section>
