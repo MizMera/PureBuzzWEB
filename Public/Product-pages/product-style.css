@@ -436,3 +436,21 @@
             transform: translateX(10px);
         }
     }
+.product-info {
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center;     /* Center vertically (optional) */
+        text-align: center;      /* Align text to the center */
+        height: 100vh;           /* Full viewport height (optional) */
+    }
+    
+    .yellow-link {
+        color: yellow;          /* Makes the link yellow */
+        text-decoration: none;  /* Optional: Removes underline */
+    }
+    
+    
+    .yellow-link:hover {
+        text-decoration: underline; /* Ajoute le soulignement au survol */
+    }
+    
