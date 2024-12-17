@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Details User </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../../assets/vendors/feather/feather.css">
+    <link rel="stylesheet" href="../../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../../assets/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../../../assets/vendors/typicons/typicons.css">
+    <link rel="stylesheet" href="../../../assets/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="../../../assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="../../../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../../../assets/js/select.dataTables.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../../assets/css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../../../assets/css/Back_office/addUser.css">
+
+    <link rel="shortcut icon" href="../../../assets/PureBuzzLogo.png" />
+
+
+</head>
+<body>
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+            <div class="me-3">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
+                    <span class="icon-menu"></span>
+                </button>
+            </div>
+            <div>
+                <a class="navbar-brand brand-logo" href="stat.html">
+                    <img src="../../../assets/PureBuzzLogo.png"style="height: 80px;" alt="logo" />
+                </a>
+
+            </div>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-top">
+            <ul class="navbar-nav">
+                <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+                    <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">Dear Admin</span></h1>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+
+
+
+
+
+                <li class="nav-item dropdown d-none d-lg-block user-dropdown">
+                    <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="img-xs rounded-circle" src="../../../../assets/images/faces/face8.jpg" alt="Profile image"> </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                        <div class="dropdown-header text-center">
+                            <img class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
+                            <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
+                            <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+                        </div>
+                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
+                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
+                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
+                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
+                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+                    </div>
+                </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
+                <span class="mdi mdi-menu"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+        <div class="theme-setting-wrapper">
+            <div id="settings-trigger"><i class="ti-settings"></i></div>
+            <div id="theme-settings" class="settings-panel">
+                <i class="settings-close ti-close"></i>
+                <p class="settings-heading">SIDEBAR SKINS</p>
+                <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border me-3"></div>Light</div>
+                <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border me-3"></div>Dark</div>
+                <p class="settings-heading mt-2">HEADER SKINS</p>
+                <div class="color-tiles mx-0 px-4">
+                    <div class="tiles success"></div>
+                    <div class="tiles warning"></div>
+                    <div class="tiles danger"></div>
+                    <div class="tiles info"></div>
+                    <div class="tiles dark"></div>
+                    <div class="tiles default"></div>
+                </div>
+            </div>
+        </div>
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="../Front_office/UserProfile.html">
+                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <span class="menu-title">My Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item nav-category">User Managment</li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+                        <i class="menu-icon mdi mdi-table"></i>
+                        <span class="menu-title">User Mangamnets</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="tables">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="addUser.html">Add User</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="AllUsers.html">Get All Users</a></li>                            <li class="nav-item"> <a class="nav-link" href="AllUsers.html">Get All Users</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="stat.html">Dashboard</a></li>
+
+                        </ul>
+                    </div>
+                </li>
+
+
+
+                <li class="nav-item nav-category">Settings</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutLink">
+                        <i class="menu-icon mdi mdi-file-document"></i>
+                        <span class="menu-title">Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel" style="background-color:#FDD670 ">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="home-tab">
+                            <div class="d-sm-flex align-items-center justify-content-between border-bottom">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="" role="tab" aria-controls="overview" aria-selected="true">Details user </a>
+                                    </li> <li class="nav-item">
+                                    <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="" role="tab" aria-controls="overview" aria-selected="true">Add user </a>
+                                </li> <li class="nav-item">
+                                    <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="" role="tab" aria-controls="overview" aria-selected="true">get all user </a>
+                                </li>
+
+                                </ul>
+
+                            </div>
+                            <div class="tab-content tab-content-basic">
+                                <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview">
+
+                                    <div class="row">
+
+
+                                        <div class="row flex-grow">
+                                            <div class="col-12 grid-margin stretch-card">
+                                                <div class="card card-rounded">
+                                                    <div class="card-body">
+                                                        <div class="d-sm-flex justify-content-between align-items-start">
+
+                                                        </div>
+                                                        <div class="table-responsive  mt-1">
+                                                            <div class="form-container">
+                                                                <form id="userDetailsForm" class="form-sample">
+                                                                    <div class="row">
+                                                                        <!-- First Name -->
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="first-name">First Name</label>
+                                                                                <input type="text" id="first-name" class="form-control" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Last Name -->
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="last-name">Last Name</label>
+                                                                                <input type="text" id="last-name" class="form-control" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <!-- Date of Birth -->
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="date-of-birth">Date of Birth</label>
+                                                                                <input type="text" id="date-of-birth" class="form-control" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Email -->
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="email">Email</label>
+                                                                                <input type="text" id="email" class="form-control" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <!-- Mobile -->
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="mobile">Mobile</label>
+                                                                                <input type="text" id="mobile" class="form-control" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Gender -->
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="gender">Gender</label>
+                                                                                <input type="text" id="gender" class="form-control" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <!-- Role -->
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="role">Role</label>
+                                                                                <input type="text" id="role" class="form-control" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Location -->
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="location">Location</label>
+                                                                                <input type="text" id="location" class="form-control" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+
+            <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+    </div>
+
+    <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2024. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Check session before executing any operations
+            fetch('../../../controllers/user/checkSession.php') // Path to checkSession.php
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(sessionData => {
+                    if (!sessionData.success) {
+                        // If the session is not valid, redirect to the login page
+                        alert(sessionData.message || "User not logged in.");
+                        window.location.href = "../Front_Office/log_in.html"; // Redirect to login page
+                    } else {
+                        // If session is valid, fetch user details
+                        fetchUserDetails();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error checking session:", error);
+                    alert("An error occurred while checking the session. Redirecting to login.");
+                    window.location.href = "../Front_Office/log_in.html"; // Redirect to login page
+                });
+
+            function fetchUserDetails() {
+                // Parse the user ID from the URL query string
+                const params = new URLSearchParams(window.location.search);
+                const userId = params.get("id");
+
+                if (userId) {
+                    // Fetch user details from the server
+                    fetch(`../../../controllers/user/back_office/getOneUser.php?id=${userId}`)
+                        .then(response => response.json())
+                        .then(user => {
+                            if (user) {
+                                // Populate user details in the form
+                                document.getElementById("first-name").value = user.first_name;
+                                document.getElementById("last-name").value = user.last_name;
+                                document.getElementById("date-of-birth").value = user.date_of_birth;
+                                document.getElementById("email").value = user.email;
+                                document.getElementById("mobile").value = user.mobile;
+                                document.getElementById("gender").value = user.gender;
+                                document.getElementById("role").value = user.role;
+                                document.getElementById("location").value = user.location;
+                            } else {
+                                alert("User not found.");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error fetching user details:", error);
+                            alert("Failed to fetch user details.");
+                        });
+                } else {
+                    alert("No user ID provided.");
+                }
+            }
+
+            // Logout functionality
+            document.getElementById("logoutLink").addEventListener("click", function (event) {
+                event.preventDefault(); // Prevent the default link behavior
+
+                // Use Fetch API to call the logout PHP script
+                fetch('../../../controllers/user/Back_Office/logOut.php', {
+                    method: 'POST', // POST request to handle logout
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // Redirect to the login page
+                            window.location.href = '../Front_Office/User/log_in.html';
+                        } else {
+                            console.error("Failed to log out:", response.statusText);
+                            alert("An error occurred while logging out. Please try again.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error during logout:", error);
+                        alert("An error occurred while logging out. Please try again.");
+                    });
+            });
+        });
+
+    </script>
+
+
+
+<!-- plugins:js -->
+<script src="../../../assets/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="../../../assets/vendors/chart.js/Chart.min.js"></script>
+<script src="../../../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="../../../assets/vendors/progressbar.js/progressbar.min.js"></script>
+
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="../../../assets/js/off-canvas.js"></script>
+<script src="../../../assets/js/hoverable-collapse.js"></script>
+<script src="../../../assets/js/template.js"></script>
+<script src="../../../assets/js/settings.js"></script>
+<script src="../../../assets/js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="../../../assets/js/dashboard.js"></script>
+<script src="../../../assets/js/Chart.roundedBarCharts.js"></script>
+<!-- End custom js for this page-->
+</body>
+
+</html>
