@@ -1,75 +1,56 @@
 <?php
-session_start();
-include_once 'C:\xampp\htdocs\project1modif\view\back\config.php';
+// Inclure la connexion PDO
+require_once 'config.php'; // Assurez-vous d'inclure votre fichier de connexion PDO
+$conn = Config::getConnexion(); // Récupérer la connexion PDO via la méthode de la classe Config
 
-// Obtenir la connexion à la base de données
-$conn = Config::getConnexion();
-if (!$conn) {
-    die("La connexion à la base de données a échoué.");
-}
+// Récupérer les codes promo de la base de données
+$sql = "SELECT * FROM promos";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$promos = $stmt->fetchAll(PDO::FETCH_ASSOC); // Stocker les résultats dans $promos
 
-// Récupérer le nombre total de paniers
-$sqlTotalCarts = "SELECT COUNT(id) AS total_carts FROM cart";
-$stmtTotalCarts = $conn->prepare($sqlTotalCarts);
-$stmtTotalCarts->execute();
-$rowTotalCarts = $stmtTotalCarts->fetch(PDO::FETCH_ASSOC);
-$totalCarts = $rowTotalCarts['total_carts'];
-
-// Récupérer le nombre total de users
-// Récupérer le nombre total d'utilisateurs
-$sqlTotalusers = "SELECT COUNT(id) AS total_users FROM users";
-$stmtTotalusers = $conn->prepare($sqlTotalusers);
-$stmtTotalusers->execute();
-$rowTotalusers = $stmtTotalusers->fetch(PDO::FETCH_ASSOC);
-
-if ($rowTotalusers) {
-    $totalusers = $rowTotalusers['total_users'];
-} else {
-    $totalusers = 0;  
-}
-
-// Récupérer la somme des totaux des paniers
-$sqlTotalSales = "SELECT SUM(total) AS total_sales FROM cart";
-$stmtTotalSales = $conn->prepare($sqlTotalSales);
-$stmtTotalSales->execute();
-$rowTotalSales = $stmtTotalSales->fetch(PDO::FETCH_ASSOC);
-$totalSales = $rowTotalSales['total_sales'];
-
-// Récupérer les données pour le tableau
-$filterStatus = $_GET['status'] ?? '';
-$sqlCarts = "SELECT id, total, status FROM cart";
-if ($filterStatus) {
-    $sqlCarts .= " WHERE status = :status";
-    $stmtCarts->execute([':status' => $filterStatus]);
-} else {
-    $stmtCarts = $conn->prepare($sqlCarts);
-    $stmtCarts->execute();
-}
-$carts = $stmtCarts->fetchAll(PDO::FETCH_ASSOC);
-
-// Mise à jour du statut
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['new_status'])) {
-    $cartId = $_POST['cart_id'];
-    $newStatus = $_POST['new_status'];
-
-    $updateSql = "UPDATE cart SET status = :new_status WHERE id = :cart_id";
-    $updateStmt = $conn->prepare($updateSql);
+if (isset($_POST['submit'])) {
+    // Récupérer les données du formulaire
+    $code = $_POST['code'];
+    $discount_type = $_POST['discount_type'];
+    $discount_value = $_POST['discount_value'];
+    $valid_from = $_POST['valid_from'];
+    $valid_until = $_POST['valid_until'];
 
     try {
-        $updateStmt->execute([':new_status' => $newStatus, ':cart_id' => $cartId]);
-        header("Location: " . $_SERVER['PHP_SELF'] . "?status=" . $filterStatus . "#carts");
-        exit;
+        // Préparer la requête d'insertion avec PDO
+        $sql = "INSERT INTO promos (code, discount_type, discount_value, valid_from, valid_until)
+                VALUES (:code, :discount_type, :discount_value, :valid_from, :valid_until)";
+
+        // Préparer la requête avec la connexion récupérée
+        $stmt = $conn->prepare($sql);
+
+        // Lier les paramètres à la requête préparée
+        $stmt->bindParam(':code', $code, PDO::PARAM_STR);
+        $stmt->bindParam(':discount_type', $discount_type, PDO::PARAM_STR);
+        $stmt->bindParam(':discount_value', $discount_value, PDO::PARAM_STR);
+        $stmt->bindParam(':valid_from', $valid_from, PDO::PARAM_STR);
+        $stmt->bindParam(':valid_until', $valid_until, PDO::PARAM_STR);
+
+        // Exécuter la requête
+        $stmt->execute();
+
+        // Rediriger après l'insertion pour éviter la soumission automatique à chaque rafraîchissement
+        header("Location: promo.php");
+        exit; // Important d'ajouter un exit après la redirection pour empêcher toute exécution de code supplémentaire
     } catch (PDOException $e) {
-        $error = "Erreur lors de la mise à jour du statut : " . $e->getMessage();
+        // Afficher l'erreur en cas d'échec
+        echo "Erreur: " . $e->getMessage();
     }
 }
 ?>
-<!DOCTYPE html>
+
+<<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart Management</title>
+    <title>Ajouter un Code Promo</title>
     <link rel="stylesheet" href="bck.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="all.css">
@@ -91,12 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['ne
     <link rel="shortcut icon" href="images/favicon.png" />
 </head>
 <body>
-    <!-- Navigation -->
-    
-
-    <!-- Main Container -->
-    
-
         <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
@@ -467,97 +442,65 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['ne
                 
             </ul>
             </nav>
-            <div style="margin-left: 40px;margin-top: 10px;; width:1100px;" id="dashboard" class="section">
-            <h2>Dashboard</h2>
-            <div class="statistics">
-                <div class="stat-box">
-                    <h3>Total Carts</h3>
-                    <p><?= $totalCarts; ?></p>
-                </div>
-                <div class="stat-box">
-                    <h3>Total Users</h3>
-                    <p><?= $totalusers; ?></p>
-                </div>
-                <div class="stat-box">
-                    <h3>Total Sales</h3>
-                    <p><?= number_format($totalSales, 2); ?> TND</p>
-                </div>
-            </div>
-        </div>
+            <div style="margin-left: 40px; width:1100px;">
+    <h2 class="text" style="margin-top:10px;">Add a Promo Code</h2>
+    <br>
+    <form action="promo.php" method="POST">
+        <label for="code">Promo Code:</label><br>
+        <input type="text" id="code" name="code" required><br><br>
 
-        </div>
-        <!-- Dashboard Section -->
-        
-        <!-- Cart Management Section -->
-        <div id="carts" class="section">
-            <h2>Cart Management</h2>
+        <label for="discount_type">Discount Type:</label><br>
+        <select id="discount_type" name="discount_type">
+            <option value="percentage">Percentage<</option>
+            <option value="fixed">Fixed</option>
+        </select><br><br>
 
-                            <!-- Filtrage par statut -->
-                <form method="GET" action="" class="form-filter">
-                    <label for="filter"></label>
-                    <select name="status" id="filter" onchange="this.form.submit()">
-                        <option value="">Tous</option>
-                        <option value="En attente" <?= $filterStatus == 'En attente' ? 'selected' : '' ?>>En attente</option>
-                        <option value="En cours" <?= $filterStatus == 'En cours' ? 'selected' : '' ?>>En cours</option>
-                        <option value="Prête pour la livraison" <?= $filterStatus == 'Prête pour la livraison' ? 'selected' : '' ?>>Prête pour la livraison</option>
-                        <option value="Livrée" <?= $filterStatus == 'Livrée' ? 'selected' : '' ?>>Livrée</option>
-                    </select>
-                </form>
+        <label for="discount_value">Discount Value:</label><br>
+        <input type="number" id="discount_value" name="discount_value" required><br><br>
 
+        <label for="valid_from">Valid From:</label><br>
+        <input type="datetime-local" id="valid_from" name="valid_from" required><br><br>
 
-            <!-- Affichage des paniers -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID Panier</th>
-                        <th>Total (TND)</th>
-                        <th>Statut</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (!empty($carts)): ?>
-                        <?php foreach ($carts as $cart): ?>
-                            <tr>
-                                <td><?= $cart['id']; ?></td>
-                                <td><?= number_format($cart['total'], 2); ?> TND</td>
-                                <td><?= htmlspecialchars($cart['status']); ?></td>
-                                <td>
-                                    <!-- Changement de statut -->
-                                    <form method="POST" action="" class="form-change-status">
-    <input type="hidden" name="cart_id" value="<?= $cart['id']; ?>">
-    <select name="new_status" onchange="this.form.submit()">
-        <option value="En attente" <?= $cart['status'] == 'En attente' ? 'selected' : '' ?>>En attente</option>
-        <option value="En cours" <?= $cart['status'] == 'En cours' ? 'selected' : '' ?>>En cours</option>
-        <option value="Prête pour la livraison" <?= $cart['status'] == 'Prête pour la livraison' ? 'selected' : '' ?>>Prête pour la livraison</option>
-        <option value="Livrée" <?= $cart['status'] == 'Livrée' ? 'selected' : '' ?>>Livrée</option>
-    </select>
-</form>
+        <label for="valid_until">Valid Until:</label><br>
+        <input type="datetime-local" id="valid_until" name="valid_until" required><br><br>
 
+        <button type="submit" name="submit">Add Promo Code</button>
+    </form>
 
-                                    <!-- Actions supplémentaires -->
-                                    <a href="details.php?id=<?= $cart['id']; ?>#carts">
-                                        <button>View Details</button>
-                                    </a>
-                                    <button onclick="deleteCart(<?= $cart['id']; ?>)">Delete</button>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="4">Aucun panier trouvé.</td>
-                        </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-
-            <!-- Affichage des erreurs -->
-            <?php if (isset($error)): ?>
-                <p class="error"><?= $error; ?></p>
-            <?php endif; ?>
-        </div>
-    </div>
-
-    <script src="back.js"></script>
+    <!-- Liste des Codes Promo -->
+    <h2>Promo Code List</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Code</th>
+                <th>Discount Type</th>
+                <th>Discount Value</th>
+                <th>Valid From</th>
+                <th>Valid Until</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Afficher les données des codes promo
+            if (!empty($promos)) {
+                foreach ($promos as $promo) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($promo['id']) . "</td>";
+                    echo "<td>" . htmlspecialchars($promo['code']) . "</td>";
+                    echo "<td>" . htmlspecialchars($promo['discount_type']) . "</td>";
+                    echo "<td>" . htmlspecialchars($promo['discount_value']) . "</td>";
+                    echo "<td>" . htmlspecialchars($promo['valid_from']) . "</td>";
+                    echo "<td>" . htmlspecialchars($promo['valid_until']) . "</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='6'>Aucun code promo trouvé</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+</div>
 </body>
 </html>
