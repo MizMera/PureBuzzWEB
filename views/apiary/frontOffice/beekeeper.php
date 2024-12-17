@@ -1,8 +1,17 @@
 <?php
+session_start(); // Start the session
+
+// Check if the user is logged in
+if (!isset($_SESSION['userId']) || !isset($_SESSION['email'])) {
+    echo "User not logged in.";
+    exit;
+}
+
+// Get the beekeeper's email from the session
+$current_beekeper_email = $_SESSION['email'];
+
 include_once "../../../config/database.php";
 include_once "../../../Controllers/apiariesC.php";
-
-$current_beekeper_email = "sarrabenothmen@gmail.com";
 
 $apiaryC = new ApiaryC();
 
@@ -15,16 +24,16 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page
 $offset = ($page - 1) * $limit;
 
 // Fetch the total count of apiaries for search
-$totalApiaries = $apiaryC->countApiariesWithSearch1($current_beekeper_email,$search);
+$totalApiaries = $apiaryC->countApiariesWithSearch1($current_beekeper_email, $search);
 $totalPages = ceil($totalApiaries / $limit);
 
 // Fetch the filtered and sorted list of apiaries
-$listApiaries = $apiaryC->fetchFilteredSortedApiaries1($current_beekeper_email,$search, $sort, $limit, $offset);
+$listApiaries = $apiaryC->fetchFilteredSortedApiaries1($current_beekeper_email, $search, $sort, $limit, $offset);
 
-
+// Handle form submission for adding a new apiary
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_apiary'])) {
     $apiaryName = $_POST['apiaryName'];
-    $beekeeper = $current_beekeper_email;
+    $beekeeper = $current_beekeper_email; // Uses the session email
     $location = $_POST['location'];
     $coordinates = $_POST['coordinates'];
     $date = $_POST['date'];
@@ -33,17 +42,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_apiary'])) {
     $observation = $_POST['observation'];
 
     // Create the Apiary object
-    $apiary = new Apiary(null, $apiaryName, $beekeeper, $location, $coordinates, $date, $weather, $hiveCount, $observation);
+    $apiary = new Apiary(
+        null,
+        $apiaryName,
+        $beekeeper,
+        $location,
+        $coordinates,
+        $date,
+        $weather,
+        $hiveCount,
+        $observation
+    );
 
     // Add the Apiary to the database
     $apiaryC->ajouterApiary($apiary);
 
-    // Redirect to the apiaries list page or show a success message
+    // Redirect after adding
     header("Location: beekeeper.php");
     exit();
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
