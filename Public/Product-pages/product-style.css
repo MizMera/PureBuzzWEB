@@ -437,20 +437,36 @@
         }
     }
 .product-info {
-        display: flex;
-        justify-content: center; /* Center horizontally */
-        align-items: center;     /* Center vertically (optional) */
-        text-align: center;      /* Align text to the center */
-        height: 100vh;           /* Full viewport height (optional) */
-    }
-    
-    .yellow-link {
-        color: yellow;          /* Makes the link yellow */
-        text-decoration: none;  /* Optional: Removes underline */
-    }
-    
-    
-    .yellow-link:hover {
-        text-decoration: underline; /* Ajoute le soulignement au survol */
-    }
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #f4f4f4; /* Light background for contrast */
+    padding: 20px;
+}
+
+.info-text {
+    font-size: 1.2rem;
+    font-family: Arial, sans-serif;
+    color: #333;
+    max-width: 600px; /* Make sure the text doesn't stretch too wide */
+    margin: 0 auto; /* Center the text */
+}
+
+.yellow-link {
+    color: yellow;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.yellow-link:hover {
+    color: orange; /* Change to a slightly different color on hover */
+    text-decoration: underline;
+}
+
+strong {
+    font-size: 1.3rem;
+    color: #2e2e2e; /* Darker color for emphasis */
+}
