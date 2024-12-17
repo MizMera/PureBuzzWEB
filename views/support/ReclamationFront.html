@@ -260,6 +260,118 @@
             userInput.value = "";
             chatBody.scrollTop = chatBody.scrollHeight;
         }
+        let claimData = {
+            user_name: '', // Email address will be stored here
+            product: '', // Product name
+            claim_details: '' // Claim details
+        };
+
+        async function sendMessage() {
+            const userInput = document.getElementById("userInput");
+            const chatBody = document.getElementById("chatBody");
+
+            if (userInput.value.trim() === "") return;
+
+            // Display the user's message
+            const userMessage = document.createElement("div");
+            userMessage.className = "chat-message user-message";
+            userMessage.textContent = userInput.value;
+            chatBody.appendChild(userMessage);
+
+            // Decide whether to process structured input or call AI
+            if (!claimData.user_name || !claimData.product || !claimData.claim_details) {
+                processStructuredInput(userInput.value);
+            } else {
+                const botResponse = await getAIResponse(userInput.value);
+                sendBotMessage(botResponse);
+            }
+
+            // Clear input field
+            userInput.value = "";
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function processStructuredInput(input) {
+            if (!claimData.user_name) {
+                if (validateEmail(input)) {
+                    claimData.user_name = input;
+                    sendBotMessage("Thank you! What is the product you're making a claim for?");
+                } else {
+                    sendBotMessage("Please provide a valid email address.");
+                }
+            } else if (!claimData.product) {
+                claimData.product = input;
+                sendBotMessage("Thanks! Now, please provide details about the claim.");
+            } else if (!claimData.claim_details) {
+                claimData.claim_details = input;
+                sendBotMessage("Thank you for the details! Submitting your claim now.");
+                submitClaim();
+            }
+        }
+
+        function sendBotMessage(message) {
+            const chatBody = document.getElementById("chatBody");
+            const botMessage = document.createElement("div");
+            botMessage.className = "chat-message bot-message";
+            botMessage.textContent = message;
+            chatBody.appendChild(botMessage);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        // Function to validate email
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Submit claim to the backend
+        async function submitClaim() {
+            try {
+                const response = await fetch("http://localhost/PureBuzzWEB-integration/Public/index.php?controller=claims&action=store", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(claimData),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    sendBotMessage("Your claim has been successfully submitted!");
+                    claimData = { user_name: '', product: '', claim_details: '' }; // Reset data
+                } else {
+                    sendBotMessage(`Error: ${result.error || "There was an error submitting your claim. Please try again."}`);
+                }
+            } catch (error) {
+                console.error("Error submitting claim:", error);
+                sendBotMessage("Failed to submit your claim. Please try again later.");
+            }
+        }
+
+        // AI Functionality: Get dynamic response from OpenAI API
+        async function getAIResponse(userInput) {
+            try {
+                // API call to OpenAI with the correct API key
+                const response = await fetch("https://hdstockimages.com/get-free-openai-chatgpt-api/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "8a20c73180ae4d5ca4f37bdaa5bb8669",
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-3.5-turbo",  // Use GPT-4 model
+                        messages: [{ role: "user", content: userInput }], // Send the user input to the AI
+                    }),
+                });
+
+                const data = await response.json();  // Parse the response
+                return data.choices[0].message.content;  // Extract AI's response
+            } catch (error) {
+                console.error("Error fetching AI response:", error);
+                return "Sorry, I couldn't process your request right now. Please try again later.";  // Handle errors
+            }
+        }
+
     </script>
 </body>
 
