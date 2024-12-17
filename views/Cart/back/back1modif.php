@@ -458,8 +458,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['ne
                             <span class="menu-title">Cart Management</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="promo.php">
+                            <i class="mdi mdi-grid-large menu-icon"></i>
+                            <span class="menu-title">Promos</span>
+                        </a>
+                    </li>
                 
-                </ul>
+            </ul>
             </nav>
             <div style="margin-left: 40px;margin-top: 10px;; width:1100px;" id="dashboard" class="section">
             <h2>Dashboard</h2>
