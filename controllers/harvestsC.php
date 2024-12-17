@@ -9,7 +9,7 @@ class HarvestC
         $sql = "INSERT INTO harvests (date, location, quantity, quality, apiary) 
                 VALUES (:date, :location, :quantity, :quality, :apiary)";
     
-        $db = Database::getConnexion();
+        $db = connectDatabase();
         try {
             $query = $db->prepare($sql);
             $query->execute([
@@ -29,7 +29,7 @@ class HarvestC
         $sql = "SELECT harvests.*, apiaries.apiaryName 
                 FROM harvests 
                 JOIN apiaries ON harvests.apiary = apiaries.idApiary";
-        $db = Database::getConnexion();
+        $db = connectDatabase();
         try {
             $list = $db->query($sql);
             return $list;
@@ -42,7 +42,7 @@ class HarvestC
     function supprimerHarvest($id)
     {
         $sql = "DELETE FROM harvests WHERE id = :id";
-        $db = Database::getConnexion();
+        $db = connectDatabase();
         $req = $db->prepare($sql);
         $req->bindValue(':id', $id);
         try {
@@ -55,7 +55,7 @@ class HarvestC
     function recupererHarvest($id)
     {
         $sql = "SELECT * FROM harvests WHERE id = :id";
-        $db = Database::getConnexion();
+        $db = connectDatabase();
         try {
             $query = $db->prepare($sql);
             $query->execute(['id' => $id]);
@@ -76,7 +76,7 @@ class HarvestC
                 apiary = :apiary
                 WHERE id = :id";
     
-        $db = Database::getConnexion();
+        $db = connectDatabase();
         try {
             $query = $db->prepare($sql);
             $query->execute([
@@ -101,7 +101,7 @@ class HarvestC
                 h.quantity LIKE :search OR 
                 h.quality LIKE :search OR 
                 a.apiaryName LIKE :search";
-        $db = Database::getConnexion();
+        $db = connectDatabase();
         try {
             $query = $db->prepare($sql);
             $query->execute([':search' => '%' . $search . '%']);
@@ -123,7 +123,7 @@ class HarvestC
                 a.apiaryName LIKE :search
                 ORDER BY h.date $sort
                 LIMIT :limit OFFSET :offset";
-        $db = Database::getConnexion();
+        $db = connectDatabase();
         try {
             $query = $db->prepare($sql);
             $query->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
