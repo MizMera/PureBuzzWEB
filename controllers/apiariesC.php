@@ -11,7 +11,7 @@ class ApiaryC
                 VALUES 
                 (:apiaryName, :beekeeper, :location, :coordinates, :date, :weather, :hiveCount, :observation)";
     
-        $db = connectDatabase();
+        $db = Database::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute([
@@ -32,7 +32,7 @@ class ApiaryC
     function afficherApiaries()
     {
         $sql = "SELECT * FROM apiaries";
-        $db = connectDatabase();
+        $db = Database::getConnexion();
         try {
             $list = $db->query($sql);
             return $list;
@@ -44,7 +44,7 @@ class ApiaryC
     function supprimerApiary($id)
     {
         $sql = "DELETE FROM apiaries WHERE idApiary = :idApiary";
-        $db = connectDatabase();
+        $db = Database::getConnexion();
         $req = $db->prepare($sql);
         $req->bindValue(':idApiary', $id);
         try {
@@ -57,7 +57,7 @@ class ApiaryC
     function recupererApiary($id)
     {
         $sql = "SELECT * FROM apiaries WHERE idApiary = :idApiary";
-        $db = connectDatabase();
+        $db = Database::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute(['idApiary' => $id]);
@@ -81,8 +81,8 @@ class ApiaryC
                 observation = :observation
                 WHERE idApiary = :idApiary";
     
-        $db = connectDatabase();
-    try {
+        $db = Database::getConnexion();
+        try {
             $query = $db->prepare($sql);
             $query->execute([
                 'apiaryName' => $apiary->getApiaryName(),
@@ -110,8 +110,8 @@ class ApiaryC
                 date LIKE :search OR 
                 weather LIKE :search OR 
                 observation LIKE :search";
-        $db = connectDatabase();
-    try {
+        $db = Database::getConnexion();
+        try {
             $query = $db->prepare($sql);
             $query->execute([':search' => '%' . $search . '%']);
             return $query->fetch(PDO::FETCH_ASSOC)['total'];
@@ -132,8 +132,8 @@ class ApiaryC
                 observation LIKE :search
                 ORDER BY date $sort
                 LIMIT :limit OFFSET :offset";
-        $db = connectDatabase();
-    try {
+        $db = Database::getConnexion();
+        try {
             $query = $db->prepare($sql);
             $query->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
             $query->bindValue(':limit', $limit, PDO::PARAM_INT);
@@ -156,8 +156,8 @@ class ApiaryC
                 weather LIKE :search OR 
                 observation LIKE :search) AND
                 beekeeper LIKE :beek";
-        $db = connectDatabase();
-try {
+        $db = Database::getConnexion();
+        try {
             $query = $db->prepare($sql);
             $query->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
             $query->bindValue(':beek', $beekeeper, PDO::PARAM_STR);
@@ -181,8 +181,8 @@ try {
                 beekeeper LIKE :beek
                 ORDER BY date $sort
                 LIMIT :limit OFFSET :offset";
-        $db = connectDatabase();
-    try {
+        $db = Database::getConnexion();
+        try {
             $query = $db->prepare($sql);
             $query->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
             $query->bindValue(':limit', $limit, PDO::PARAM_INT);
