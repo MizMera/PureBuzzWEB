@@ -1,8 +1,9 @@
 <?php
-// Inclure la connexion PDO
-require_once 'config.php'; // Assurez-vous d'inclure votre fichier de connexion PDO
-$conn = Config::getConnexion(); // Récupérer la connexion PDO via la méthode de la classe Config
 
+include_once __DIR__ . '/../../../config/database.php';
+
+// Connexion à la base de données via PDO
+$conn = Database::getConnexion();
 // Récupérer les codes promo de la base de données
 $sql = "SELECT * FROM promos";
 $stmt = $conn->prepare($sql);
