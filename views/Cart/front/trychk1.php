@@ -2,6 +2,7 @@
 session_start();
 include_once __DIR__ . '/../../../config/database.php';
 // Connexion à la base de données via PDO
+
 $pdo = Database::getConnexion();
 // Lorsque vous ajoutez un article au panier
 if (!isset($_SESSION['cartid'])) {
