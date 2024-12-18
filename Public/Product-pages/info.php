@@ -1,9 +1,8 @@
 
 <?php
 
-include_once 'C:/xampp/htdocs/PureBuzzWEB-integration1/Controllers/apiariesC.php';
-include_once 'C:/xampp/htdocs/PureBuzzWEB-integration1/Controllers/harvestsC.php';
-
+include_once "../../Controllers/apiariesC.php";
+include_once "../../Controllers/harvestsC.php";
 
 
 $host = 'localhost';  // Nom de l'hôte (ou adresse IP)
