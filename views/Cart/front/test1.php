@@ -1,6 +1,6 @@
 <?php
 // Inclure la bibliothèque TCPDF
-require_once 'C:\xampp\htdocs\PureBuzzWEB\views\Cart\front\TCPDF-main\tcpdf.php';
+require_once '../front\TCPDF-main\tcpdf.php';
 
 // Connexion à la base de données (assurez-vous que la connexion PDO est correcte)
 include_once __DIR__ . '/../../../config/database.php';
@@ -47,7 +47,7 @@ if (isset($_GET['order_id'])) {
         $pdf->AddPage();
 
         // Ajouter le logo avec une taille réduite (modifiez la taille selon vos besoins)
-        $logo_path = 'PureBuzzLogo.png'; // Remplacez par le chemin de votre logo
+        $logo_path = '../PureBuzzLogo.png'; // Remplacez par le chemin de votre logo
         $pdf->Image($logo_path, 4, 4, 10); // Position x, y et taille (largeur)
         $pdf->Image($logo_path, 197, 4, 10); // Position x, y et taille (largeur)
 
