@@ -2,7 +2,7 @@
 
 function connectDatabase()
 {
-    $host = 'localhost';    
+    $host = 'localhost';
     $dbname = 'purebuzz_db';
     $username = 'root';
     $password = '';
@@ -42,4 +42,5 @@ class Database
         return self::$pdo;
     }
 }
+
 Database::getConnexion();

@@ -1,10 +1,10 @@
 <?php
 session_start();
-include_once 'C:\xampp\htdocs\project1modif\view\back\config.php';
+include_once __DIR__ . '/../../../config/database.php';
 
-// Obtenir la connexion à la base de données
-$conn = Config::getConnexion();
-if (!$conn) {
+// Connexion à la base de données via PDO
+$conn = Database::getConnexion();
+if (!$conn ) {
     die("La connexion à la base de données a échoué.");
 }
 

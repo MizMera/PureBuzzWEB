@@ -1,10 +1,8 @@
 <?php
 session_start();
-include_once 'config.php'; // Inclure la configuration de la base de données
-
-// Obtenir la connexion PDO via la classe Config
-$pdo = Config::getConnexion();
-
+include_once __DIR__ . '/../../../config/database.php';
+// Connexion à la base de données via PDO
+$pdo = Database::getConnexion();
 // Lorsque vous ajoutez un article au panier
 if (!isset($_SESSION['cartid'])) {
     $stmt_cart = $pdo->prepare("INSERT INTO cart (total) VALUES (0)");
@@ -12,7 +10,6 @@ if (!isset($_SESSION['cartid'])) {
     $_SESSION['cartid'] = $pdo->lastInsertId();
 }
 $cart_id = $_SESSION['cartid'];
-
 // Vérifier si le panier est vide
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
     die("Le panier est vide. Ajoutez des produits avant de passer une commande.");
