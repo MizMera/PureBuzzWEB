@@ -1,0 +1,472 @@
+    /* General styling */
+    body {
+        font-family: 'Manrope', sans-serif;
+        background-color: #f9f7f4;
+        color: #333;
+        margin: 0;
+    }
+
+    /* Navigation bar styling */
+   
+ .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+    /* Logo styling */
+    .navbar .logo img {
+        height: 70px;
+        margin-right: 10px;
+    }
+
+    /* Menu styling */
+    .navbar .menu {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar .menu a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        padding: 8px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .d-sm-inline-block {
+        display: inline-block !important;
+    }
+    .navbar .menu a:hover,
+    .navbar .menu a.active {
+        color: #ffffff;
+        background-color: #ffcc00;
+    }
+    .float-none {
+        float: none !important;
+    }
+
+    /* Auth buttons */
+    .navbar .auth-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .navbar .auth-buttons .signin {
+        background-color: #ff9900;
+        color: #fff;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-size: 0.9em;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+    }
+
+    .navbar .auth-buttons .signin:hover {
+        background-color: #e68a00;
+    }
+
+    .navbar .auth-buttons .register {
+        background-color: #ffcc00;
+        color: #333;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-size: 0.9em;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+    }
+    /* General info section styling */
+    .info-section {
+        padding: 80px 20px;
+        text-align: center;
+        background-color: #f9f7f4;
+        margin: 20px 0;
+        border-top: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    /* Product catalog initial hidden state */
+    .product-catalog {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    /* Show class to reveal products */
+    .product-catalog.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .info-section h2 {
+        font-size: 2em;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    
+    .info-section p {
+        max-width: 800px;
+        margin: 0 auto 20px;
+        font-size: 1.1em;
+        color: #555;
+        line-height: 1.6;
+    }
+    
+
+    .info-section a {
+        color: #ffcc00;
+        text-decoration: none;
+    }
+
+    .info-section a:hover {
+        text-decoration: underline;
+    }
+
+    .navbar .auth-buttons .register:hover {
+        background-color: #e6b800;
+    }
+    .contact-section {
+        padding: 60px 20px;
+        text-align: center;
+        background-color: #fff9e6;
+    }
+    
+
+    .contact-section h2 {
+        font-size: 2em;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .contact-section p {
+        max-width: 600px;
+        margin: 0 auto 30px;
+        font-size: 1.1em;
+        color: #555;
+    }
+
+    .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .contact-form label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .contact-form input, .contact-form textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+    }
+
+    .contact-form button {
+        background-color: #ffcc00;
+        color: white;
+        border: none;
+        padding: 12px;
+        font-size: 1em;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .contact-form button:hover {
+        background-color: #e6b800;
+    }
+
+    /* Hero section styling */
+    .hero {
+        background: url('Images/lindsay-moe-E7Yon4dZvek-unsplash\(1\).jpg' ) no-repeat  center / cover;
+        color: #ffffff;
+        padding: 80px 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 3em;
+        margin-bottom: 10px;
+    }
+
+    .hero p {
+        font-size: 1.2em;
+        max-width: 600px;
+        margin-bottom: 20px;
+    }
+
+    .hero .cta-button {
+        background-color: #ffcc00;
+        color: #333;
+        padding: 15px 30px;
+        font-size: 1.1em;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+    }
+
+    .hero .cta-button:hover {
+        background-color: #e6b800;
+    }
+
+    /* Product catalog styling */
+    .product-catalog {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 40px 20px;
+        opacity: 0; /* Initially hidden */
+        transform: translateY(50px); /* Initial position for animation */
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .product-item {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 250px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .product-item h2 {
+        font-size: 1.5em;
+        margin: 10px 0;
+        color: #555;
+    }
+
+    .product-item p {
+        font-size: 0.9em;
+        margin: 5px 0;
+        color: #777;
+    }
+
+    .product-item button {
+        background-color: #ffcc00;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 0.9em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin: 10px 0 20px;
+    }
+
+    .product-item button:hover {
+        background-color: #e6b800;
+    }
+    .d-sm-flex {
+        display: flex !important;
+    }
+    /* Footer styling */
+    .footer {
+        background-color: #333;
+        color: #aaa;
+        padding: 20px;
+        font-size: 0.9em;
+        text-align: center;
+    }
+    
+    .footer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .footer-container span {
+        font-size: 0.9em;
+    }
+    
+    .footer a {
+        color: #ffcc00;
+        text-decoration: none;
+    }
+    
+    .footer a:hover {
+        text-decoration: underline;
+    }
+    
+    .text-muted {
+        color: #aaa;
+    }
+
+    .copyright {
+        text-align: center;
+    }
+
+    @media (max-width: 576px) {
+        .footer-container {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .footer-container span {
+            margin: 5px 0;
+        }
+    }
+
+        padding: 0.5rem 1rem;
+        background-color: rgba(0, 0, 0, 0.03);
+        border-top: 1px solid #e3e3e3;
+    }
+    /* Animation for product catalog reveal */
+    .product-catalog.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+/* Flexbox container for about and benefits content */
+.about-content, .benefits-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.about-content .about-text, .benefits-content .benefits-text {
+    flex: 1;
+}
+
+.about-content .about-image, .benefits-content .benefits-image {
+    flex: 1;
+}
+
+.about-content .about-image img, .benefits-content .benefits-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Stack content on smaller screens */
+@media (max-width: 768px) {
+    .about-content, .benefits-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-content .about-image, .benefits-content .benefits-image {
+        margin-top: 20px;
+    }
+}
+
+    /* Keyframe animations (derived from style.css) */
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-30px);
+        }
+        60% {
+            transform: translateY(-15px);
+        }
+    }
+    @media (max-width: 768px) {
+        .info-section, .contact-section, .footer-container {
+            padding: 40px 10px;
+        }
+    
+        .product-item {
+            width: 100%;
+        }
+    
+        .footer-container {
+            flex-direction: column;
+            text-align: center;
+        }
+    
+        .footer-container span {
+            margin-top: 10px;
+        }
+    }
+    
+
+    @keyframes shake {
+        0%, 100% {
+            transform: translateX(0);
+        }
+        10%, 30%, 50%, 70%, 90% {
+            transform: translateX(-10px);
+        }
+        20%, 40%, 60%, 80% {
+            transform: translateX(10px);
+        }
+    }
+.product-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #f4f4f4; /* Light background for contrast */
+    padding: 20px;
+}
+
+.info-text {
+    font-size: 1.2rem;
+    font-family: Arial, sans-serif;
+    color: #333;
+    max-width: 600px; /* Make sure the text doesn't stretch too wide */
+    margin: 0 auto; /* Center the text */
+}
+
+.yellow-link {
+    color: yellow;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.yellow-link:hover {
+    color: orange; /* Change to a slightly different color on hover */
+    text-decoration: underline;
+}
+
+strong {
+    font-size: 1.3rem;
+    color: #2e2e2e; /* Darker color for emphasis */
+}

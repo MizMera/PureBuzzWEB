@@ -1,0 +1,15 @@
+{
+    "name": "omarh/omar",
+    "autoload": {
+        "psr-4": {
+            "Omarh\\Omar\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "omar",
+            "email": "omar.hamdi204@gmail.com"
+        }
+    ],
+    "require": {}
+}
