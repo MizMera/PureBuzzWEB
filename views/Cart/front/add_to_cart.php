@@ -1,6 +1,9 @@
 <?php
 session_start();
-include_once 'config.php'; // Connexion à la base de données
+include_once __DIR__ . '/../../../config/database.php';
+
+// Connexion à la base de données via PDO
+$pdo = Database::getConnexion();
 
 // Ajouter un produit au panier
 if (isset($_GET['add_to_cart'])) {
