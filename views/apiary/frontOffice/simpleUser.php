@@ -43,11 +43,10 @@ $listHarvests = $harvestC->fetchFilteredSortedHarvests($search1, $sort1, $limit1
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Catalog - PureBuzz</title>
     <link rel="stylesheet" href="product-style.css">
     <style>
    /* General Reset */
-body {
+   body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -69,6 +68,7 @@ body {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
+    background-color: #fff; /* White background for the table */
 }
 
 .custom-table th, .custom-table td {
@@ -78,18 +78,22 @@ body {
 }
 
 .custom-table th {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #ffc107; /* Yellow background for the table header */
+    color: white;
     text-transform: uppercase;
     font-size: 14px;
 }
 
 .custom-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f9f9f9; /* Light gray background for even rows */
+}
+
+.custom-table tbody tr:nth-child(odd) {
+    background-color: #fff; /* White background for odd rows */
 }
 
 .custom-table tbody tr:hover {
-    background-color: #e9ecef;
+    background-color: #ffe082; /* Lighter yellow on hover */
     transition: background-color 0.3s;
 }
 
@@ -119,74 +123,69 @@ body {
 }
 
 .btn-submit {
-    background-color: #007bff;
-    color: white;
+    background-color: #ffc107; /* Yellow */
+    color: black;
+    font-weight: bold;
+    border: none;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 .btn-submit:hover {
-    background-color: #0056b3;
+    background-color: #e0a800; /* Darker yellow on hover */
 }
 
 /* Actions Buttons */
-.btn-action {
+a.signin {
     text-decoration: none;
     padding: 5px 10px;
     margin-right: 5px;
     border-radius: 5px;
-    color: white;
+    background-color: #ffc107; /* Yellow */
+    color: black;
+    font-weight: bold;
     font-size: 12px;
     text-align: center;
+    transition: background-color 0.3s ease;
 }
 
-.modify {
+a.signin:hover {
+    background-color: #e0a800; /* Darker yellow on hover */
+}
+
+/* Pagination */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination-link {
+    text-decoration: none;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: black;
+}
+
+.pagination-link.active {
     background-color: #ffc107;
+    color: white;
 }
 
-.delete {
-    background-color: #dc3545;
+.pagination-link:hover {
+    background-color: #e0a800;
 }
 
-.add {
-    background-color: #28a745;
-}
-
-.btn-action:hover {
-    opacity: 0.8;
-}
 
     </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="PureBuzzLogo.png" alt="PureBuzz Logo"> <!-- Replace with the actual logo path -->
-        </div>
-        <ul class="menu">
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#benefits" class="nav-link">Benefits</a></li>
-            <li><a href="#support" class="nav-link">Support</a></li>
-            <li><a href="#product-section" class="nav-link">Products</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-        <div class="auth-buttons">
-            <a href="#" class="signin">Sign in</a>
-            <a href="#" class="register">Register</a>
-        </div>
-    </nav>
+   
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Welcome to PureBuzz</h1>
-        <p>Your trusted source for premium beekeeping products, natural honey, and health-boosting bee by-products. Discover our wide range of offerings!</p>
-        <a href="#product-section" class="cta-button">Shop Now</a>
-    </section>
 
-    <!-- About Us Section -->
-    <section id="about" class="info-section">
+   
     <div class="row">
     <div class="col">
         <div class="card">
@@ -335,43 +334,6 @@ body {
 
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">made <a href="https://www.purebuzz.com/" target="_blank">by team webnovators</a> from Esprit.</span>
-          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2024. All rights reserved.</span>
-        </div>
-      </footer>
-
-    <!-- JavaScript for Smooth Scrolling and Scroll Animation -->
-    <script>
-        // Smooth Scroll for Navigation Links
-        document.querySelectorAll('.nav-link').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Scroll Animation for Product Catalog
-        document.addEventListener("DOMContentLoaded", function() {
-            const productCatalog = document.querySelector(".product-catalog");
-
-            function checkScroll() {
-                const sectionPosition = productCatalog.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-
-                if (sectionPosition < screenPosition) {
-                    productCatalog.classList.add("show");
-                    window.removeEventListener("scroll", checkScroll); // Remove event listener after showing
-                }
-            }
-
-            window.addEventListener("scroll", checkScroll);
-            checkScroll(); // Initial check in case the section is already in view
-        });
-    </script>
+    
 </body>
 </html>
