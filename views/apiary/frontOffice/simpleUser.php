@@ -263,8 +263,7 @@ a.signin:hover {
 </div>
 
     </section>
-        <!-- About Us Section -->
-        <section id="about" class="info-section">
+       
         <div class="row">
     <div class="col">
         <div class="card">
@@ -332,7 +331,6 @@ a.signin:hover {
     </div>
 </div>
 
-    </section>
 
     
 </body>
