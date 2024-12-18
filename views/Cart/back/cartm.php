@@ -1,12 +1,10 @@
 <?php
 session_start();
-include_once 'C:\xampp\htdocs\project1modif\view\back\config.php';
+include_once __DIR__ . '/../../../config/database.php';
 
-// Database connection and data retrieval
-$conn = Config::getConnexion();
-if (!$conn) {
-    die("Database connection failed.");
-}
+// Connexion à la base de données via PDO
+$conn  = Database::getConnexion();
+
 
 $filterStatus = $_GET['status'] ?? '';
 $sqlCarts = "SELECT id, total, status FROM cart";
