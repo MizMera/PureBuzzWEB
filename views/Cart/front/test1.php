@@ -1,6 +1,6 @@
 <?php
 // Inclure la bibliothèque TCPDF et PHPMailer
-require_once 'C:/xampp/htdocs/project1modif/view/front/TCPDF-main/tcpdf.php';
+require_once 'C:/xaampp/htdocs/project1modif/view/front/TCPDF-main/tcpdf.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
