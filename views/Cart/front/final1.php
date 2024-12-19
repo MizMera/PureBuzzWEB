@@ -1,7 +1,9 @@
 <?php
 // Connexion à la base de données
-include_once 'config.php'; 
-$pdo = Config::getConnexion();
+include_once __DIR__ . '/../../../config/database.php';
+
+// Connexion à la base de données via PDO
+$pdo = Database::getConnexion();
 
 // Vérifier si l'ID de la commande est présent dans l'URL
 if (isset($_GET['order_id'])) {

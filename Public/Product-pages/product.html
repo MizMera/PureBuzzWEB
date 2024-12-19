@@ -1,508 +1,530 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Catalog Management</title>
-    <link rel="stylesheet" href="style.css"> <!-- Make sure your CSS path is correct -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Catalog Management</title>
+  <link rel="stylesheet" href="style.css"> <!-- Make sure your CSS path is correct -->
 </head>
 
 <body>
   <div class="container-scroller">
-         <!-- --------------------------------------nav-bar-set ne touche pas  -------------------------------------------------------------- -->
+    <!-- --------------------------------------nav-bar-set ne touche pas  -------------------------------------------------------------- -->
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
-        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-          <div class="me-3">
-            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
-              <span class="icon-menu"></span>
-            </button>
-          </div>
-          <div>
-            <a class="navbar-brand brand-logo" href="product.html">
-              <img src="../../assets/PureBuzzLogo.png"style="height: 80px;" alt="logo" />
-            </a>
-           
-          </div>
-        </div>
-        <div class="navbar-menu-wrapper d-flex align-items-top"> 
-          <ul class="navbar-nav">
-            <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-              <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">Si khalil</span></h1>
-              <h3 class="welcome-sub-text">Your performance summary this week </h3>
-            </li>
-          </ul>
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item dropdown d-none d-lg-block">
-              <a class="nav-link dropdown-bordered dropdown-toggle dropdown-toggle-split" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false"> Select Category </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="messageDropdown">
-                <a class="dropdown-item py-3" >
-                  <p class="mb-0 font-weight-medium float-left">Select category</p>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">Bootstrap Bundle </p>
-                    <p class="fw-light small-text mb-0">This is a Bundle featuring 16 unique dashboards</p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">Angular Bundle</p>
-                    <p class="fw-light small-text mb-0">Everything you’ll ever need for your Angular projects</p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">VUE Bundle</p>
-                    <p class="fw-light small-text mb-0">Bundle of 6 Premium Vue Admin Dashboard</p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">React Bundle</p>
-                    <p class="fw-light small-text mb-0">Bundle of 8 Premium React Admin Dashboard</p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="nav-item d-none d-lg-block">
-              <div id="datepicker-popup" class="input-group date datepicker navbar-date-picker">
-                <span class="input-group-addon input-group-prepend border-right">
-                  <span class="icon-calendar input-group-text calendar-icon"></span>
-                </span>
-                <input type="text" class="form-control">
-              </div>
-            </li>
-            <li class="nav-item">
-              <form class="search-form" action="#">
-                <i class="icon-search"></i>
-                <input type="search" class="form-control" placeholder="Search Here" title="Search here">
-              </form>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                <i class="icon-mail icon-lg"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown">
-                <a class="dropdown-item py-3 border-bottom">
-                  <p class="mb-0 font-weight-medium float-left">You have 4 new notifications </p>
-                  <span class="badge badge-pill badge-primary float-right">View all</span>
-                </a>
-                <a class="dropdown-item preview-item py-3">
-                  <div class="preview-thumbnail">
-                    <i class="mdi mdi-alert m-auto text-primary"></i>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject fw-normal text-dark mb-1">Application Error</h6>
-                    <p class="fw-light small-text mb-0"> Just now </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item py-3">
-                  <div class="preview-thumbnail">
-                    <i class="mdi mdi-settings m-auto text-primary"></i>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject fw-normal text-dark mb-1">Settings</h6>
-                    <p class="fw-light small-text mb-0"> Private message </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item py-3">
-                  <div class="preview-thumbnail">
-                    <i class="mdi mdi-airballoon m-auto text-primary"></i>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject fw-normal text-dark mb-1">New user registration</h6>
-                    <p class="fw-light small-text mb-0"> 2 days ago </p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="nav-item dropdown"> 
-              <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="icon-bell"></i>
-                <span class="count"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="countDropdown">
-                <a class="dropdown-item py-3">
-                  <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
-                  <span class="badge badge-pill badge-primary float-right">View all</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <img src="images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
-                  </div>
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
-                    <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <img src="images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
-                  </div>
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
-                    <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <img src="images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
-                  </div>
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
-                    <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="nav-item dropdown d-none d-lg-block user-dropdown">
-              <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                <img class="img-xs rounded-circle" src="images/faces/face8.jpg" alt="Profile image"> </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-                <div class="dropdown-header text-center">
-                  <img class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
-                  <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
-                  <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
-                </div>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
-              </div>
-            </li>
-          </ul>
-          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
-            <span class="mdi mdi-menu"></span>
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+        <div class="me-3">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
+            <span class="icon-menu"></span>
           </button>
         </div>
-      </nav>
-       <!-- --------------------------------------nav-bar-set ne touche pas  -------------------------------------------------------------- -->
-    <div class="container-fluid page-body-wrapper"> 
-        <!-- ...---------------------------------------------------- (Sidebar code)---------------------- ... -->
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
-            <ul class="nav">
-              <li class="nav-item">
-                <a id="myProfileLink" class="nav-link" href="../../views/user/Front_office/UserProfile.html">
-                  <i class="mdi mdi-grid-large menu-icon"></i>
-                  <span class="menu-title">My Profile</span>
-                </a>
-              </li>
+        <div>
+          <a class="navbar-brand brand-logo" href="product.html">
+            <img src="../../assets/PureBuzzLogo.png" style="height: 80px;" alt="logo" />
+          </a>
 
-             <li class="nav-item nav-category">Products and Stocks</li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-                  <i class="menu-icon mdi mdi-card-text-outline"></i>
-                  <span class="menu-title">Form elements</span>
-                  <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="form-elements">
-                  <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-                  <i class="menu-icon mdi mdi-chart-line"></i>
-                  <span class="menu-title">Charts</span>
-                  <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="charts">
-                  <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-                  <i class="menu-icon mdi mdi-table"></i>
-                  <span class="menu-title">Tables</span>
-                  <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="tables">
-                  <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-                  <i class="menu-icon mdi mdi-layers-outline"></i>
-                  <span class="menu-title">Icons</span>
-                  <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="icons">
-                  <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item nav-category">pages</li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                  <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                  <span class="menu-title">User Pages</span>
-                  <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="auth">
-                  <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item nav-category">help</li>
-              <li class="nav-item">
-                <a  id="logoutLink" class="nav-link" href="http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html">
-                  <i class="menu-icon mdi mdi-file-document"></i>
-                  <span class="menu-title">log out</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-
-          <div class="container-fluid">
-            <!-- Form Section -->
-            <div class="form-card">
-                <h2>Add/Edit Product</h2>
-                <form id="productForm">
-                    <div class="form-group">
-                        <label for="productName">Product Name</label>
-                        <input type="text" id="productName" placeholder="Enter product name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="productPrice">Price</label>
-                        <input type="number" id="productPrice" placeholder="Enter price" min="0" step="0.01" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="productStock">Stock</label>
-                        <input type="number" id="productStock" placeholder="Enter stock quantity" min="0" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="productDescription">Description</label>
-                        <textarea id="productDescription" rows="3" placeholder="Enter product description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="imageUrl">Image URL</label>
-                        <input type="text" id="imageUrl" placeholder="Enter image URL">
-                    </div>
-                    <div class="form-group">
-                        <label for="category">Category</label>
-                        <select id="category">
-                            <option>Honey</option>
-                            <option>Medicines</option>
-                            <option>Cosmetics</option>
-                            <option>Beehives</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn-primary">Save Product</button>
-                </form>
-            </div>
-    
-            <!-- Table Section -->
-            <div class="table-card">
-                <h2>Product Table</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Category</th>
-                            <th>Stock</th>
-                            <th>Description</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><img src="Images/Beeswax_candles.webp" alt="Product Image" style="width: 50px; height: 50px; border-radius: 4px;"></td>
-                            <td>Beeswax Candle</td>
-                            <td>$9.99</td>
-                            <td>Honey</td>
-                            <td>20</td>
-                            <td>A pure organic honey jar</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-edit">Edit</button>
-                                    <button class="btn-delete">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                          <tr>
-                            <td><img src="Images/BeePollenCapsFrontSpill_1024x1024.webp" alt="Product Image" style="width: 50px; height: 50px; border-radius: 4px;"></td>
-                            <td>Pollen Granules</td>
-                            <td>$9.99</td>
-                            <td>Honey</td>
-                            <td>20</td>
-                            <td>A pure organic honey jar</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-edit">Edit</button>
-                                    <button class="btn-delete">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                          <tr>
-                            <td><img src="Images/royal-jelly-1296x728-feature.jpg" alt="Product Image" style="width: 50px; height: 50px; border-radius: 4px;"></td>
-                            <td>Royal Jelly</td>
-                            <td>$9.99</td>
-                            <td>Honey</td>
-                            <td>20</td>
-                            <td>A pure organic honey jar</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-edit">Edit</button>
-                                    <button class="btn-delete">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                          <td><img src="Images/honey.png" alt="Product Image" style="width: 50px; height: 50px; border-radius: 4px;"></td>
-                          <td>Honey Jart</td>
-                          <td>$19.99</td>
-                          <td>Honey</td>
-                          <td>20</td>
-                          <td>A pure organic honey jar</td>
-                          <td>
-                              <div class="action-buttons">
-                                  <button class="btn-edit">Edit</button>
-                                  <button class="btn-delete">Delete</button>
-                              </div>
-                          </td>
-                      </tr>
-                      <tr>
-                        <td><img src="Images/91WAYJnJE3L._AC_UF1000,1000_QL80_.jpg" alt="Product Image" style="width: 50px; height: 50px; border-radius: 4px;"></td>
-                        <td>Beeswax Lip Balm</td>
-                        <td>$19.99</td>
-                        <td>Honey</td>
-                        <td>20</td>
-                        <td>A pure organic honey jar</td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-edit">Edit</button>
-                                <button class="btn-delete">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                      <td><img src="Images/honey-lotion-001_0d46bfd6-d96a-4858-975e-730bfc4e6a48.webp" alt="Product Image" style="width: 50px; height: 50px; border-radius: 4px;"></td>
-                      <td>Honey Body Lotion</td>
-                      <td>$19.99</td>
-                      <td>Honey</td>
-                      <td>20</td>
-                      <td>A pure organic honey jar</td>
-                      <td>
-                          <div class="action-buttons">
-                              <button class="btn-edit">Edit</button>
-                              <button class="btn-delete">Delete</button>
-                          </div>
-                      </td>
-                  </tr>
-                        <!-- More rows here -->
-                    </tbody>
-                </table>
-            </div>
         </div>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-top">
+        <ul class="navbar-nav">
+          <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+            <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">Si khalil</span></h1>
+            <h3 class="welcome-sub-text">Your performance summary this week </h3>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown d-none d-lg-block">
+            <a class="nav-link dropdown-bordered dropdown-toggle dropdown-toggle-split" id="messageDropdown" href="#"
+              data-bs-toggle="dropdown" aria-expanded="false"> Select Category </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
+              aria-labelledby="messageDropdown">
+              <a class="dropdown-item py-3">
+                <p class="mb-0 font-weight-medium float-left">Select category</p>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">Bootstrap Bundle </p>
+                  <p class="fw-light small-text mb-0">This is a Bundle featuring 16 unique dashboards</p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">Angular Bundle</p>
+                  <p class="fw-light small-text mb-0">Everything you’ll ever need for your Angular projects</p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">VUE Bundle</p>
+                  <p class="fw-light small-text mb-0">Bundle of 6 Premium Vue Admin Dashboard</p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">React Bundle</p>
+                  <p class="fw-light small-text mb-0">Bundle of 8 Premium React Admin Dashboard</p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item d-none d-lg-block">
+            <div id="datepicker-popup" class="input-group date datepicker navbar-date-picker">
+              <span class="input-group-addon input-group-prepend border-right">
+                <span class="icon-calendar input-group-text calendar-icon"></span>
+              </span>
+              <input type="text" class="form-control">
+            </div>
+          </li>
+          <li class="nav-item">
+            <form class="search-form" action="#">
+              <i class="icon-search"></i>
+              <input type="search" class="form-control" placeholder="Search Here" title="Search here">
+            </form>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
+              <i class="icon-mail icon-lg"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
+              aria-labelledby="notificationDropdown">
+              <a class="dropdown-item py-3 border-bottom">
+                <p class="mb-0 font-weight-medium float-left">You have 4 new notifications </p>
+                <span class="badge badge-pill badge-primary float-right">View all</span>
+              </a>
+              <a class="dropdown-item preview-item py-3">
+                <div class="preview-thumbnail">
+                  <i class="mdi mdi-alert m-auto text-primary"></i>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject fw-normal text-dark mb-1">Application Error</h6>
+                  <p class="fw-light small-text mb-0"> Just now </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item py-3">
+                <div class="preview-thumbnail">
+                  <i class="mdi mdi-settings m-auto text-primary"></i>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject fw-normal text-dark mb-1">Settings</h6>
+                  <p class="fw-light small-text mb-0"> Private message </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item py-3">
+                <div class="preview-thumbnail">
+                  <i class="mdi mdi-airballoon m-auto text-primary"></i>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject fw-normal text-dark mb-1">New user registration</h6>
+                  <p class="fw-light small-text mb-0"> 2 days ago </p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="icon-bell"></i>
+              <span class="count"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
+              aria-labelledby="countDropdown">
+              <a class="dropdown-item py-3">
+                <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
+                <span class="badge badge-pill badge-primary float-right">View all</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
+                  <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
+                  <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow py-2">
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
+                  <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item dropdown d-none d-lg-block user-dropdown">
+            <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+              <img class="img-xs rounded-circle" src="images/faces/face8.jpg" alt="Profile image"> </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+              <div class="dropdown-header text-center">
+                <img class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
+                <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
+                <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+              </div>
+              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My
+                Profile <span class="badge badge-pill badge-danger">1</span></a>
+              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i>
+                Messages</a>
+              <a class="dropdown-item"><i
+                  class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
+              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i>
+                FAQ</a>
+              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+          data-bs-toggle="offcanvas">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- --------------------------------------nav-bar-set ne touche pas  -------------------------------------------------------------- -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- ...---------------------------------------------------- (Sidebar code)---------------------- ... -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a id="myProfileLink" class="nav-link" href="../../views/user/Front_office/UserProfile.html">
+              <i class="mdi mdi-grid-large menu-icon"></i>
+              <span class="menu-title">My Profile</span>
+            </a>
+          </li>
+
+          <li class="nav-item nav-category">Products and Stocks</li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
+              aria-controls="form-elements">
+              <i class="menu-icon mdi mdi-card-text-outline"></i>
+              <span class="menu-title">Form elements</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+              <i class="menu-icon mdi mdi-chart-line"></i>
+              <span class="menu-title">Charts</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+              <i class="menu-icon mdi mdi-table"></i>
+              <span class="menu-title">Tables</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="tables">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+              <i class="menu-icon mdi mdi-layers-outline"></i>
+              <span class="menu-title">Icons</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="icons">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item nav-category">pages</li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <i class="menu-icon mdi mdi-account-circle-outline"></i>
+              <span class="menu-title">User Pages</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item nav-category">help</li>
+          <li class="nav-item">
+            <a id="logoutLink" class="nav-link"
+              href="http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html">
+              <i class="menu-icon mdi mdi-file-document"></i>
+              <span class="menu-title">log out</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container-fluid">
+        <!-- Form Section -->
+        <div class="form-card">
+          <h2>Add/Edit Product</h2>
+          <form id="productForm">
+            <div class="form-group">
+              <label for="productName">Product Name</label>
+              <input type="text" id="productName" placeholder="Enter product name" required>
+            </div>
+            <div class="form-group">
+              <label for="productPrice">Price</label>
+              <input type="number" id="productPrice" placeholder="Enter price" min="0" step="0.01" required>
+            </div>
+            <div class="form-group">
+              <label for="productStock">Stock</label>
+              <input type="number" id="productStock" placeholder="Enter stock quantity" min="0" required>
+            </div>
+            <div class="form-group">
+              <label for="productDescription">Description</label>
+              <textarea id="productDescription" rows="3" placeholder="Enter product description"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="imageUrl">Image URL</label>
+              <input type="text" id="imageUrl" placeholder="Enter image URL">
+            </div>
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select id="category">
+                <option>Honey</option>
+                <option>Medicines</option>
+                <option>Cosmetics</option>
+                <option>Beehives</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-primary">Save Product</button>
+          </form>
+        </div>
+
+        <!-- Table Section -->
+        <div class="table-card">
+          <h2>Product Table</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Stock</th>
+                <th>Description</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><img src="Images/Beeswax_candles.webp" alt="Product Image"
+                    style="width: 50px; height: 50px; border-radius: 4px;"></td>
+                <td>Beeswax Candle</td>
+                <td>$9.99</td>
+                <td>Honey</td>
+                <td>20</td>
+                <td>A pure organic honey jar</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-edit">Edit</button>
+                    <button class="btn-delete">Delete</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+              <tr>
+                <td><img src="Images/BeePollenCapsFrontSpill_1024x1024.webp" alt="Product Image"
+                    style="width: 50px; height: 50px; border-radius: 4px;"></td>
+                <td>Pollen Granules</td>
+                <td>$9.99</td>
+                <td>Honey</td>
+                <td>20</td>
+                <td>A pure organic honey jar</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-edit">Edit</button>
+                    <button class="btn-delete">Delete</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+              <tr>
+                <td><img src="Images/royal-jelly-1296x728-feature.jpg" alt="Product Image"
+                    style="width: 50px; height: 50px; border-radius: 4px;"></td>
+                <td>Royal Jelly</td>
+                <td>$9.99</td>
+                <td>Honey</td>
+                <td>20</td>
+                <td>A pure organic honey jar</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-edit">Edit</button>
+                    <button class="btn-delete">Delete</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><img src="Images/honey.png" alt="Product Image"
+                    style="width: 50px; height: 50px; border-radius: 4px;"></td>
+                <td>Honey Jart</td>
+                <td>$19.99</td>
+                <td>Honey</td>
+                <td>20</td>
+                <td>A pure organic honey jar</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-edit">Edit</button>
+                    <button class="btn-delete">Delete</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><img src="Images/91WAYJnJE3L._AC_UF1000,1000_QL80_.jpg" alt="Product Image"
+                    style="width: 50px; height: 50px; border-radius: 4px;"></td>
+                <td>Beeswax Lip Balm</td>
+                <td>$19.99</td>
+                <td>Honey</td>
+                <td>20</td>
+                <td>A pure organic honey jar</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-edit">Edit</button>
+                    <button class="btn-delete">Delete</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><img src="Images/honey-lotion-001_0d46bfd6-d96a-4858-975e-730bfc4e6a48.webp" alt="Product Image"
+                    style="width: 50px; height: 50px; border-radius: 4px;"></td>
+                <td>Honey Body Lotion</td>
+                <td>$19.99</td>
+                <td>Honey</td>
+                <td>20</td>
+                <td>A pure organic honey jar</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-edit">Edit</button>
+                    <button class="btn-delete">Delete</button>
+                  </div>
+                </td>
+              </tr>
+              <!-- More rows here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<footer class="footer">
+  </div>
+  <footer class="footer">
     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-      <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">made <a href="https://www.purebuzz.com/" target="_blank">by team webnovators</a> from Esprit.</span>
-      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2024. All rights reserved.</span>
+      <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">made <a
+          href="https://www.purebuzz.com/" target="_blank">by team webnovators</a> from Esprit.</span>
+      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2024. All rights
+        reserved.</span>
     </div>
   </footer>
-<script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
-<script src="../../assets/vendors/chart.js/Chart.min.js"></script>
-<script src="../../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-<script src="../../assets/vendors/progressbar.js/progressbar.min.js"></script>
-<script src="../../assets/js/off-canvas.js"></script>
-<script src="../../assets/js/hoverable-collapse.js"></script>
-<script src="../../assets/js/template.js"></script>
-<script src="../../assets/js/settings.js"></script>
-<script src="../../assets/js/todolist.js"></script>
-<script src="../../assets/js/dashboard.js"></script>
-<script src="../../assets/js/Chart.roundedBarCharts.js"></script>
+  <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../assets/vendors/chart.js/Chart.min.js"></script>
+  <script src="../../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+  <script src="../../assets/vendors/progressbar.js/progressbar.min.js"></script>
+  <script src="../../assets/js/off-canvas.js"></script>
+  <script src="../../assets/js/hoverable-collapse.js"></script>
+  <script src="../../assets/js/template.js"></script>
+  <script src="../../assets/js/settings.js"></script>
+  <script src="../../assets/js/todolist.js"></script>
+  <script src="../../assets/js/dashboard.js"></script>
+  <script src="../../assets/js/Chart.roundedBarCharts.js"></script>
   <script>
-      document.addEventListener("DOMContentLoaded", function () {
-          const profileLink = document.getElementById("myProfileLink");
+    document.addEventListener("DOMContentLoaded", function () {
+      const profileLink = document.getElementById("myProfileLink");
 
-          // Fetch user details from the session
-          fetch("../../controllers/user/getOneUser.php")
-              .then(response => response.json())
-              .then(data => {
-                  if (data.success && data.data.id) {
-                      const userId = data.data.id;
+      // Fetch user details from the session
+      fetch("../../controllers/user/getOneUser.php")
+        .then(response => response.json())
+        .then(data => {
+          if (data.success && data.data.id) {
+            const userId = data.data.id;
 
-                      // Update the href attribute with the user's ID
-                      profileLink.href = `../../views/user/Front_Office/UserProfile.html`;
-                  } else {
-                      alert(data.message || "Failed to fetch user session data.");
-                      window.location.href = "../../views/Front_Office/User/log_in.html"; // Redirect to login page if not logged in
-                  }
-              })
-              .catch(error => {
-                  console.error("Error fetching session data:", error);
-                  alert("An error occurred. Please try again later.");
-              });
-      });
-      document.getElementById("logoutLink").addEventListener("click", function (event) {
-          event.preventDefault(); // Prevent the default link behavior
+            // Update the href attribute with the user's ID
+            profileLink.href = `../../views/user/Front_Office/UserProfile.html`;
+          } else {
+            alert(data.message || "Failed to fetch user session data.");
+            window.location.href = "../../views/Front_Office/User/log_in.html"; // Redirect to login page if not logged in
+          }
+        })
+        .catch(error => {
+          console.error("Error fetching session data:", error);
+          alert("An error occurred. Please try again later.");
+        });
+    });
+    document.getElementById("logoutLink").addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent the default link behavior
 
-          // Use Fetch API to call the logout PHP script
-          fetch('../../controllers/user/logOut.php', {
-              method: 'POST', // POST request to handle logout
-          })
-              .then(response => {
-                  if (response.ok) {
-                      // Redirect to the login page
-                      window.location.href = '../../views/User/Front_office/log_in.html';
-                  } else {
-                      console.error("Failed to log out:", response.statusText);
-                      alert("An error occurred while logging out. Please try again.");
-                  }
-              })
-              .catch(error => {
-                  console.error("Error during logout:", error);
-                  alert("An error occurred while logging out. Please try again.");
-              });
-      });
+      // Use Fetch API to call the logout PHP script
+      fetch('../../controllers/user/logOut.php', {
+        method: 'POST', // POST request to handle logout
+      })
+        .then(response => {
+          if (response.ok) {
+            // Redirect to the login page
+            window.location.href = '../../views/User/Front_office/log_in.html';
+          } else {
+            console.error("Failed to log out:", response.statusText);
+            alert("An error occurred while logging out. Please try again.");
+          }
+        })
+        .catch(error => {
+          console.error("Error during logout:", error);
+          alert("An error occurred while logging out. Please try again.");
+        });
+    });
   </script>
   <script>
     // Placeholder for product data (replace with fetching from database)
     let products = [
-        { id: 1, name: "Example Product", price: 19.99, category: "Example Category", stock: 20 },
-        { id: 2, name: "Example Product 2", price: 29.99, category: "Example Category 2", stock: 10 }
+      { id: 1, name: "Example Product", price: 19.99, category: "Example Category", stock: 20 },
+      { id: 2, name: "Example Product 2", price: 29.99, category: "Example Category 2", stock: 10 }
     ];
 
 
     function displayProducts() {
-        const productTableBody = document.getElementById('productTableBody');
-        productTableBody.innerHTML = ''; // Clear existing rows
+      const productTableBody = document.getElementById('productTableBody');
+      productTableBody.innerHTML = ''; // Clear existing rows
 
-        products.forEach(product => {
-            const row = productTableBody.insertRow();
-            // ... (rest of your product display logic) ...
-            // (edit and delete functions unchanged)
-            // ...
-        });
+      products.forEach(product => {
+        const row = productTableBody.insertRow();
+        // ... (rest of your product display logic) ...
+        // (edit and delete functions unchanged)
+        // ...
+      });
     }
     // Call displayProducts to populate the table initially
-   displayProducts();
-   
+    displayProducts();
+
     function confirmDelete(productId) {
-        if (confirm("Are you sure you want to delete this product?")) {
-            products = products.filter(product => product.id !== productId); // Remove based on ID
-            displayProducts();
-        }
+      if (confirm("Are you sure you want to delete this product?")) {
+        products = products.filter(product => product.id !== productId); // Remove based on ID
+        displayProducts();
+      }
     }
-</script>
+  </script>
 
 
 </body>
+
 </html>

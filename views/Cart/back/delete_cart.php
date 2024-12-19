@@ -1,13 +1,15 @@
 <?php
 session_start();
-include_once 'C:\xampp\htdocs\project1modif\view\back\config.php';
+include_once __DIR__ . '/../../../config/database.php';
+
+// Connexion à la base de données via PDO
 
 // Check if cart ID is provided
 if (isset($_GET['id'])) {
     $cartId = $_GET['id'];
 
     try {
-        $conn = Config::getConnexion();
+        $conn = Database::getConnexion();
 
         // Delete related cart items
         $deleteItemsSql = "DELETE FROM cartitem WHERE cartId = :cartId";

@@ -1,9 +1,10 @@
 <?php
 session_start();
-include_once 'config.php';
+
+include_once __DIR__ . '/../../../config/database.php';
 
 // Connexion à la base de données via PDO
-$pdo = Config::getConnexion();
+$pdo = Database::getConnexion();
 
 // Fonction pour afficher les produits dans le panier
 function displayCart($pdo) {

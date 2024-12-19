@@ -1,19 +1,14 @@
 <?php
-// Inclure la bibliothèque TCPDF et PHPMailer
-require_once 'C:/xampp/htdocs/project1modif/view/front/TCPDF-main/tcpdf.php';
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require 'vendor/autoload.php';
+// Inclure la bibliothèque TCPDF
+require_once '../front\TCPDF-main\tcpdf.php';
 
 // Connexion à la base de données (assurez-vous que la connexion PDO est correcte)
-include_once 'config.php';
-$pdo = Config::getConnexion();
+include_once __DIR__ . '/../../../config/database.php';
+// Connexion à la base de données via PDO
+$pdo = Database::getConnexion();
 
 // Vérifier si l'ID de la commande est présent dans l'URL
-if (isset($_GET['order_id'])) 
-{
-
+if (isset($_GET['order_id'])) {
     $order_id = intval($_GET['order_id']); // Sécuriser l'entrée
 
     // Récupérer les détails de la commande
@@ -26,18 +21,16 @@ if (isset($_GET['order_id']))
 
     if ($order) {
         // Récupérer les articles du panier
-        $stmt_items = $pdo->prepare("
-        SELECT p.name, ci.quantity, p.price AS unitprice 
-        FROM cartitem ci 
-        JOIN products p ON ci.productid = p.id 
-        WHERE ci.cartid = ?
-    ");
+        $stmt_items = $pdo->prepare("SELECT p.name, ci.quantity, p.price AS unitprice 
+                                     FROM cartitem ci 
+                                     JOIN products p ON ci.productid = p.id 
+                                     WHERE ci.cartid = ?");
         $stmt_items->execute([$order['cart_id']]);
         $cartItems = $stmt_items->fetchAll();
 
         // Calculer le total (au cas où)
         $total = $order['total'];
-        
+
         // Initialiser TCPDF
         $pdf = new TCPDF();
         $pdf->SetCreator(PDF_CREATOR);
@@ -54,15 +47,15 @@ if (isset($_GET['order_id']))
         $pdf->AddPage();
 
         // Ajouter le logo avec une taille réduite (modifiez la taille selon vos besoins)
-        $logo_path = 'PureBuzzLogo.png'; // Remplacez par le chemin de votre logo
+        $logo_path = '../PureBuzzLogo.png'; // Remplacez par le chemin de votre logo
         $pdf->Image($logo_path, 4, 4, 10); // Position x, y et taille (largeur)
-        $logo_path = 'PureBuzzLogo.png'; // Remplacez par le chemin de votre logo
         $pdf->Image($logo_path, 197, 4, 10); // Position x, y et taille (largeur)
+
         // Ajouter du texte sous le logo
         $pdf->SetXY(15, 20); // Définir la position du texte sous le logo
         $pdf->SetFont('helvetica', 'B', 16); // Police et taille du texte
         $pdf->Cell(0, 10, 'PureBuzz - Order Invoice', 0, 1, 'C'); // Afficher le texte centré sous le logo
-        
+
         // Définir la police pour le reste du contenu
         $pdf->SetFont('helvetica', '', 12);
 
@@ -114,7 +107,6 @@ if (isset($_GET['order_id']))
 
         // Afficher le PDF dans le navigateur
         $pdf->Output('Order_Invoice_' . $order_id . '.pdf', 'I'); // 'I' pour afficher dans le navigateur
-
-    
-}}
+    }
+}
 ?>

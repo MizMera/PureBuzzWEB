@@ -64,11 +64,66 @@
         <!-- Sidebar -->
         <nav class="sidebar">
             <ul class="nav">
-                <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
-                <li class="nav-item"><a class="nav-link" href="Orders.html">Orders</a></li>
-                <li class="nav-item"><a class="nav-link active" href="#">Submit Claim</a></li>
-                <li class="nav-item"><a class="nav-link" href="help.html">Help</a></li>
-                <li class="nav-item"><a class="nav-link" href="login.html">Logout</a></li>
+                <li class="nav-item nav-category">Products and Management</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php" aria-expanded="false" aria-controls="form-elements">
+                        <span class="menu-title">Product&categorie</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false"
+                        aria-controls="tables">
+                        <i class="menu-icon mdi mdi-table"></i>
+                        <span class="menu-title">Categories</span>
+                    </a>
+                    <div class="collapse" id="tables">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.php? " aria-expanded="false" aria-controls="charts">
+                        <i class="menu-icon mdi mdi-chart-line"></i>
+                        <span class="menu-title">Product</span>
+                    </a>
+                    <div class="collapse" id="charts">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item nav-category">Support</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" aria-expanded="false" aria-controls="charts">
+                        <i class="menu-icon mdi mdi-chart-line"></i>
+                        <span class="menu-title">Submit a claim</span>
+                    </a>
+                    <div class="collapse" id="charts">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="help.html" aria-expanded="false" aria-controls="charts">
+                        <i class="menu-icon mdi mdi-chart-line"></i>
+                        <span class="menu-title">help</span>
+                    </a>
+                    <div class="collapse" id="charts">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
         </nav>
         <div class="container py-">

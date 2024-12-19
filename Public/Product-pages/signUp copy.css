@@ -1,0 +1,172 @@
+
+html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: hidden; /* Hides vertical scrollbar */
+    overflow-x: hidden; /* Hides horizontal scrollbar if needed */
+    background-color: #FFD966;
+}
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: hidden; /* Hides vertical scrollbar */
+    overflow-x: hidden; /* Hides horizontal scrollbar if needed */
+    background-color: #ffffff;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+    margin: 2rem;
+    background-color: #ffffff;
+
+}
+
+.stepper {
+    margin-bottom: 2rem;
+}
+
+.form--header-container {
+    margin-bottom: 2.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    border-color: #9d937c;
+}
+
+.controlContainer .form-inline {
+    width: 200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.controlContainer .radio {
+    padding: 10px !important;
+    text-align: center !important;
+    width: 90px;
+    height: 100px;
+    border: 2px solid #c0a16b;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.controlContainer .radio.active {
+    background-color: #f6b92b;
+    color: white;
+}
+
+.controlContainer .radio img {
+    margin-bottom: 8px;
+}
+
+.controlContainer .radio input[type="radio"] {
+    display: none;
+}
+
+.controlContainer .radio .caption {
+    margin: 0;
+}
+
+.d-flex.justify-content-between {
+    margin-top: 2rem;
+}
+
+.controlContainer {
+    margin-bottom: 1.5rem; /* Adds space between gender selection and profile picture */
+}
+
+.progress {
+    height: 20px;
+    background-color: #e9ecef; /* Light gray background for the progress bar */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar1 {
+    background-color: #f0ad4e; /* Orange color */
+    color: white;
+    text-align: center;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+}
+.progress-bar2 {
+    background-color: #0c63e4; /* Orange color */
+    color: white;
+    text-align: center;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+}
+.progress-bar3 {
+    background-color: #1f6a66; /* Orange color */
+    color: white;
+    text-align: center;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+}
+.progress-bar4 {
+    background-color: #3c763d; /* Orange color */
+    color: white;
+    text-align: center;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+}
+
+.form-step {
+    display: none;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #007bff; /* Blue border on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.form-control::placeholder {
+    color: #aaa; /* Grey color for placeholder text */
+}
+
+.form--header-container {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form--header-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.form--header-text {
+    color: #6c757d; /* Muted text color */
+}
+
+
+.form-step-active {
+    display: block;
+}
+
+.btn-secondary {
+    background: #948686;
+}

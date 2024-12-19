@@ -45,24 +45,6 @@ $coordinates = isset($_GET['cor']) ? $_GET['cor'] : '0,0'; // Default to '0,0' i
 </head>
 <body>
 
-<!-- Navigation Bar -->
-<nav class="navbar">
-        <div class="logo">
-            <img src="PureBuzzLogo.png" alt="PureBuzz Logo"> <!-- Replace with the actual logo path -->
-        </div>
-        <ul class="menu">
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#benefits" class="nav-link">Benefits</a></li>
-            <li><a href="#support" class="nav-link">Support</a></li>
-            <li><a href="#product-section" class="nav-link">Products</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-        <div class="auth-buttons">
-            <a href="#" class="signin">Sign in</a>
-            <a href="#" class="register">Register</a>
-        </div>
-    </nav>
-
 
     <!-- Map Section -->
     <div class="row">

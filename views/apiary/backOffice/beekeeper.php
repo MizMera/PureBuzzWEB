@@ -1,62 +1,77 @@
 <?php
+session_start(); // Start the session
 
-include_once __DIR__ . '/../../../config/database.php';
+// Check if the user is logged in
+if (!isset($_SESSION['userId']) || !isset($_SESSION['email'])) {
+    echo "User not logged in.";
+    exit;
+}
 
-// Connexion à la base de données via PDO
-$conn = Database::getConnexion();
-// Récupérer les codes promo de la base de données
-$sql = "SELECT * FROM promos";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$promos = $stmt->fetchAll(PDO::FETCH_ASSOC); // Stocker les résultats dans $promos
+// Get the beekeeper's email from the session
+$current_beekeper_email = $_SESSION['email'];
 
-if (isset($_POST['submit'])) {
-    // Récupérer les données du formulaire
-    $code = $_POST['code'];
-    $discount_type = $_POST['discount_type'];
-    $discount_value = $_POST['discount_value'];
-    $valid_from = $_POST['valid_from'];
-    $valid_until = $_POST['valid_until'];
+include_once "../../../config/database.php";
+include_once "../../../Controllers/apiariesC.php";
 
-    try {
-        // Préparer la requête d'insertion avec PDO
-        $sql = "INSERT INTO promos (code, discount_type, discount_value, valid_from, valid_until)
-                VALUES (:code, :discount_type, :discount_value, :valid_from, :valid_until)";
+$apiaryC = new ApiaryC();
 
-        // Préparer la requête avec la connexion récupérée
-        $stmt = $conn->prepare($sql);
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'ASC'; // Default sorting order
 
-        // Lier les paramètres à la requête préparée
-        $stmt->bindParam(':code', $code, PDO::PARAM_STR);
-        $stmt->bindParam(':discount_type', $discount_type, PDO::PARAM_STR);
-        $stmt->bindParam(':discount_value', $discount_value, PDO::PARAM_STR);
-        $stmt->bindParam(':valid_from', $valid_from, PDO::PARAM_STR);
-        $stmt->bindParam(':valid_until', $valid_until, PDO::PARAM_STR);
+// Pagination settings
+$limit = 4; // Items per page
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page
+$offset = ($page - 1) * $limit;
 
-        // Exécuter la requête
-        $stmt->execute();
+// Fetch the total count of apiaries for search
+$totalApiaries = $apiaryC->countApiariesWithSearch1($current_beekeper_email, $search);
+$totalPages = ceil($totalApiaries / $limit);
 
-        // Rediriger après l'insertion pour éviter la soumission automatique à chaque rafraîchissement
-        header("Location: promo.php");
-        exit; // Important d'ajouter un exit après la redirection pour empêcher toute exécution de code supplémentaire
-    } catch (PDOException $e) {
-        // Afficher l'erreur en cas d'échec
-        echo "Erreur: " . $e->getMessage();
-    }
+// Fetch the filtered and sorted list of apiaries
+$listApiaries = $apiaryC->fetchFilteredSortedApiaries1($current_beekeper_email, $search, $sort, $limit, $offset);
+
+// Handle form submission for adding a new apiary
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_apiary'])) {
+    $apiaryName = $_POST['apiaryName'];
+    $beekeeper = $current_beekeper_email; // Uses the session email
+    $location = $_POST['location'];
+    $coordinates = $_POST['coordinates'];
+    $date = $_POST['date'];
+    $weather = $_POST['weather'];
+    $hiveCount = $_POST['hiveCount'];
+    $observation = $_POST['observation'];
+
+    // Create the Apiary object
+    $apiary = new Apiary(
+        null,
+        $apiaryName,
+        $beekeeper,
+        $location,
+        $coordinates,
+        $date,
+        $weather,
+        $hiveCount,
+        $observation
+    );
+
+    // Add the Apiary to the database
+    $apiaryC->ajouterApiary($apiary);
+
+    // Redirect after adding
+    header("Location: beekeeper.php");
+    exit();
 }
 ?>
-
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un Code Promo</title>
-    <link rel="stylesheet" href="bck.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="all.css">
-            <!-- plugins:css -->
-            <link rel="stylesheet" href="vendors/feather/feather.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>beekeeper </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="vendors/feather/feather.css">
     <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" href="vendors/typicons/typicons.css">
@@ -72,8 +87,9 @@ if (isset($_POST['submit'])) {
     <!-- endinject -->
     <link rel="shortcut icon" href="images/favicon.png" />
 </head>
+
 <body>
-        <div class="container-scroller">
+    <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
@@ -418,183 +434,249 @@ if (isset($_POST['submit'])) {
                     <!-- chat tab ends -->
                 </div>
             </div>
-            <!-- partial -->
-            <!-- partial:partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../views/user/Front_office/UserProfile.html">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">My profile</span>
-                            </a>
-                        </li>
-                        <li class="nav-item nav-category">Products and Management</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php" aria-expanded="false" aria-controls="form-elements">
-                                <span class="menu-title">Product&categorie</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="../../views/Products/index.php"
-                                aria-expanded="false" aria-controls="tables">
-                                <i class="menu-icon mdi mdi-table"></i>
-                                <span class="menu-title">Categories</span>
-                            </a>
-                            <div class="collapse" id="tables">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../views/Products/index.php" aria-expanded="false"
-                                aria-controls="charts">
-                                <i class="menu-icon mdi mdi-chart-line"></i>
-                                <span class="menu-title">Product</span>
-                            </a>
-                            <div class="collapse" id="charts">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item nav-category">Support</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../views/support/Reclamation.html" aria-expanded="false"
-                                aria-controls="charts">
-                                <i class="menu-icon mdi mdi-chart-line"></i>
-                                <span class="menu-title">Claims views</span>
-                            </a>
-                            <div class="collapse" id="charts">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+   <!-- partial -->
+   <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="home-tab">
+                                
+                                <div class="tab-content tab-content-basic">
+                                    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview">
+                                        <div class="row">
+                                            <div class="col-12 grid-margin stretch-card">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Add Apiary</h4>
+                                                        <form action="beekeeper.php" method="POST" onsubmit="return validateForm()">
+                                                            <div class="form-group">
+                                                                <label for="apiaryName">Apiary Name</label>
+                                                                <input type="text" class="form-control" id="apiaryName" name="apiaryName" placeholder="Enter Apiary Name">
+                                                                <small class="text-danger" id="apiaryNameError"></small>
+                                                            </div>
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="location">Location</label>
+                                                                <input type="text" class="form-control" id="location" name="location" placeholder="Enter Location">
+                                                                <small class="text-danger" id="locationError"></small>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="coordinates">Coordinates</label>
+                                                                <input type="text" class="form-control" id="coordinates" name="coordinates" placeholder="Enter Coordinates">
+                                                                <small class="text-danger" id="coordinatesError"></small>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="date">Establishment Date</label>
+                                                                <input type="date" class="form-control" id="date" name="date">
+                                                                <small class="text-danger" id="dateError"></small>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="weather">Weather Condition</label>
+                                                                <input type="text" class="form-control" id="weather" name="weather" placeholder="Enter Weather Condition">
+                                                                <small class="text-danger" id="weatherError"></small>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="hiveCount">Hive Count</label>
+                                                                <input type="number" class="form-control" id="hiveCount" name="hiveCount" placeholder="Enter Number of Hives">
+                                                                <small class="text-danger" id="hiveCountError"></small>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="observation">Observation</label>
+                                                                <textarea class="form-control" id="observation" name="observation" placeholder="Enter Observations" rows="4"></textarea>
+                                                                <small class="text-danger" id="observationError"></small>
+                                                            </div>
+                                                            <button type="submit" name="add_apiary" class="btn btn-primary">Add Apiary</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">List of Apiaries</h4>
+                <!-- Search and Sort -->
+                <form method="GET" class="d-flex mb-3">
+                    <input type="text" name="search" class="form-control me-2" placeholder="Search..." value="<?php echo htmlspecialchars($search); ?>">
+                    <select name="sort" class="form-control me-2">
+                        <option value="ASC" <?php echo $sort == 'ASC' ? 'selected' : ''; ?>>Date Ascending</option>
+                        <option value="DESC" <?php echo $sort == 'DESC' ? 'selected' : ''; ?>>Date Descending</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+                <div class="table-responsive pt-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Apiary Name</th>
+                                <th>Beekeeper</th>
+                                <th>Location</th>
+                                <th>Coordinates</th>
+                                <th>Date</th>
+                                <th>Weather</th>
+                                <th>Hive Count</th>
+                                <th>Observation</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if (!empty($listApiaries)) {
+                                foreach ($listApiaries as $index => $apiary) {
+                                    echo "<tr>
+                                        <td>" . ($offset + $index + 1) . "</td>
+                                        <td>" . htmlspecialchars($apiary['apiaryName']) . "</td>
+                                        <td>" . htmlspecialchars($apiary['beekeeper']) . "</td>
+                                        <td>" . htmlspecialchars($apiary['location']) . "</td>
+                                        <td>" . htmlspecialchars($apiary['coordinates']) . "</td>
+                                        <td>" . htmlspecialchars($apiary['date']) . "</td>
+                                        <td>" . htmlspecialchars($apiary['weather']) . "</td>
+                                        <td>" . htmlspecialchars($apiary['hiveCount']) . "</td>
+                                        <td>" . htmlspecialchars($apiary['observation']) . "</td>
+                                        <td>
+                                            <a href='../frontoffice/map.php?cor=" . $apiary['coordinates'] . "' class='signin'>Show in map</a>
 
-
-                        <li class="nav-item nav-category">User Managment</li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="../../views/user/Back_Office/stat.html"
-                                aria-expanded="false" aria-controls="basic">
-                                <i class="menu-icon mdi mdi-table"></i>
-                                <span class="menu-title">User Mangamnets</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                            <div class="collapse" id="basic">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item"> <a class="nav-link" href="addUser.html">Add User</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="AllUsers.html">Get All Users</a>
-                                    </li>
-                                    <li class="nav-item"> <a class="nav-link" href="stat.html">Dashboard</a></li>
-
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item nav-category"> apiaries</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../views/apiary/backOffice/apiaries.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">Apiaries</span>
-                            </a>
-                        </li>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../views/apiary/backOffice/harvests.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">Harvests</span>
-                            </a>
-                        </li>
-                        <li class="nav-item nav-category">Cart</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../views/Cart/back/cartm.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">Cart Management</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../views/Cart/back/promo.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">Promos</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-item nav-category">Settings</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" id="logoutLink">
-                                <i class="menu-icon mdi mdi-file-document"></i>
-                                <span class="menu-title">Log Out</span>
-                            </a>
-                        </li>
-
-
+                                        </td>
+                                    </tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='10' class='text-center'>No apiaries found.</td></tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pagination -->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <?php if ($page > 1): ?>
+                            <li class="page-item"><a class="page-link" href="?page=<?php echo $page - 1; ?>&search=<?php echo urlencode($search); ?>&sort=<?php echo $sort; ?>">Previous</a></li>
+                        <?php endif; ?>
+                        
+                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                            <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>">
+                                <a class="page-link" href="?page=<?php echo $i; ?>&search=<?php echo urlencode($search); ?>&sort=<?php echo $sort; ?>"><?php echo $i; ?></a>
+                            </li>
+                        <?php endfor; ?>
+                        
+                        <?php if ($page < $totalPages): ?>
+                            <li class="page-item"><a class="page-link" href="?page=<?php echo $page + 1; ?>&search=<?php echo urlencode($search); ?>&sort=<?php echo $sort; ?>">Next</a></li>
+                        <?php endif; ?>
                     </ul>
                 </nav>
-            <div style="margin-left: 40px; width:1100px;">
-    <h2 class="text" style="margin-top:10px;">Add a Promo Code</h2>
-    <br>
-    <form action="promo.php" method="POST">
-        <label for="code">Promo Code:</label><br>
-        <input type="text" id="code" name="code" required><br><br>
-
-        <label for="discount_type">Discount Type:</label><br>
-        <select id="discount_type" name="discount_type">
-            <option value="percentage">Percentage<</option>
-            <option value="fixed">Fixed</option>
-        </select><br><br>
-
-        <label for="discount_value">Discount Value:</label><br>
-        <input type="number" id="discount_value" name="discount_value" required><br><br>
-
-        <label for="valid_from">Valid From:</label><br>
-        <input type="datetime-local" id="valid_from" name="valid_from" required><br><br>
-
-        <label for="valid_until">Valid Until:</label><br>
-        <input type="datetime-local" id="valid_until" name="valid_until" required><br><br>
-
-        <button type="submit" name="submit">Add Promo Code</button>
-    </form>
-
-    <!-- Liste des Codes Promo -->
-    <h2>Promo Code List</h2>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Code</th>
-                <th>Discount Type</th>
-                <th>Discount Value</th>
-                <th>Valid From</th>
-                <th>Valid Until</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            // Afficher les données des codes promo
-            if (!empty($promos)) {
-                foreach ($promos as $promo) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($promo['id']) . "</td>";
-                    echo "<td>" . htmlspecialchars($promo['code']) . "</td>";
-                    echo "<td>" . htmlspecialchars($promo['discount_type']) . "</td>";
-                    echo "<td>" . htmlspecialchars($promo['discount_value']) . "</td>";
-                    echo "<td>" . htmlspecialchars($promo['valid_from']) . "</td>";
-                    echo "<td>" . htmlspecialchars($promo['valid_until']) . "</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='6'>Aucun code promo trouvé</td></tr>";
-            }
-            ?>
-        </tbody>
-    </table>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer.html -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All rights reserved.</span>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <script src="vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="vendors/progressbar.js/progressbar.min.js"></script>
+
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="js/dashboard.js"></script>
+    <script src="js/Chart.roundedBarCharts.js"></script>
+    <!-- End custom js for this page-->
+
+
+
+
+
+
+   
+        <script>
+    function validateForm() {
+        let isValid = true;
+
+        document.querySelectorAll('small.text-danger').forEach(error => error.textContent = '');
+
+        const apiaryName = document.getElementById('apiaryName').value.trim();
+        const location = document.getElementById('location').value.trim();
+        const coordinates = document.getElementById('coordinates').value.trim();
+        const date = document.getElementById('date').value.trim();
+        const weather = document.getElementById('weather').value.trim();
+        const hiveCount = document.getElementById('hiveCount').value.trim();
+        const observation = document.getElementById('observation').value.trim();
+
+        // Validation rules
+        if (apiaryName === '') {
+            document.getElementById('apiaryNameError').textContent = "Apiary Name is required.";
+            isValid = false;
+        }
+
+        if (location === '') {
+            document.getElementById('locationError').textContent = "Location is required.";
+            isValid = false;
+        }
+
+        if (coordinates === '') {
+            document.getElementById('coordinatesError').textContent = "Coordinates are required.";
+            isValid = false;
+        } else if (!/^-?\d{1,3}\.\d+,\s*-?\d{1,3}\.\d+$/.test(coordinates)) {
+            document.getElementById('coordinatesError').textContent = "Coordinates must be in the format: latitude, longitude (e.g., 36.7783, -119.4179).";
+            isValid = false;
+        }
+
+        if (date === '') {
+            document.getElementById('dateError').textContent = "Establishment Date is required.";
+            isValid = false;
+        }
+
+        if (weather === '') {
+            document.getElementById('weatherError').textContent = "Weather condition is required.";
+            isValid = false;
+        }
+
+        if (hiveCount === '' || isNaN(hiveCount) || hiveCount <= 0) {
+            document.getElementById('hiveCountError').textContent = "Hive Count must be a positive number.";
+            isValid = false;
+        }
+
+        if (observation.length > 255) {
+            document.getElementById('observationError').textContent = "Observation cannot exceed 255 characters.";
+            isValid = false;
+        }
+
+        return isValid; 
+    }
+</script>
 </body>
 </html>

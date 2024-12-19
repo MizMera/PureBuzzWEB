@@ -1,7 +1,9 @@
 <?php
 session_start();
-include_once 'config.php';
+include_once __DIR__ . '/../../../config/database.php';
 
+// Connexion à la base de données via PDO
+$pdo = Database::getConnexion();
 // Verify the request type
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $action = $_POST['action'];
