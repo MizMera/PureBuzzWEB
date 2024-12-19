@@ -14,15 +14,15 @@ if (isset($_GET['add_to_cart'])) {
         $_SESSION['cart'] = [];
     }
 
-    // Si le produit est déjà dans le panier, augmenter la quantité
+    // Vérifier si le produit est déjà dans le panier
     if (isset($_SESSION['cart'][$productId])) {
-        $_SESSION['cart'][$productId]++;
+        echo "Ce produit est déjà dans le panier.<br>";
     } else {
-        // Sinon, ajouter le produit avec une quantité de 1
+        // Ajouter le produit avec une quantité de 1
         $_SESSION['cart'][$productId] = 1;
+        echo "Produit ajouté au panier.<br>";
     }
 
-    echo "Produit ajouté au panier.<br>";
     echo "<a href='view_cart.php'>Voir le panier</a>";
 } else {
     echo "Aucun produit à ajouter.";
