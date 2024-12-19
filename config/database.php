@@ -24,7 +24,7 @@ class Database
             $servername="localhost";
             $username="root";
             $password ="";
-            $dbname="purebuzz_db2";
+            $dbname="purebuzz_db";
             try {
                 self::$pdo = new PDO("mysql:host=$servername;dbname=$dbname",
                         $username,
