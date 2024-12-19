@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit;
 }
 
-$controllerName = $_GET['controller'] ?? 'ClaimController';
+$controllerName = $_GET['controller'] ?? 'claims';
 $action = $_GET['action'] ?? 'create';
 
 try {

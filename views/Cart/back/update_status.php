@@ -1,8 +1,9 @@
 <?php
 session_start();
-include_once 'config.php';
+include_once __DIR__ . '/../../../config/database.php';
 
-$conn = Config::getConnexion();
+// Connexion à la base de données via PDO
+$conn = Database::getConnexion();
 
 if (isset($_POST['cart_id']) && isset($_POST['status'])) {
     $cartId = $_POST['cart_id'];
