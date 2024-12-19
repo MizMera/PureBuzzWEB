@@ -411,7 +411,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['ne
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                     <ul class="nav">
-<<<<<<< HEAD
                       
             <li class="nav-item nav-category">Products and Management</li>
                         <li class="nav-item">
@@ -419,25 +418,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['ne
                                 aria-expanded="false" aria-controls="tables">
                                     <i class="menu-icon mdi mdi-table"></i>
                                   <span class="menu-title">Categories</span>
-=======
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../views/user/Front_office/UserProfile.html">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">My profile</span>
-                            </a>
-                        </li>
-                        <li class="nav-item nav-category">Products and Management</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php" aria-expanded="false" aria-controls="form-elements">
-                                <span class="menu-title">Product&categorie</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="../../views/Products/index.php"
-                                aria-expanded="false" aria-controls="tables">
-                                <i class="menu-icon mdi mdi-table"></i>
-                                <span class="menu-title">Categories</span>
->>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                             </a>
                             <div class="collapse" id="tables">
                                 <ul class="nav flex-column sub-menu">
@@ -448,12 +428,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['ne
                             </div>
                         </li>
                         <li class="nav-item">
-<<<<<<< HEAD
                             <a class="nav-link" href="../../Products/index.php" aria-expanded="false" aria-controls="charts">
-=======
-                            <a class="nav-link" href="../../views/Products/index.php" aria-expanded="false"
-                                aria-controls="charts">
->>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                                 <i class="menu-icon mdi mdi-chart-line"></i>
                                 <span class="menu-title">Product</span>
                             </a>
@@ -465,15 +440,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['ne
                                 </ul>
                             </div>
                         </li>
-<<<<<<< HEAD
             <li class="nav-item nav-category">Support</li>
                         <li class="nav-item">
                             <a class="nav-link" href="../../support/Reclamation.html" aria-expanded="false"
-=======
-                        <li class="nav-item nav-category">Support</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../views/support/Reclamation.html" aria-expanded="false"
->>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                                 aria-controls="charts">
                                 <i class="menu-icon mdi mdi-chart-line"></i>
                                 <span class="menu-title">Claims views</span>
@@ -488,29 +457,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['ne
                         </li>
 
 
-<<<<<<< HEAD
              <li class="nav-item nav-category">User Managment</li>
                         <li class="nav-item"> 
                              <a class="nav-link" href="../../user/Back_Office/stat.html">
-=======
-                        <li class="nav-item nav-category">User Managment</li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="../../views/user/Back_Office/stat.html"
-                                aria-expanded="false" aria-controls="basic">
->>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                                 <i class="menu-icon mdi mdi-table"></i>
                                 <span class="menu-title">User Mangamnets</span>
                                 <i class="menu-arrow"></i>
                             </a>
-<<<<<<< HEAD
                             <li class="nav-item">
                             <a class="nav-link" href="../../user/Front_office/UserProfile.html">
                                 <i class="mdi mdi-grid-large menu-icon"></i>
                                 <span class="menu-title">My profile</span>
                             </a>
                         </li>
-=======
->>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                             <div class="collapse" id="basic">
                                 <ul class="nav flex-column sub-menu">
                                     <li class="nav-item"> <a class="nav-link" href="addUser.html">Add User</a></li>
@@ -521,11 +480,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['ne
                                 </ul>
                             </div>
                         </li>
-<<<<<<< HEAD
              <li class="nav-item nav-category"> apiaries</li>
-=======
-                        <li class="nav-item nav-category"> apiaries</li>
->>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                         <li class="nav-item">
                             <a class="nav-link" href="../../apiary/backOffice/apiaries.php">
                                 <i class="mdi mdi-grid-large menu-icon"></i>
@@ -534,34 +489,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['ne
                         </li>
                         </li>
                         <li class="nav-item">
-<<<<<<< HEAD
                             <a class="nav-link" href="../../apiary/backOffice/harvests.php">
-=======
-                            <a class="nav-link" href="../../views/apiary/backOffice/harvests.php">
->>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                                 <i class="mdi mdi-grid-large menu-icon"></i>
                                 <span class="menu-title">Harvests</span>
                             </a>
                         </li>
-<<<<<<< HEAD
           <li class="nav-item nav-category">Cart</li>
                         <li class="nav-item">
                             <a class="nav-link" href="../../Cart/back/cartm.php">
-=======
-                        <li class="nav-item nav-category">Cart</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../views/Cart/back/cartm.php">
->>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                                 <i class="mdi mdi-grid-large menu-icon"></i>
                                 <span class="menu-title">Cart Management</span>
                             </a>
                         </li>
                         <li class="nav-item">
-<<<<<<< HEAD
                             <a class="nav-link" href="../../Cart/back/promo.php">
-=======
-                            <a class="nav-link" href="../../views/Cart/back/promo.php">
->>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                                 <i class="mdi mdi-grid-large menu-icon"></i>
                                 <span class="menu-title">Promos</span>
                             </a>
