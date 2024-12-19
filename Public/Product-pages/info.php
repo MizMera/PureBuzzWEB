@@ -239,7 +239,7 @@ body {
                                         <td>" . htmlspecialchars($apiary['hiveCount']) . "</td>
                                         <td>" . htmlspecialchars($apiary['observation']) . "</td>
                                         <td>
-                                            <a href='map.php?cor=" . $apiary['coordinates'] . "' class='signin'>Show in map</a>
+                                            <a href='../../views/apiary/frontOffice/map.php?cor=" . $apiary['coordinates'] . "' class='signin'>Show in map</a>
                                         </td>
 
                                     </tr>";
