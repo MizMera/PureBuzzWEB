@@ -69,7 +69,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'sortByNumber') {
           </div>
           <div>
             <a class="navbar-brand brand-logo" href="index.html">
-              <img src="/Project_web/Public/Product-pages/Images/PureBuzzLogo.png"style="height: 80px;" alt="logo" />
+              <img src="../../Public/Product-pages/Images/PureBuzzLogo.png"style="height: 80px;" alt="logo" />
             </a>
            
           </div>
@@ -241,7 +241,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'sortByNumber') {
               
                 <h2>Product Table</h2>
              
-            <form method="GET" action="index.php" class="Search-form">
+            <form method="GET" action="index.php" class="search-form">
               <lable for="search"> Search </lable>
             <input type="text" name="search" placeholder="Search products name.." 
                   value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" />
@@ -274,7 +274,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'sortByNumber') {
                      <td>
                      <?php 
                         $image_path = $product['image_url']; // Path stored in the database, e.g., "/uploads/product_67479637987a65.90291195.png"
-                        $base_url = "/Project_web"; // Base URL of your project
+                        $base_url = "../../Product/"; // Base URL of your project
                         
                         // Check if the image path is not empty
                         if (!empty($image_path)) {
