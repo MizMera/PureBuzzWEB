@@ -188,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['promo_code']) && !empt
             <div class="cart-container">
                 <?php displayCart($pdo); ?>
                 <div class="continue-shopping-container">
-                    <a href="products.php">
+                    <a href="../../../Public/Product-pages/prod.html">
                         <button class="continue-shopping">← CONTINUE SHOPPING</button>
                     </a>
                 </div>
