@@ -5,95 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Claims Submission</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="../../../assets/vendors/mdi/css/materialdesignicons.min.css">
-        <link rel="stylesheet" href="../../../assets/vendors/ti-icons/css/themify-icons.css">
-        <link rel="stylesheet" href=../../../assets/vendors/typicons/typicons.css"">
-        <link rel="stylesheet" href="../../../assets/vendors/simple-line-icons/css/simple-line-icons.css">
-        <link rel="stylesheet" href="../../../assets/vendors/css/vendor.bundle.base.css">
-        <link rel="stylesheet" href="../../../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-        <link rel="stylesheet" href="../../../assets/js/select.dataTables.min.css">
-        <link rel="stylesheet" href="../../../assets/css/vertical-layout-light/style.css">
-        <link rel="stylesheet" href="../../../assets/css/Back_office/AllUsers.css">
+    <link rel="stylesheet" href="product-style.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="style.css">
     <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Header and Navbar Styles */
-        .header {
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
+        /* CSS styles */
+        .navbar {
             z-index: 1030;
         }
 
-        .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-        }
-
-        .logo img {
-            height: 50px;
-        }
-
-        .menu {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .menu li {
-            margin: 0 10px;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .nav-link:hover {
-            color: #ffcc00;
-        }
-
-        .auth-buttons a {
-            text-decoration: none;
-            margin-left: 10px;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-        .signin {
-            background-color: #ffcc00;
-            color: #fff;
-        }
-
-        .register {
-            background-color: #fff;
-            border: 1px solid #ffcc00;
-            color: #ffcc00;
-        }
-
-        .signin:hover {
-            background-color: #e6b800;
-        }
-
-        .register:hover {
-            background-color: #ffcc00;
-            color: #fff;
-        }
-
-        /* Sidebar and Main Content */
         .sidebar {
             background-color: #f8f9fa;
             height: 100vh;
@@ -106,7 +25,6 @@
             min-height: calc(100vh - 100px);
         }
 
-        /* Footer */
         footer {
             position: relative;
             bottom: 0;
@@ -206,44 +124,50 @@
 
         </div>
     </nav>
+    <div class="ala">
 
-    <div style="margin-top: 100px;" class="d-flex">
-        <div class="container main-content">
-            <section style="width: 900px;" class="claim-form-section">
-                <form class="claim-form" id="claimForm">
-                    <div class="form-group">
-                        <label style="font-size: larger;" for="user-name" class="form-label">User Name:</label>
-                        <input style="height: 50px; font-size: medium;" type="text" id="user-name" name="user_name"
-                            class="form-control" placeholder="Enter your email">
-                    </div>
-                    <div class="form-group">
-                        <label style="font-size: larger;" for="product" class="form-label">Product:</label>
-                        <input style="height: 50px;font-size: medium;" type="text" id="product" name="product"
-                            class="form-control" placeholder="Enter the product name">
-                    </div>
-                    <div class="form-group">
-                        <label style="font-size: larger;" for="claim-details" class="form-label">Claim Details:</label>
-                        <textarea style="height: 250px;font-size: medium;" id="claim-details" name="claim_details"
-                            class="form-control" rows="4" placeholder="Describe your claim"></textarea>
-                    </div>
-                    <div class="form-actions d-flex justify-content-between">
-                        <button type="submit" class="btn btn-primary">Submit Claim</button>
-                        <button type="reset" class="btn btn-secondary">Reset</button>
-                    </div>
-                </form>
-            </section>
 
-            <!-- Chatbot Interface -->
-            <div class="chat-container">
-                <div class="chat-header">
-                    <h3>Bee Claims Chatbot</h3>
-                </div>
-                <div class="chat-body" id="chatBody">
-                    <!-- Chat messages will appear here -->
-                </div>
-                <div class="chat-input">
-                    <input type="text" id="userInput" placeholder="Type your message...">
-                    <button onclick="sendMessage()">Send</button>
+        <div style="margin-top: 100px;" class="d-flex">
+            <!-- Sidebar -->
+
+            <div class="container main-content">
+                <section style="width: 900px;" class="claim-form-section">
+                    <form class="claim-form" id="claimForm">
+                        <div class="form-group">
+                            <label style="font-size: larger;" for="user-name" class="form-label">User Name :</label>
+                            <input style="height: 50px; font-size: medium;" type="text" id="user-name" name="user_name"
+                                class="form-control" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size: larger;" for="product" class="form-label">Product :</label>
+                            <input style="height: 50px;font-size: medium;" type="text" id="product" name="product"
+                                class="form-control" placeholder="Enter the product name">
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size: larger;" for="claim-details" class="form-label">Claim Details
+                                :</label>
+                            <textarea style="height: 250px;font-size: medium;" id="claim-details" name="claim_details"
+                                class="form-control" rows="4" placeholder="Describe your claim"></textarea>
+                        </div>
+                        <div class="form-actions d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary">Submit Claim</button>
+                            <button type="reset" class="btn btn-secondary">Reset</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Chatbot Interface -->
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h3>Bee Claims Chatbot</h3>
+                    </div>
+                    <div class="chat-body" id="chatBody">
+                        <!-- Chat messages will appear here -->
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="userInput" placeholder="Type your message...">
+                        <button onclick="sendMessage()">Send</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -316,119 +240,6 @@
             userInput.value = "";
             chatBody.scrollTop = chatBody.scrollHeight;
         }
-        let claimData = {
-            user_name: '', // Email address will be stored here
-            product: '', // Product name
-            claim_details: '' // Claim details
-        };
-
-        async function sendMessage() {
-            const userInput = document.getElementById("userInput");
-            const chatBody = document.getElementById("chatBody");
-
-            if (userInput.value.trim() === "") return;
-
-            // Display the user's message
-            const userMessage = document.createElement("div");
-            userMessage.className = "chat-message user-message";
-            userMessage.textContent = userInput.value;
-            chatBody.appendChild(userMessage);
-
-            // Decide whether to process structured input or call AI
-            if (!claimData.user_name || !claimData.product || !claimData.claim_details) {
-                processStructuredInput(userInput.value);
-            } else {
-                const botResponse = await getAIResponse(userInput.value);
-                sendBotMessage(botResponse);
-            }
-
-            // Clear input field
-            userInput.value = "";
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-
-        function processStructuredInput(input) {
-            if (!claimData.user_name) {
-                if (validateEmail(input)) {
-                    claimData.user_name = input;
-                    sendBotMessage("Thank you! What is the product you're making a claim for?");
-                } else {
-                    sendBotMessage("Please provide a valid email address.");
-                }
-            } else if (!claimData.product) {
-                claimData.product = input;
-                sendBotMessage("Thanks! Now, please provide details about the claim.");
-            } else if (!claimData.claim_details) {
-                claimData.claim_details = input;
-                sendBotMessage("Thank you for the details! Submitting your claim now.");
-                submitClaim();
-            }
-        }
-        //vjnvjdjdvdvj 
-
-        function sendBotMessage(message) {
-            const chatBody = document.getElementById("chatBody");
-            const botMessage = document.createElement("div");
-            botMessage.className = "chat-message bot-message";
-            botMessage.textContent = message;
-            chatBody.appendChild(botMessage);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-
-        // Function to validate email
-        function validateEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-
-        // Submit claim to the backend
-        async function submitClaim() {
-            try {
-                const response = await fetch("http://localhost/PureBuzzWEB-integration/Public/index.php?controller=claims&action=store", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(claimData),
-                });
-
-                const result = await response.json();
-                if (response.ok) {
-                    sendBotMessage("Your claim has been successfully submitted!");
-                    claimData = { user_name: '', product: '', claim_details: '' }; // Reset data
-                } else {
-                    sendBotMessage(`Error: ${result.error || "There was an error submitting your claim. Please try again."}`);
-                }
-            } catch (error) {
-                console.error("Error submitting claim:", error);
-                sendBotMessage("Failed to submit your claim. Please try again later.");
-            }
-        }
-
-        // AI Functionality: Get dynamic response from OpenAI API
-        async function getAIResponse(userInput) {
-            try {
-                // API call to OpenAI with the correct API key
-                const response = await fetch("https://hdstockimages.com/get-free-openai-chatgpt-api/", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "8a20c73180ae4d5ca4f37bdaa5bb8669",
-                    },
-                    body: JSON.stringify({
-                        model: "gpt-3.5-turbo",  // Use GPT-4 model
-                        messages: [{ role: "user", content: userInput }], // Send the user input to the AI
-                    }),
-                });
-
-                const data = await response.json();  // Parse the response
-                return data.choices[0].message.content;  // Extract AI's response
-            } catch (error) {
-                console.error("Error fetching AI response:", error);
-                return "Sorry, I couldn't process your request right now. Please try again later.";  // Handle errors
-            }
-        }
-
     </script>
 </body>
 
