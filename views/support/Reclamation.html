@@ -908,7 +908,7 @@
                 const payload = { claim_id: claimID }; // Prepare payload with 'claim_id'
                 console.log("Payload being sent to server:", JSON.stringify(payload)); // Debug log
 
-                const response = await fetch(`../../Public/index.php?controller=claims&action=deleteClaim`, {
+                const response = await fetch("../../Public/index.php?controller=claims&action=deleteClaim", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -995,7 +995,7 @@
         // Delete response from server
         async function deleteResponse(responseID, row) {
             try {
-                const response = await fetch(`../../Public/index.php?controller=responses&action=deleteResponse`, {
+                const response = await fetch("../../Public/index.php?controller=responses&action=deleteResponse", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -1095,7 +1095,7 @@
         // Update response data via the backend
         async function updateResponse(updatedData) {
             try {
-                const response = await fetch(`../../Public/index.php?controllerr=Responses&action=update_Response`, {
+                const response = await fetch("../../Public/index.php?controllerr=Responses&action=update_Response", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -1153,7 +1153,7 @@
         // Update claim data via the backend
         async function updateClaim(claimID, updatedData) {
             try {
-                const response = await fetch(`../../Public/index.php?controller=claims&action=update`, {
+                const response = await fetch("../../Public/index.php?controller=claims&action=update", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
