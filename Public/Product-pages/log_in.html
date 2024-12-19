@@ -7,9 +7,9 @@
     <title>Log In</title>
     <!-- plugins:css -->
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="logIn.css">
-
+    <link rel="stylesheet" href="../../assets/css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../../assets/css/Front_Office/user/logIn.css">
+    <link rel="shortcut icon" href="../../assets/PureBuzzLogo.png" />
 </head>
 <style>
     .showPwd {
@@ -21,7 +21,7 @@
     <div class="content-wrapper">
         <!-- Logo Section -->
         <div class="logo-section text-center">
-            <img src="PureBuzzLogo.png" alt="PureBuzz Logo" class="logo-img">
+            <img src="../../assets/PureBuzzLogo.png" alt="PureBuzz Logo" class="logo-img">
         </div>
 
         <!-- Form Container -->
@@ -141,7 +141,7 @@
                                     if (role === 'admin') {
                                         window.location.href = '../back_Office/stat.html'; // Redirect to admin page
                                     } else if (role === 'beekeeper') {
-                                        window.location.href = '../../apiary/frontOffice/beekeeper.php'; // Redirect to user page
+                                        window.location.href = '../../apiary/backOffice/beekeeper.php'; // Redirect to user page
                                     } else if (role != null && role !== '') {
                                         window.location.href = '../../../Public/Product-pages/product.html'; // Redirect to user page
                                     } else {

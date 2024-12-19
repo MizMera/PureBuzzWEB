@@ -1,233 +1,338 @@
 <!DOCTYPE html>
 < lang="en">
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Statistics</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="../../../assets/vendors/feather/feather.css">
-    <link rel="stylesheet" href="../../../assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../../assets/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href=../../../assets/vendors/typicons/typicons.css"">
-    <link rel="stylesheet" href="../../../assets/vendors/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="../../../assets/vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="../../../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="../../../assets/js/select.dataTables.min.css">
-    <link rel="stylesheet" href="../../../assets/css/vertical-layout-light/style.css">
-    <link rel="stylesheet" href="../../../assets/css/Back_office/AllUsers.css">
-    <link rel="shortcut icon" href="../../../assets/PureBuzzLogo.png" />
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Statistics</title>
+        <!-- plugins:css -->
+        <link rel="stylesheet" href="../../../assets/vendors/feather/feather.css">
+        <link rel="stylesheet" href="../../../assets/vendors/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="../../../assets/vendors/ti-icons/css/themify-icons.css">
+        <link rel="stylesheet" href=../../../assets/vendors/typicons/typicons.css"">
+        <link rel="stylesheet" href="../../../assets/vendors/simple-line-icons/css/simple-line-icons.css">
+        <link rel="stylesheet" href="../../../assets/vendors/css/vendor.bundle.base.css">
+        <link rel="stylesheet" href="../../../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+        <link rel="stylesheet" href="../../../assets/js/select.dataTables.min.css">
+        <link rel="stylesheet" href="../../../assets/css/vertical-layout-light/style.css">
+        <link rel="stylesheet" href="../../../assets/css/Back_office/AllUsers.css">
+        <link rel="shortcut icon" href="../../../assets/PureBuzzLogo.png" />
 
 
-</head>
-<style>
-    /* Style basé sur votre design */
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f5f5f5;
-        margin: 0;
-        padding: 0;
-    }
+    </head>
+    <style>
+        /* Style basé sur votre design */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
 
-    .dashboard-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 20px;
-    }
+        .dashboard-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
 
-    h1 {
-        color: #ffcc00;
-        margin-bottom: 20px;
-    }
+        h1 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
 
-    .charts-container {
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        margin-top: 30px;
-    }
+        .charts-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
 
-    .chart-card {
-        background-color: #ffffff;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        width: 600px;
-        text-align: center;
-    }
+        .chart-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 600px;
+            text-align: center;
+        }
 
-    .chart-card h2 {
-        color: #333;
-        margin-bottom: 10px;
-    }
+        .chart-card h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
 
-    canvas {
-        max-width: 100%;
-    }
-</style>
+        canvas {
+            max-width: 100%;
+        }
+    </style>
 
-<body>
-<div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
-    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
-        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-            <div class="me-3">
-                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
-                    <span class="icon-menu"></span>
-                </button>
-            </div>
-            <div>
-                <a class="navbar-brand brand-logo" href="stat.html">
-                    <img src="../../../assets/PureBuzzLogo.png"style="height: 80px;" alt="logo" />
-                </a>
-
-            </div>
-        </div>
-        <div class="navbar-menu-wrapper d-flex align-items-top">
-            <ul class="navbar-nav">
-                <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-                    <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">Dear Admin</span></h1>
-                </li>
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown d-none d-lg-block user-dropdown">
-                    <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="img-xs rounded-circle" src="../../../../assets/images/faces/face8.jpg" alt="Profile image"> </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-                        <div class="dropdown-header text-center">
-                            <img class="img-md rounded-circle" src="../../../../assets/images/faces/face8.jpg" alt="Profile image">
-                            <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
-                            <p class="fw-light text-muted mb-0">chahd@gmail.com</p>
-                        </div>
-                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
-                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
-                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
-                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
-                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+    <body>
+        <div class="container-scroller">
+            <!-- partial:partials/_navbar.html -->
+            <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+                <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+                    <div class="me-3">
+                        <button class="navbar-toggler navbar-toggler align-self-center" type="button"
+                            data-bs-toggle="minimize">
+                            <span class="icon-menu"></span>
+                        </button>
                     </div>
-                </li>
-            </ul>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
-                <span class="mdi mdi-menu"></span>
-            </button>
-        </div>
-    </nav>
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_settings-panel.html -->
-        <div class="theme-setting-wrapper">
-            <div id="settings-trigger"><i class="ti-settings"></i></div>
-            <div id="theme-settings" class="settings-panel">
-                <i class="settings-close ti-close"></i>
-                <p class="settings-heading">SIDEBAR SKINS</p>
-                <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border me-3"></div>Light</div>
-                <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border me-3"></div>Dark</div>
-                <p class="settings-heading mt-2">HEADER SKINS</p>
-                <div class="color-tiles mx-0 px-4">
-                    <div class="tiles success"></div>
-                    <div class="tiles warning"></div>
-                    <div class="tiles danger"></div>
-                    <div class="tiles info"></div>
-                    <div class="tiles dark"></div>
-                    <div class="tiles default"></div>
+                    <div>
+                        <a class="navbar-brand brand-logo" href="stat.html">
+                            <img src="../../../assets/PureBuzzLogo.png" style="height: 80px;" alt="logo" />
+                        </a>
+
+                    </div>
                 </div>
-            </div>
-        </div>
-        <!-- partial -->
-        <!-- partial:partials/_sidebar.html -->
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="../Front_office/UserProfile.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
-                        <span class="menu-title">My Profile</span>
-                    </a>
-                </li>
-
-                <li class="nav-item nav-category">User Managment</li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#basic" aria-expanded="false" aria-controls="basic">
-                        <i class="menu-icon mdi mdi-table"></i>
-                        <span class="menu-title">User Mangamnets</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="basic">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="addUser.html">Add User</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="AllUsers.html">Get All Users</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="stat.html">Dashboard</a></li>
-
-                        </ul>
+                <div class="navbar-menu-wrapper d-flex align-items-top">
+                    <ul class="navbar-nav">
+                        <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+                            <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">Dear Admin</span>
+                            </h1>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown d-none d-lg-block user-dropdown">
+                            <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <img class="img-xs rounded-circle" src="../../../../assets/images/faces/face8.jpg"
+                                    alt="Profile image"> </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                                aria-labelledby="UserDropdown">
+                                <div class="dropdown-header text-center">
+                                    <img class="img-md rounded-circle" src="../../../../assets/images/faces/face8.jpg"
+                                        alt="Profile image">
+                                    <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
+                                    <p class="fw-light text-muted mb-0">chahd@gmail.com</p>
+                                </div>
+                                <a class="dropdown-item"><i
+                                        class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My
+                                    Profile <span class="badge badge-pill badge-danger">1</span></a>
+                                <a class="dropdown-item"><i
+                                        class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i>
+                                    Messages</a>
+                                <a class="dropdown-item"><i
+                                        class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i>
+                                    Activity</a>
+                                <a class="dropdown-item"><i
+                                        class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i>
+                                    FAQ</a>
+                                <a class="dropdown-item"><i
+                                        class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                        data-bs-toggle="offcanvas">
+                        <span class="mdi mdi-menu"></span>
+                    </button>
+                </div>
+            </nav>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+                <!-- partial:partials/_settings-panel.html -->
+                <div class="theme-setting-wrapper">
+                    <div id="settings-trigger"><i class="ti-settings"></i></div>
+                    <div id="theme-settings" class="settings-panel">
+                        <i class="settings-close ti-close"></i>
+                        <p class="settings-heading">SIDEBAR SKINS</p>
+                        <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+                            <div class="img-ss rounded-circle bg-light border me-3"></div>Light
+                        </div>
+                        <div class="sidebar-bg-options" id="sidebar-dark-theme">
+                            <div class="img-ss rounded-circle bg-dark border me-3"></div>Dark
+                        </div>
+                        <p class="settings-heading mt-2">HEADER SKINS</p>
+                        <div class="color-tiles mx-0 px-4">
+                            <div class="tiles success"></div>
+                            <div class="tiles warning"></div>
+                            <div class="tiles danger"></div>
+                            <div class="tiles info"></div>
+                            <div class="tiles dark"></div>
+                            <div class="tiles default"></div>
+                        </div>
                     </div>
-                </li>
-
-                <li class="nav-item nav-category">Settings</li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="logoutLink">
-                        <i class="menu-icon mdi mdi-file-document"></i>
-                        <span class="menu-title">Log Out</span>
-                    </a>
-                </li>
-
-
-            </ul>
-        </nav>
-        <!-- partial -->
-        <div class="main-panel">
-            <div class="content-wrapper">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="home-tab">
-                            <div class="d-sm-flex align-items-center justify-content-between border-bottom">
-                                <ul class="nav nav-tabs" role="tablist">
+                </div>
+                <!-- partial -->
+                <!-- partial:partials/_sidebar.html -->
+                <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../views/user/Front_office/UserProfile.html">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">My profile</span>
+                            </a>
+                        </li>
+                        <li class="nav-item nav-category">Products and Management</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php" aria-expanded="false" aria-controls="form-elements">
+                                <span class="menu-title">Product&categorie</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="../../views/Products/index.php"
+                                aria-expanded="false" aria-controls="tables">
+                                <i class="menu-icon mdi mdi-table"></i>
+                                <span class="menu-title">Categories</span>
+                            </a>
+                            <div class="collapse" id="tables">
+                                <ul class="nav flex-column sub-menu">
                                     <li class="nav-item">
-                                        <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#allusers" role="tab" aria-controls="overview" aria-selected="true">Dashboard </a>
+                                        <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a>
                                     </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../views/Products/index.php" aria-expanded="false"
+                                aria-controls="charts">
+                                <i class="menu-icon mdi mdi-chart-line"></i>
+                                <span class="menu-title">Product</span>
+                            </a>
+                            <div class="collapse" id="charts">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item nav-category">Support</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../views/support/Reclamation.html" aria-expanded="false"
+                                aria-controls="charts">
+                                <i class="menu-icon mdi mdi-chart-line"></i>
+                                <span class="menu-title">Claims views</span>
+                            </a>
+                            <div class="collapse" id="charts">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
 
+
+                        <li class="nav-item nav-category">User Managment</li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="../../views/user/Back_Office/stat.html"
+                                aria-expanded="false" aria-controls="basic">
+                                <i class="menu-icon mdi mdi-table"></i>
+                                <span class="menu-title">User Mangamnets</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="basic">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a class="nav-link" href="addUser.html">Add User</a></li>
+                                    <li class="nav-item"> <a class="nav-link" href="AllUsers.html">Get All Users</a>
+                                    </li>
+                                    <li class="nav-item"> <a class="nav-link" href="stat.html">Dashboard</a></li>
 
                                 </ul>
-
                             </div>
+                        </li>
+                        <li class="nav-item nav-category"> apiaries</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../views/apiary/backOffice/apiaries.php">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">Apiaries</span>
+                            </a>
+                        </li>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../views/apiary/backOffice/harvests.php">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">Harvests</span>
+                            </a>
+                        </li>
+                        <li class="nav-item nav-category">Cart</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../views/Cart/back/cartm.php">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">Cart Management</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../views/Cart/back/promo.php">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">Promos</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item nav-category">Settings</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="logoutLink">
+                                <i class="menu-icon mdi mdi-file-document"></i>
+                                <span class="menu-title">Log Out</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </nav>
+                <!-- partial -->
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="home-tab">
+                                    <div class="d-sm-flex align-items-center justify-content-between border-bottom">
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab"
+                                                    href="#allusers" role="tab" aria-controls="overview"
+                                                    aria-selected="true">Dashboard </a>
+                                            </li>
+
+
+                                        </ul>
+
+                                    </div>
 
 
 
-                            <div id="searchResult">
-                                <!-- Les résultats de la recherche apparaîtront ici -->
-                            </div>
+                                    <div id="searchResult">
+                                        <!-- Les résultats de la recherche apparaîtront ici -->
+                                    </div>
 
-                            <div class="tab-content tab-content-basic">
-                                <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview">
+                                    <div class="tab-content tab-content-basic">
+                                        <div class="tab-pane fade show active" id="overview" role="tabpanel"
+                                            aria-labelledby="overview">
 
-                                    <div class="row">
-
-
-                                        <div class="row flex-grow">
-                                            <div class="col-12 grid-margin stretch-card">
-                                                <div class="card card-rounded">
-                                                    <div class="card-body">
-                                                        <div class="d-sm-flex justify-content-between align-items-start">
+                                            <div class="row">
 
 
+                                                <div class="row flex-grow">
+                                                    <div class="col-12 grid-margin stretch-card">
+                                                        <div class="card card-rounded">
+                                                            <div class="card-body">
+                                                                <div
+                                                                    class="d-sm-flex justify-content-between align-items-start">
 
-                                                                                                         <!--statistique-->
-                                                                                                                    </div>
-                                                                                                                    <div class="table-responsive  mt-1">
-                                                                                                                        <div class="dashboard-container">
-                                                                                                                            <h1>Statistic of users </h1>
 
-                                                                                                                            <div class="charts-container">
-                                                                                                                                <!-- Bar Chart -->
-                                                                                                                    <div class="chart-card">
-                                                                                                                    <h2>Genders by Bar Chart</h2>
-                                                                                                                    <canvas id="barChart"></canvas>
-                                                                                                                </div>
 
-                                                                                                                <!-- Pie Chart -->
-                                                                                                                <div class="chart-card">
-                                                                                                                    <h2>User roles</h2>
-                                                                                                                    <canvas id="pieChart"></canvas>
+                                                                    <!--statistique-->
+                                                                </div>
+                                                                <div class="table-responsive  mt-1">
+                                                                    <div class="dashboard-container">
+                                                                        <h1>Statistic of users </h1>
+
+                                                                        <div class="charts-container">
+                                                                            <!-- Bar Chart -->
+                                                                            <div class="chart-card">
+                                                                                <h2>Genders by Bar Chart</h2>
+                                                                                <canvas id="barChart"></canvas>
+                                                                            </div>
+
+                                                                            <!-- Pie Chart -->
+                                                                            <div class="chart-card">
+                                                                                <h2>User roles</h2>
+                                                                                <canvas id="pieChart"></canvas>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -241,175 +346,177 @@
                             </div>
                         </div>
                     </div>
+                    <!-- content-wrapper ends -->
+                    <!-- partial:partials/_footer.html -->
+
+                    <!-- partial -->
                 </div>
+                <!-- main-panel ends -->
             </div>
-            <!-- content-wrapper ends -->
-            <!-- partial:partials/_footer.html -->
-
-            <!-- partial -->
+            <!-- page-body-wrapper ends -->
         </div>
-        <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
-</div>
-<footer class="footer">
-    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash.</span>
-        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All rights reserved.</span>
-    </div>
-</footer>
+        <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a
+                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from
+                    BootstrapDash.</span>
+                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All rights
+                    reserved.</span>
+            </div>
+        </footer>
 
-<!-- pdf -->
+        <!-- pdf -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 
-<!-- plugins:js -->
-<script src="../../../assets/vendors/js/vendor.bundle.base.js"></script>
-<!-- endinject -->
-<!-- Plugin js for this page -->
-<script src="../../../assets/vendors/chart.js/Chart.min.js"></script>
-<script src="../../../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-<script src="../../../assets/vendors/progressbar.js/progressbar.min.js"></script>
+        <!-- plugins:js -->
+        <script src="../../../assets/vendors/js/vendor.bundle.base.js"></script>
+        <!-- endinject -->
+        <!-- Plugin js for this page -->
+        <script src="../../../assets/vendors/chart.js/Chart.min.js"></script>
+        <script src="../../../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+        <script src="../../../assets/vendors/progressbar.js/progressbar.min.js"></script>
 
-<!-- End plugin js for this page -->
-<!-- inject:js -->
-<script src="../../../assets/js/off-canvas.js"></script>
-<script src="../../../assets/js/hoverable-collapse.js"></script>
-<script src="../../../assets/js/template.js"></script>
-<script src="../../../assets/js/settings.js"></script>
-<script src="../../../assets/js/todolist.js"></script>
-<!-- endinject -->
-<!-- Custom js for this page-->
-<script src="../../../assets/js/dashboard.js"></script>
-<script src="../../../assets/js/Chart.roundedBarCharts.js"></script>
+        <!-- End plugin js for this page -->
+        <!-- inject:js -->
+        <script src="../../../assets/js/off-canvas.js"></script>
+        <script src="../../../assets/js/hoverable-collapse.js"></script>
+        <script src="../../../assets/js/template.js"></script>
+        <script src="../../../assets/js/settings.js"></script>
+        <script src="../../../assets/js/todolist.js"></script>
+        <!-- endinject -->
+        <!-- Custom js for this page-->
+        <script src="../../../assets/js/dashboard.js"></script>
+        <script src="../../../assets/js/Chart.roundedBarCharts.js"></script>
 
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        fetch('../../../controllers/user/Back_Office/stat.php')
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    const genderData = data.genderData;
-                    const rolesData = data.rolesData;
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                fetch('../../../controllers/user/Back_Office/stat.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            const genderData = data.genderData;
+                            const rolesData = data.rolesData;
 
-                    // Initialize gender counts for Men and Women
-                    const genderCounts = [0, 0]; // Index 0 = Men, Index 1 = Women
-                    genderData.forEach(item => {
-                        if (item.gender === 'male') {
-                            genderCounts[0] = parseInt(item.count, 10);
-                        } else if (item.gender === 'female') {
-                            genderCounts[1] = parseInt(item.count, 10);
-                        }
-                    });
-
-                    // Prepare role data for the pie chart
-                    const roleLabels = rolesData.map(item => item.role);
-                    const roleCounts = rolesData.map(item => parseInt(item.count, 10));
-
-                    // Bar Chart for Gender Distribution
-                    new Chart(document.getElementById('barChart'), {
-                        type: 'bar',
-                        data: {
-                            labels: ['Men', 'Women'], // X-axis labels
-                            datasets: [
-                                {
-                                    label: 'Men',
-                                    data: [genderCounts[0], 0], // Data for Men only
-                                    backgroundColor: ['#4CAF50'], // Green
-                                    borderColor: ['#3E8E41'], // Dark Green Border
-                                    borderWidth: 1
-                                },
-                                {
-                                    label: 'Women',
-                                    data: [0, genderCounts[1]], // Data for Women only
-                                    backgroundColor: ['#FFC107'], // Yellow
-                                    borderColor: ['#FFB300'], // Dark Yellow Border
-                                    borderWidth: 1
+                            // Initialize gender counts for Men and Women
+                            const genderCounts = [0, 0]; // Index 0 = Men, Index 1 = Women
+                            genderData.forEach(item => {
+                                if (item.gender === 'male') {
+                                    genderCounts[0] = parseInt(item.count, 10);
+                                } else if (item.gender === 'female') {
+                                    genderCounts[1] = parseInt(item.count, 10);
                                 }
-                            ]
-                        },
-                        options: {
-                            plugins: {
-                                legend: {
-                                    display: true, // Display legend
-                                    labels: {
-                                        generateLabels: function (chart) {
-                                            return chart.data.datasets.map((dataset, index) => ({
-                                                text: dataset.label, // Use dataset labels for legend
-                                                fillStyle: dataset.backgroundColor, // Match legend color with bar color
-                                            }));
+                            });
+
+                            // Prepare role data for the pie chart
+                            const roleLabels = rolesData.map(item => item.role);
+                            const roleCounts = rolesData.map(item => parseInt(item.count, 10));
+
+                            // Bar Chart for Gender Distribution
+                            new Chart(document.getElementById('barChart'), {
+                                type: 'bar',
+                                data: {
+                                    labels: ['Men', 'Women'], // X-axis labels
+                                    datasets: [
+                                        {
+                                            label: 'Men',
+                                            data: [genderCounts[0], 0], // Data for Men only
+                                            backgroundColor: ['#4CAF50'], // Green
+                                            borderColor: ['#3E8E41'], // Dark Green Border
+                                            borderWidth: 1
+                                        },
+                                        {
+                                            label: 'Women',
+                                            data: [0, genderCounts[1]], // Data for Women only
+                                            backgroundColor: ['#FFC107'], // Yellow
+                                            borderColor: ['#FFB300'], // Dark Yellow Border
+                                            borderWidth: 1
+                                        }
+                                    ]
+                                },
+                                options: {
+                                    plugins: {
+                                        legend: {
+                                            display: true, // Display legend
+                                            labels: {
+                                                generateLabels: function (chart) {
+                                                    return chart.data.datasets.map((dataset, index) => ({
+                                                        text: dataset.label, // Use dataset labels for legend
+                                                        fillStyle: dataset.backgroundColor, // Match legend color with bar color
+                                                    }));
+                                                }
+                                            },
+                                            position: 'top' // Position of the legend
                                         }
                                     },
-                                    position: 'top' // Position of the legend
-                                }
-                            },
-                            scales: {
-                                y: {
-                                    beginAtZero: true, // Ensure Y-axis starts at 0
-                                    grid: {
-                                        color: '#eee' // Grid line color
-                                    },
-                                    ticks: {
-                                        color: '#333', // Y-axis ticks color
-                                        precision: 0 // Avoid decimals on tick marks
-                                    },
-                                    title: {
-                                        display: true,
-                                        text: 'Number of People', // Y-axis title
-                                        color: '#333'
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true, // Ensure Y-axis starts at 0
+                                            grid: {
+                                                color: '#eee' // Grid line color
+                                            },
+                                            ticks: {
+                                                color: '#333', // Y-axis ticks color
+                                                precision: 0 // Avoid decimals on tick marks
+                                            },
+                                            title: {
+                                                display: true,
+                                                text: 'Number of People', // Y-axis title
+                                                color: '#333'
+                                            }
+                                        },
+                                        x: {
+                                            grid: {
+                                                display: false // Hide grid lines for X-axis
+                                            },
+                                            ticks: {
+                                                color: '#333' // X-axis ticks color
+                                            },
+                                            title: {
+                                                display: true,
+                                                text: 'Gender', // X-axis title
+                                                color: '#333'
+                                            }
+                                        }
                                     }
-                                },
-                                x: {
-                                    grid: {
-                                        display: false // Hide grid lines for X-axis
-                                    },
-                                    ticks: {
-                                        color: '#333' // X-axis ticks color
-                                    },
-                                    title: {
-                                        display: true,
-                                        text: 'Gender', // X-axis title
-                                        color: '#333'
-                                    }
                                 }
-                            }
-                        }
-                    });
+                            });
 
-                    // Pie Chart for Roles Distribution
-                    new Chart(document.getElementById('pieChart'), {
-                        type: 'pie',
-                        data: {
-                            labels: roleLabels,
-                            datasets: [
-                                {
-                                    data: roleCounts,
-                                    backgroundColor: ['#FFCC00', '#FF6F61', '#6B5B95', '#88B04B'], // Pie segment colors
-                                    borderColor: '#ffffff', // White border for better separation
-                                    borderWidth: 1
+                            // Pie Chart for Roles Distribution
+                            new Chart(document.getElementById('pieChart'), {
+                                type: 'pie',
+                                data: {
+                                    labels: roleLabels,
+                                    datasets: [
+                                        {
+                                            data: roleCounts,
+                                            backgroundColor: ['#FFCC00', '#FF6F61', '#6B5B95', '#88B04B'], // Pie segment colors
+                                            borderColor: '#ffffff', // White border for better separation
+                                            borderWidth: 1
+                                        }
+                                    ]
+                                },
+                                options: {
+                                    plugins: {
+                                        legend: {
+                                            display: true,
+                                            position: 'bottom' // Position of the legend
+                                        }
+                                    },
+                                    responsive: true
                                 }
-                            ]
-                        },
-                        options: {
-                            plugins: {
-                                legend: {
-                                    display: true,
-                                    position: 'bottom' // Position of the legend
-                                }
-                            },
-                            responsive: true
+                            });
+                        } else {
+                            console.error('Error fetching data:', data.message);
+                            alert('Failed to load statistics.');
                         }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching statistics:', error);
+                        alert('An error occurred while fetching statistics.');
                     });
-                } else {
-                    console.error('Error fetching data:', data.message);
-                    alert('Failed to load statistics.');
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching statistics:', error);
-                alert('An error occurred while fetching statistics.');
             });
-    });
-</script>
+        </script>
