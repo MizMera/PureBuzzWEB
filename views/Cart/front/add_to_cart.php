@@ -15,16 +15,8 @@ if (isset($_GET['add_to_cart'])) {
     }
 
     // Vérifier si le produit est déjà dans le panier
-    if (isset($_SESSION['cart'][$productId])) {
-        echo "Ce produit est déjà dans le panier.<br>";
-    } else {
+    if (!isset($_SESSION['cart'][$productId])) {
         // Ajouter le produit avec une quantité de 1
         $_SESSION['cart'][$productId] = 1;
-        echo "Produit ajouté au panier.<br>";
     }
-
-    echo "<a href='view_cart.php'>Voir le panier</a>";
-} else {
-    echo "Aucun produit à ajouter.";
 }
-?>
