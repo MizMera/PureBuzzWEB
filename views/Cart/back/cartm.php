@@ -59,6 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['ne
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="stylesheet" href="../Products/style.css">
+    <link rel="stylesheet" href="../Products/style2.css">
+    <link rel="shortcut icon" href="../../../assets/PureBuzzLogo.png" />
+
 </head>
 <body>
 

@@ -65,7 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_apiary'])) {
     <!-- inject:css -->
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="stylesheet" href="../../../assets/vendors/mdi/css/materialdesignicons.min.css">
+       
+        <link rel="shortcut icon" href="../../../assets/PureBuzzLogo.png" />
 </head>
 
 <body>
@@ -421,9 +423,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_apiary'])) {
                       
             <li class="nav-item nav-category">Products and Management</li>
                         <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="../../categories/index.php" aria-expanded="false" aria-controls="tables">
-                                    <i class="menu-icon mdi mdi-table"></i>
-                                  <span class="menu-title">Categories</span>
+                        <a class="nav-link" href="../../categories/index.php" aria-expanded="false" aria-controls="charts">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">Categories</span>
                             </a>
                             <div class="collapse" id="tables">
                                 <ul class="nav flex-column sub-menu">
