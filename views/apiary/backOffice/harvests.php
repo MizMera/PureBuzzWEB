@@ -71,7 +71,8 @@ $chartData = json_encode([
     <!-- inject:css -->
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png" />
+  
+    <link rel="shortcut icon" href="../../../assets/PureBuzzLogo.png" />
 </head>
 
 <body>
@@ -357,7 +358,9 @@ $chartData = json_encode([
                             <p class="text-gray mb-0 ">Call Sarah Graves</p>
                         </div>
                     </div>
-                    <!-- To do section tab ends -->
+
+
+                    <!-- To do section  -->
                     <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
                         <div class="d-flex align-items-center justify-content-between border-bottom">
                             <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
@@ -424,22 +427,11 @@ $chartData = json_encode([
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                     <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../views/user/Front_office/UserProfile.html">
+                      
+            <li class="nav-item nav-category">Products and Management</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../categories/index.php" aria-expanded="false" aria-controls="charts">
                                 <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">My profile</span>
-                            </a>
-                        </li>
-                        <li class="nav-item nav-category">Products and Management</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php" aria-expanded="false" aria-controls="form-elements">
-                                <span class="menu-title">Product&categorie</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="../../views/Products/index.php"
-                                aria-expanded="false" aria-controls="tables">
-                                <i class="menu-icon mdi mdi-table"></i>
                                 <span class="menu-title">Categories</span>
                             </a>
                             <div class="collapse" id="tables">
@@ -451,8 +443,7 @@ $chartData = json_encode([
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../views/Products/index.php" aria-expanded="false"
-                                aria-controls="charts">
+                            <a class="nav-link" href="../../Products/index.php" aria-expanded="false" aria-controls="charts">
                                 <i class="menu-icon mdi mdi-chart-line"></i>
                                 <span class="menu-title">Product</span>
                             </a>
@@ -464,7 +455,7 @@ $chartData = json_encode([
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item nav-category">Support</li>
+            <li class="nav-item nav-category">Support</li>
                         <li class="nav-item">
                             <a class="nav-link" href="../../support/Reclamation.html" aria-expanded="false"
                                 aria-controls="charts">
@@ -481,14 +472,19 @@ $chartData = json_encode([
                         </li>
 
 
-                        <li class="nav-item nav-category">User Managment</li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="../..user/Back_Office/stat.html"
-                                aria-expanded="false" aria-controls="basic">
+             <li class="nav-item nav-category">User Managment</li>
+                        <li class="nav-item"> 
+                             <a class="nav-link" href="../../user/Back_Office/stat.html">
                                 <i class="menu-icon mdi mdi-table"></i>
                                 <span class="menu-title">User Mangamnets</span>
                                 <i class="menu-arrow"></i>
                             </a>
+                            <li class="nav-item">
+                            <a class="nav-link" href="../../user/Front_office/UserProfile.html">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">My profile</span>
+                            </a>
+                        </li>
                             <div class="collapse" id="basic">
                                 <ul class="nav flex-column sub-menu">
                                     <li class="nav-item"> <a class="nav-link" href="addUser.html">Add User</a></li>
@@ -499,21 +495,21 @@ $chartData = json_encode([
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item nav-category"> apiaries</li>
+             <li class="nav-item nav-category"> apiaries</li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../backOffice/apiaries.php">
+                            <a class="nav-link" href="../../apiary/backOffice/apiaries.php">
                                 <i class="mdi mdi-grid-large menu-icon"></i>
                                 <span class="menu-title">Apiaries</span>
                             </a>
                         </li>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../views/apiary/backOffice/harvests.php">
+                            <a class="nav-link" href="../../apiary/backOffice/harvests.php">
                                 <i class="mdi mdi-grid-large menu-icon"></i>
                                 <span class="menu-title">Harvests</span>
                             </a>
                         </li>
-                        <li class="nav-item nav-category">Cart</li>
+          <li class="nav-item nav-category">Cart</li>
                         <li class="nav-item">
                             <a class="nav-link" href="../../Cart/back/cartm.php">
                                 <i class="mdi mdi-grid-large menu-icon"></i>

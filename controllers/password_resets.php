@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 2525;
 
-                $resetLink = "http://localhost:63342/buzz_mail/projet_web1/App/controller/user/submit_new_pwd.php?token=$resetToken";
+                $resetLink = "                $resetLink = "http://localhost:63342/PureBuzzWEB-integration/controllers/user/submit_new_pwd.php?token=$resetToken";;
                 $mail->setFrom('noreply@purebuzz.com', 'PureBuzz Team');
                 $mail->addAddress($email);
                 $mail->isHTML(true);

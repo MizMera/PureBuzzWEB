@@ -51,8 +51,20 @@ if (isset($_GET['action']) && $_GET['action'] === 'sortByNumber') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
+      
     <link rel="stylesheet" href="../Products/style.css">
     <link rel="stylesheet" href="../Products/style2.css">
+    <link rel="stylesheet" href="../../../assets/vendors/feather/feather.css">
+        <link rel="stylesheet" href="../../../assets/vendors/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="../../../assets/vendors/ti-icons/css/themify-icons.css">
+        <link rel="stylesheet" href=../../../assets/vendors/typicons/typicons.css"">
+        <link rel="stylesheet" href="../../../assets/vendors/simple-line-icons/css/simple-line-icons.css">
+        <link rel="stylesheet" href="../../../assets/vendors/css/vendor.bundle.base.css">
+        <link rel="stylesheet" href="../../../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+        <link rel="stylesheet" href="../../../assets/js/select.dataTables.min.css">
+        <link rel="stylesheet" href="../../../assets/css/vertical-layout-light/style.css">
+        <link rel="stylesheet" href="../../../assets/css/Back_office/AllUsers.css">
+        <link rel="shortcut icon" href="../../../assets/PureBuzzLogo.png" />
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -184,14 +196,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'sortByNumber') {
       </nav>
        <!-- --------------------------------------nav-bar-set ne touche pas  -------------------------------------------------------------- -->
     <div class="container-fluid page-body-wrapper"> 
-
-   
         <!-- ...----------------------------- ----------------------- (Sidebar code)---------------------- ... -->
-        <?php include '../../Public/sidebar.php'; ?>
-             
+        <?php include_once '../../Public/sidebar.php'; ?>
         <div class="container-fluid">
-      
-
             <!-- Form Section -->
             <div class="form-card" >
                 <h2>Add Product</h2>
