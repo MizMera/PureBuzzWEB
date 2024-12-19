@@ -4,8 +4,7 @@
             <li class="nav-item nav-category">Products and Management</li>
                     
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="../../views/categories/index.php"
-                                aria-expanded="false" aria-controls="tables">
+                            <a class="nav-link" data-bs-toggle="collapse" href="../../views/categories/index.php" aria-expanded="false" aria-controls="tables">
                                 <i class="menu-icon mdi mdi-table"></i>
                                 <span class="menu-title">Categories</span>
                             </a>
