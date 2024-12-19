@@ -274,8 +274,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <td><?php echo htmlspecialchars($categories['id']); ?></td>
                                 <td><?php echo htmlspecialchars($categories['name']); ?></td>
                                 <td><?php echo htmlspecialchars($categories['description']); ?></td>
-                                <td>
-                                <a class="btn-edit" href="edit.php?id=<?php echo htmlspecialchars($categories['id']); ?>">Edit</a>                                    
+                                <td class="action-buttons">
+                                <a class="btn-edit" href="edit.php?id=<?php echo htmlspecialchars($categories['id']); ?>">Edit</a>       <br> </br>                             
                                 <a class="btn-delete" href="index.php?controller=categorie&action=delete&id=<?php echo htmlspecialchars($categories['id']); ?>" 
                                         onclick="return confirm('Are you sure you want to delete this category?')">Delete</a>
 

@@ -409,17 +409,24 @@
                         <!-- chat tab ends -->
                     </div>
                 </div>
-                <nav class="sidebar">
+                <nav class="sidebar sidebar-offcanvas" id="sidebar">
                     <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../views/user/Front_office/UserProfile.html">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">My profile</span>
+                            </a>
+                        </li>
                         <li class="nav-item nav-category">Products and Management</li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php" aria-expanded="false" aria-controls="form-elements">
+                            <a class="nav-link" href="../../views/Products/index.php" aria-expanded="false"
+                                aria-controls="form-elements">
                                 <span class="menu-title">Product&categorie</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false"
-                                aria-controls="tables">
+                            <a class="nav-link" data-bs-toggle="collapse" href="../../views/Products/index.php"
+                                aria-expanded="false" aria-controls="tables">
                                 <i class="menu-icon mdi mdi-table"></i>
                                 <span class="menu-title">Categories</span>
                             </a>
@@ -432,7 +439,8 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../index.php? " aria-expanded="false" aria-controls="charts">
+                            <a class="nav-link" href="../../views/Products/index.php" aria-expanded="false"
+                                aria-controls="charts">
                                 <i class="menu-icon mdi mdi-chart-line"></i>
                                 <span class="menu-title">Product</span>
                             </a>
@@ -446,9 +454,10 @@
                         </li>
                         <li class="nav-item nav-category">Support</li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" aria-expanded="false" aria-controls="charts">
+                            <a class="nav-link" href="../../views/support/Reclamation.html" aria-expanded="false"
+                                aria-controls="charts">
                                 <i class="menu-icon mdi mdi-chart-line"></i>
-                                <span class="menu-title">Submit a claim</span>
+                                <span class="menu-title">Claims views</span>
                             </a>
                             <div class="collapse" id="charts">
                                 <ul class="nav flex-column sub-menu">
@@ -457,20 +466,64 @@
                                     </li>
                                 </ul>
                             </div>
+                        </li>
+
+
+                        <li class="nav-item nav-category">User Managment</li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="../../views/user/Back_Office/stat.html"
+                                aria-expanded="false" aria-controls="basic">
+                                <i class="menu-icon mdi mdi-table"></i>
+                                <span class="menu-title">User Mangamnets</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="basic">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a class="nav-link" href="addUser.html">Add User</a></li>
+                                    <li class="nav-item"> <a class="nav-link" href="AllUsers.html">Get All Users</a>
+                                    </li>
+                                    <li class="nav-item"> <a class="nav-link" href="stat.html">Dashboard</a></li>
+
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item nav-category"> apiaries</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../views/apiary/backOffice/apiaries.php">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">Apiaries</span>
+                            </a>
+                        </li>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="help.html" aria-expanded="false" aria-controls="charts">
-                                <i class="menu-icon mdi mdi-chart-line"></i>
-                                <span class="menu-title">help</span>
+                            <a class="nav-link" href="../../views/apiary/backOffice/harvests.php">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">Harvests</span>
                             </a>
-                            <div class="collapse" id="charts">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
+                        <li class="nav-item nav-category">Cart</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../views/Cart/back/cartm.php">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">Cart Management</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../views/Cart/back/promo.php">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">Promos</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item nav-category">Settings</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="logoutLink">
+                                <i class="menu-icon mdi mdi-file-document"></i>
+                                <span class="menu-title">Log Out</span>
+                            </a>
+                        </li>
+
+
                     </ul>
                 </nav>
                 <!-- partial -->
@@ -782,7 +835,7 @@
         // Fetch all claims and render them
         async function fetchClaims() {
             try {
-                const response = await fetch("http://localhost/PureBuzzWEB-integration/Public/index.php?controller=claims&action=list");
+                const response = await fetch("../../Public/index.php?controller=claims&action=list");
                 const result = await response.json();
 
                 if (response.ok) {
@@ -855,7 +908,7 @@
                 const payload = { claim_id: claimID }; // Prepare payload with 'claim_id'
                 console.log("Payload being sent to server:", JSON.stringify(payload)); // Debug log
 
-                const response = await fetch(`http://localhost/PureBuzzWEB-integration/Public/index.php?controller=claims&action=deleteClaim`, {
+                const response = await fetch(`../../Public/index.php?controller=claims&action=deleteClaim`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -881,7 +934,7 @@
         // Fetch all responses and render them
         async function fetchResponses() {
             try {
-                const response = await fetch("http://localhost/PureBuzzWEB-integration/Public/index.php?controller=responses&action=list_response");
+                const response = await fetch("../../Public/index.php?controller=responses&action=list_response");
                 const result = await response.json();
 
                 if (response.ok) {
@@ -942,7 +995,7 @@
         // Delete response from server
         async function deleteResponse(responseID, row) {
             try {
-                const response = await fetch(`http://localhost/PureBuzzWEB-integration/Public/index.php?controller=responses&action=deleteResponse`, {
+                const response = await fetch(`../../Public/index.php?controller=responses&action=deleteResponse`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -1042,7 +1095,7 @@
         // Update response data via the backend
         async function updateResponse(updatedData) {
             try {
-                const response = await fetch(`http://localhost/PureBuzzWEB-integration/Public/index.php?controller=Responses&action=update_Response`, {
+                const response = await fetch(`../../Public/index.php?controllerr=Responses&action=update_Response`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -1100,7 +1153,7 @@
         // Update claim data via the backend
         async function updateClaim(claimID, updatedData) {
             try {
-                const response = await fetch(`http://localhost/PureBuzzWEB-integration/Public/index.php?controller=claims&action=update`, {
+                const response = await fetch(`../../Public/index.php?controller=claims&action=update`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

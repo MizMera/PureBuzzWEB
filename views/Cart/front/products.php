@@ -1,9 +1,12 @@
 <?php
 session_start();
-include_once 'config.php'; // Connexion à la base de données
+
 
 // Obtenez la connexion PDO à partir de la classe Config
-$pdo = Config::getConnexion();
+include_once __DIR__ . '/../../../config/database.php';
+
+// Connexion à la base de données via PDO
+$pdo = Database::getConnexion();
 
 // Afficher les produits disponibles à l'achat
 $stmt = $pdo->prepare("SELECT * FROM products");

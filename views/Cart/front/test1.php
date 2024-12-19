@@ -47,7 +47,7 @@ if (isset($_GET['order_id'])) {
         $pdf->AddPage();
 
         // Ajouter le logo avec une taille réduite (modifiez la taille selon vos besoins)
-        $logo_path = 'PureBuzzLogo.png'; // Remplacez par le chemin de votre logo
+        $logo_path = '../PureBuzzLogo.png'; // Remplacez par le chemin de votre logo
         $pdf->Image($logo_path, 4, 4, 10); // Position x, y et taille (largeur)
         $pdf->Image($logo_path, 197, 4, 10); // Position x, y et taille (largeur)
 

@@ -308,7 +308,7 @@ $categories = $categorie_Controller->getCategories(); // Fetch all categories
 
 
     <div class="table-card">
-    <form method="GET" action="index.php" class="Search-form">
+    <form method="GET" action="index.php" class="search-form">
               <lable for="search"> Search </lable>
             <input type="text" name="search" placeholder="Search products name.." 
                   value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" />
