@@ -192,14 +192,10 @@ body {
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <h1>Welcome to PureBuzz</h1>
-        <p>Your trusted source for premium beekeeping products, natural honey, and health-boosting bee by-products. Discover our wide range of offerings!</p>
-        <a href="#product-section" class="cta-button">Shop Now</a>
-    </section>
+
 
     <!-- About Us Section -->
-    <section id="about" class="info-section">
+    <section>
     <div class="row">
     <div class="col">
         <div class="card">
@@ -278,7 +274,7 @@ body {
 
     </section>
         <!-- About Us Section -->
-        <section id="about" class="info-section">
+        <section>
         <div class="row">
     <div class="col">
         <div class="card">
