@@ -357,7 +357,9 @@ $chartData = json_encode([
                             <p class="text-gray mb-0 ">Call Sarah Graves</p>
                         </div>
                     </div>
-                    <!-- To do section tab ends -->
+
+
+                    <!-- To do section  -->
                     <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
                         <div class="d-flex align-items-center justify-content-between border-bottom">
                             <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
@@ -424,6 +426,15 @@ $chartData = json_encode([
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                     <ul class="nav">
+<<<<<<< HEAD
+                      
+            <li class="nav-item nav-category">Products and Management</li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="../../categories/index.php"
+                                aria-expanded="false" aria-controls="tables">
+                                    <i class="menu-icon mdi mdi-table"></i>
+                                  <span class="menu-title">Categories</span>
+=======
                         <li class="nav-item">
                             <a class="nav-link" href="../../views/user/Front_office/UserProfile.html">
                                 <i class="mdi mdi-grid-large menu-icon"></i>
@@ -441,6 +452,7 @@ $chartData = json_encode([
                                 aria-expanded="false" aria-controls="tables">
                                 <i class="menu-icon mdi mdi-table"></i>
                                 <span class="menu-title">Categories</span>
+>>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                             </a>
                             <div class="collapse" id="tables">
                                 <ul class="nav flex-column sub-menu">
@@ -451,8 +463,12 @@ $chartData = json_encode([
                             </div>
                         </li>
                         <li class="nav-item">
+<<<<<<< HEAD
+                            <a class="nav-link" href="../../Products/index.php" aria-expanded="false" aria-controls="charts">
+=======
                             <a class="nav-link" href="../../views/Products/index.php" aria-expanded="false"
                                 aria-controls="charts">
+>>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                                 <i class="menu-icon mdi mdi-chart-line"></i>
                                 <span class="menu-title">Product</span>
                             </a>
@@ -464,7 +480,11 @@ $chartData = json_encode([
                                 </ul>
                             </div>
                         </li>
+<<<<<<< HEAD
+            <li class="nav-item nav-category">Support</li>
+=======
                         <li class="nav-item nav-category">Support</li>
+>>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                         <li class="nav-item">
                             <a class="nav-link" href="../../support/Reclamation.html" aria-expanded="false"
                                 aria-controls="charts">
@@ -481,14 +501,29 @@ $chartData = json_encode([
                         </li>
 
 
+<<<<<<< HEAD
+             <li class="nav-item nav-category">User Managment</li>
+                        <li class="nav-item"> 
+                             <a class="nav-link" href="../../user/Back_Office/stat.html">
+=======
                         <li class="nav-item nav-category">User Managment</li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="collapse" href="../..user/Back_Office/stat.html"
                                 aria-expanded="false" aria-controls="basic">
+>>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                                 <i class="menu-icon mdi mdi-table"></i>
                                 <span class="menu-title">User Mangamnets</span>
                                 <i class="menu-arrow"></i>
                             </a>
+<<<<<<< HEAD
+                            <li class="nav-item">
+                            <a class="nav-link" href="../../user/Front_office/UserProfile.html">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">My profile</span>
+                            </a>
+                        </li>
+=======
+>>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                             <div class="collapse" id="basic">
                                 <ul class="nav flex-column sub-menu">
                                     <li class="nav-item"> <a class="nav-link" href="addUser.html">Add User</a></li>
@@ -499,21 +534,35 @@ $chartData = json_encode([
                                 </ul>
                             </div>
                         </li>
+<<<<<<< HEAD
+             <li class="nav-item nav-category"> apiaries</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../apiary/backOffice/apiaries.php">
+=======
                         <li class="nav-item nav-category"> apiaries</li>
                         <li class="nav-item">
                             <a class="nav-link" href="../backOffice/apiaries.php">
+>>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                                 <i class="mdi mdi-grid-large menu-icon"></i>
                                 <span class="menu-title">Apiaries</span>
                             </a>
                         </li>
                         </li>
                         <li class="nav-item">
+<<<<<<< HEAD
+                            <a class="nav-link" href="../../apiary/backOffice/harvests.php">
+=======
                             <a class="nav-link" href="../../views/apiary/backOffice/harvests.php">
+>>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                                 <i class="mdi mdi-grid-large menu-icon"></i>
                                 <span class="menu-title">Harvests</span>
                             </a>
                         </li>
+<<<<<<< HEAD
+          <li class="nav-item nav-category">Cart</li>
+=======
                         <li class="nav-item nav-category">Cart</li>
+>>>>>>> 301448b6a4a7f6717e4ba73f8bf0876ec2119c5c
                         <li class="nav-item">
                             <a class="nav-link" href="../../Cart/back/cartm.php">
                                 <i class="mdi mdi-grid-large menu-icon"></i>
