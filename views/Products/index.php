@@ -187,7 +187,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'sortByNumber') {
 
    
         <!-- ...----------------------------- ----------------------- (Sidebar code)---------------------- ... -->
-        <?php include '../../Public/sidebar.php'; ?>
+        <?php include_once '../../Public/sidebar.php'; ?>
              
         <div class="container-fluid">
       
