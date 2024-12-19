@@ -20,3 +20,8 @@ if (isset($_GET['add_to_cart'])) {
         $_SESSION['cart'][$productId] = 1;
     }
 }
+
+// Rediriger l'utilisateur vers la page view_cart.php
+header('Location: view_cart.php');
+exit();
+?>
