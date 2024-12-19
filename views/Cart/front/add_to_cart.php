@@ -14,17 +14,14 @@ if (isset($_GET['add_to_cart'])) {
         $_SESSION['cart'] = [];
     }
 
-    // Si le produit est déjà dans le panier, augmenter la quantité
-    if (isset($_SESSION['cart'][$productId])) {
-        $_SESSION['cart'][$productId]++;
-    } else {
-        // Sinon, ajouter le produit avec une quantité de 1
+    // Vérifier si le produit est déjà dans le panier
+    if (!isset($_SESSION['cart'][$productId])) {
+        // Ajouter le produit avec une quantité de 1
         $_SESSION['cart'][$productId] = 1;
     }
-
-    echo "Produit ajouté au panier.<br>";
-    echo "<a href='view_cart.php'>Voir le panier</a>";
-} else {
-    echo "Aucun produit à ajouter.";
 }
+
+// Rediriger l'utilisateur vers la page view_cart.php
+header('Location: view_cart.php');
+exit();
 ?>

@@ -6,6 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Claims Submission</title>
     <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="../../../assets/vendors/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="../../../assets/vendors/ti-icons/css/themify-icons.css">
+        <link rel="stylesheet" href=../../../assets/vendors/typicons/typicons.css"">
+        <link rel="stylesheet" href="../../../assets/vendors/simple-line-icons/css/simple-line-icons.css">
+        <link rel="stylesheet" href="../../../assets/vendors/css/vendor.bundle.base.css">
+        <link rel="stylesheet" href="../../../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+        <link rel="stylesheet" href="../../../assets/js/select.dataTables.min.css">
+        <link rel="stylesheet" href="../../../assets/css/vertical-layout-light/style.css">
+        <link rel="stylesheet" href="../../../assets/css/Back_office/AllUsers.css">
     <style>
         /* General Styles */
         body {
@@ -268,7 +277,7 @@
 
             try {
                 console.log(formData)
-                const response = await fetch("http://localhost/PureBuzzWEB-integration/Public/index.php?controller=claims&action=store", {
+                const response = await fetch("../../Public/index.php?controller=claims&action=store", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -359,6 +368,7 @@
                 submitClaim();
             }
         }
+        //vjnvjdjdvdvj 
 
         function sendBotMessage(message) {
             const chatBody = document.getElementById("chatBody");

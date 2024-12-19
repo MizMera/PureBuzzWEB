@@ -217,7 +217,7 @@
 
             try {
                 console.log(formData)
-                const response = await fetch("http://localhost/PureBuzzWEB-integration/Public/index.php?controller=claims&action=store", {
+                const response = await fetch("../../Public/index.php?controller=claims&action=store", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

@@ -127,10 +127,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['promo_code']) && !empt
             <li><a href="#support" class="nav-link">Support</a></li>
             <li><a href="#product-section" class="nav-link">Products</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
+            <li><a href="#mu profile" class="nav-link">My profile</a></li>
         </ul>
         <div class="auth-buttons">
-            <a href="#" class="signin">Sign in</a>
-            <a href="#" class="register">Register</a>
+
         </div>
 </nav>
         <!-- Cart Icon Section -->
@@ -188,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['promo_code']) && !empt
             <div class="cart-container">
                 <?php displayCart($pdo); ?>
                 <div class="continue-shopping-container">
-                    <a href="products.php">
+                    <a href="../../../Public/Product-pages/prod.html">
                         <button class="continue-shopping">← CONTINUE SHOPPING</button>
                     </a>
                 </div>

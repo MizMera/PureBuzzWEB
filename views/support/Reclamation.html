@@ -16,6 +16,15 @@
             <a href="dashboard.html" class="nav-link">Dashboard</a>
             <a href="add-claim.html" class="nav-link">Add Claim</a>
             <a href="login.html" class="nav-link">Logout</a>
+            <link rel="stylesheet" href="../../../assets/vendors/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="../../../assets/vendors/ti-icons/css/themify-icons.css">
+        <link rel="stylesheet" href=../../../assets/vendors/typicons/typicons.css"">
+        <link rel="stylesheet" href="../../../assets/vendors/simple-line-icons/css/simple-line-icons.css">
+        <link rel="stylesheet" href="../../../assets/vendors/css/vendor.bundle.base.css">
+        <link rel="stylesheet" href="../../../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+        <link rel="stylesheet" href="../../../assets/js/select.dataTables.min.css">
+        <link rel="stylesheet" href="../../../assets/css/vertical-layout-light/style.css">
+        <link rel="stylesheet" href="../../../assets/css/Back_office/AllUsers.css">
         </nav>
         <div class="container-scroller">
             <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
@@ -835,7 +844,7 @@
         // Fetch all claims and render them
         async function fetchClaims() {
             try {
-                const response = await fetch("http://localhost/PureBuzzWEB-integration/Public/index.php?controller=claims&action=list");
+                const response = await fetch("../../Public/index.php?controller=claims&action=list");
                 const result = await response.json();
 
                 if (response.ok) {
@@ -908,7 +917,7 @@
                 const payload = { claim_id: claimID }; // Prepare payload with 'claim_id'
                 console.log("Payload being sent to server:", JSON.stringify(payload)); // Debug log
 
-                const response = await fetch(`http://localhost/PureBuzzWEB-integration/Public/index.php?controller=claims&action=deleteClaim`, {
+                const response = await fetch("../../Public/index.php?controller=claims&action=deleteClaim", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -934,7 +943,7 @@
         // Fetch all responses and render them
         async function fetchResponses() {
             try {
-                const response = await fetch("http://localhost/PureBuzzWEB-integration/Public/index.php?controller=responses&action=list_response");
+                const response = await fetch("../../Public/index.php?controller=responses&action=list_response");
                 const result = await response.json();
 
                 if (response.ok) {
@@ -995,7 +1004,7 @@
         // Delete response from server
         async function deleteResponse(responseID, row) {
             try {
-                const response = await fetch(`http://localhost/PureBuzzWEB-integration/Public/index.php?controller=responses&action=deleteResponse`, {
+                const response = await fetch("../../Public/index.php?controller=responses&action=deleteResponse", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -1095,7 +1104,7 @@
         // Update response data via the backend
         async function updateResponse(updatedData) {
             try {
-                const response = await fetch(`http://localhost/PureBuzzWEB-integration/Public/index.php?controller=Responses&action=update_Response`, {
+                const response = await fetch("../../Public/index.php?controllerr=Responses&action=update_Response", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -1153,7 +1162,7 @@
         // Update claim data via the backend
         async function updateClaim(claimID, updatedData) {
             try {
-                const response = await fetch(`http://localhost/PureBuzzWEB-integration/Public/index.php?controller=claims&action=update`, {
+                const response = await fetch("../../Public/index.php?controller=claims&action=update", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -1207,6 +1216,8 @@
                 }
             });
         }
+        //ebkjbkjevhjbbvhdhbdvh
     </script>
+
 
 </html>
