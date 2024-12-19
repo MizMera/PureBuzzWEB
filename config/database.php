@@ -18,25 +18,22 @@ function connectDatabase()
 
 class Database
 {
-    private static $pdo = null;
+    $host = 'localhost';    
+    $dbname = 'purebuzz_db';
+    $username = 'root';
+    $password = '';
 
-    private static function connectDatabase()
-    {
-        $host = 'localhost';    
-        $dbname = 'purebuzz_db';
-        $username = 'root';
-        $password = '';
-
-        try {
-            $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            return $pdo;
-        } catch (PDOException $e) {
-            die("Database connection failed: " . $e->getMessage());
-        }
+    try {
+        $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $pdo;
+    } catch (PDOException $e) {
+        die("Database connection failed: " . $e->getMessage());
     }
+}
 
+class Database
+{   private static $pdo = null;
     public static function getConnexion()
     {
         if (!isset(self::$pdo)) {
@@ -46,5 +43,4 @@ class Database
         return self::$pdo;
     }
 }
-
 Database::getConnexion();
