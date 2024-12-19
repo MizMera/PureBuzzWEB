@@ -422,23 +422,13 @@ if (isset($_POST['submit'])) {
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                     <ul class="nav">
+                      
+            <li class="nav-item nav-category">Products and Management</li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../views/user/Front_office/UserProfile.html">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">My profile</span>
-                            </a>
-                        </li>
-                        <li class="nav-item nav-category">Products and Management</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php" aria-expanded="false" aria-controls="form-elements">
-                                <span class="menu-title">Product&categorie</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="../../views/Products/index.php"
+                            <a class="nav-link" data-bs-toggle="collapse" href="../../categories/index.php"
                                 aria-expanded="false" aria-controls="tables">
-                                <i class="menu-icon mdi mdi-table"></i>
-                                <span class="menu-title">Categories</span>
+                                    <i class="menu-icon mdi mdi-table"></i>
+                                  <span class="menu-title">Categories</span>
                             </a>
                             <div class="collapse" id="tables">
                                 <ul class="nav flex-column sub-menu">
@@ -449,8 +439,7 @@ if (isset($_POST['submit'])) {
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../views/Products/index.php" aria-expanded="false"
-                                aria-controls="charts">
+                            <a class="nav-link" href="../../Products/index.php" aria-expanded="false" aria-controls="charts">
                                 <i class="menu-icon mdi mdi-chart-line"></i>
                                 <span class="menu-title">Product</span>
                             </a>
@@ -462,9 +451,9 @@ if (isset($_POST['submit'])) {
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item nav-category">Support</li>
+            <li class="nav-item nav-category">Support</li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../views/support/Reclamation.html" aria-expanded="false"
+                            <a class="nav-link" href="../../support/Reclamation.html" aria-expanded="false"
                                 aria-controls="charts">
                                 <i class="menu-icon mdi mdi-chart-line"></i>
                                 <span class="menu-title">Claims views</span>
@@ -479,14 +468,19 @@ if (isset($_POST['submit'])) {
                         </li>
 
 
-                        <li class="nav-item nav-category">User Managment</li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="../../views/user/Back_Office/stat.html"
-                                aria-expanded="false" aria-controls="basic">
+             <li class="nav-item nav-category">User Managment</li>
+                        <li class="nav-item"> 
+                             <a class="nav-link" href="../../user/Back_Office/stat.html">
                                 <i class="menu-icon mdi mdi-table"></i>
                                 <span class="menu-title">User Mangamnets</span>
                                 <i class="menu-arrow"></i>
                             </a>
+                            <li class="nav-item">
+                            <a class="nav-link" href="../../user/Front_office/UserProfile.html">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">My profile</span>
+                            </a>
+                        </li>
                             <div class="collapse" id="basic">
                                 <ul class="nav flex-column sub-menu">
                                     <li class="nav-item"> <a class="nav-link" href="addUser.html">Add User</a></li>
@@ -497,29 +491,29 @@ if (isset($_POST['submit'])) {
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item nav-category"> apiaries</li>
+             <li class="nav-item nav-category"> apiaries</li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../views/apiary/backOffice/apiaries.php">
+                            <a class="nav-link" href="../../apiary/backOffice/apiaries.php">
                                 <i class="mdi mdi-grid-large menu-icon"></i>
                                 <span class="menu-title">Apiaries</span>
                             </a>
                         </li>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../views/apiary/backOffice/harvests.php">
+                            <a class="nav-link" href="../../apiary/backOffice/harvests.php">
                                 <i class="mdi mdi-grid-large menu-icon"></i>
                                 <span class="menu-title">Harvests</span>
                             </a>
                         </li>
-                        <li class="nav-item nav-category">Cart</li>
+          <li class="nav-item nav-category">Cart</li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../views/Cart/back/cartm.php">
+                            <a class="nav-link" href="../../Cart/back/cartm.php">
                                 <i class="mdi mdi-grid-large menu-icon"></i>
                                 <span class="menu-title">Cart Management</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../views/Cart/back/promo.php">
+                            <a class="nav-link" href="../../Cart/back/promo.php">
                                 <i class="mdi mdi-grid-large menu-icon"></i>
                                 <span class="menu-title">Promos</span>
                             </a>
@@ -532,8 +526,6 @@ if (isset($_POST['submit'])) {
                                 <span class="menu-title">Log Out</span>
                             </a>
                         </li>
-
-
                     </ul>
                 </nav>
             <div style="margin-left: 40px; width:1100px;">
