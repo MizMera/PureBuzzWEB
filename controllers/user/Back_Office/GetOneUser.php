@@ -5,7 +5,7 @@ if (isset($_GET['id'])) {
     try {
         // Database connection details
         $host = "localhost";
-        $dbName = "purebuzz_db";
+        $dbName = "purebuzz_db3";
         $username = "root";
         $passwordDB = "";
 

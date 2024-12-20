@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         $host = "localhost";
-        $dbName = "purebuzz";
+        $dbName = "purebuzz_db3";
         $username = "root";
         $passwordDB = "";
 

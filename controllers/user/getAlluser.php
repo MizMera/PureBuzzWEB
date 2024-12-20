@@ -23,7 +23,7 @@ try {
 
     // Database configuration
     $host = "localhost";
-    $dbName = "purebuzz_db";
+    $dbName = "purebuzz_db3";
     $username = "root";
     $passwordDB = "";
 

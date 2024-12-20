@@ -20,7 +20,7 @@ try {
 
     // Database connection
     $host = "localhost";
-    $dbName = "purebuzz_db";
+    $dbName = "purebuzz_db3";
     $username = "root";
     $passwordDB = "";
     $dsn = "mysql:host=$host;dbname=$dbName;charset=utf8mb4";
