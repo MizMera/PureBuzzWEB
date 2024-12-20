@@ -40,18 +40,13 @@ if (isset($_GET['action']) && $_GET['action'] === 'sortByNumber') {
     $sortDirection = $_GET['direction'] ?? 'ASC';
     $productController->sortByNumber($sortColumn, $sortDirection);
 }
-
-
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
-      
     <link rel="stylesheet" href="../Products/style.css">
     <link rel="stylesheet" href="../Products/style2.css">
     <link rel="stylesheet" href="../../../assets/vendors/feather/feather.css">
@@ -67,7 +62,6 @@ if (isset($_GET['action']) && $_GET['action'] === 'sortByNumber') {
         <link rel="shortcut icon" href="../../../assets/PureBuzzLogo.png" />
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 <body>
 

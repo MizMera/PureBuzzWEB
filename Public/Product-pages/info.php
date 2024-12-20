@@ -179,27 +179,21 @@ body {
             <img src="PureBuzzLogo.png" alt="PureBuzz Logo"> <!-- Replace with the actual logo path -->
         </div>
         <ul class="menu">
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#benefits" class="nav-link">Benefits</a></li>
-            <li><a href="#support" class="nav-link">Support</a></li>
-            <li><a href="#product-section" class="nav-link">Products</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
+            <li><a href="prod.html" class="nav-link">About</a></li>
+            <li><a href="prod.html" class="nav-link">Benefits</a></li>
+            <li><a href="prod.html" class="nav-link">Support</a></li>
+            <li><a href="prod.html" class="nav-link">Products</a></li>
+            <li><a href="prod.html" class="nav-link">Contact</a></li>
+            <li><a href="prod.html" class="nav-link">My profile</a></li>
         </ul>
-        <div class="auth-buttons">
-            <a href="#" class="signin">Sign in</a>
-            <a href="#" class="register">Register</a>
-        </div>
+        <div class="auth-buttons"></div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <h1>Welcome to PureBuzz</h1>
-        <p>Your trusted source for premium beekeeping products, natural honey, and health-boosting bee by-products. Discover our wide range of offerings!</p>
-        <a href="#product-section" class="cta-button">Shop Now</a>
-    </section>
+
 
     <!-- About Us Section -->
-    <section id="about" class="info-section">
+    <section>
     <div class="row">
     <div class="col">
         <div class="card">
@@ -245,7 +239,7 @@ body {
                                         <td>" . htmlspecialchars($apiary['hiveCount']) . "</td>
                                         <td>" . htmlspecialchars($apiary['observation']) . "</td>
                                         <td>
-                                            <a href='map.php?cor=" . $apiary['coordinates'] . "' class='signin'>Show in map</a>
+                                            <a href='../../views/apiary/frontOffice/map.php?cor=" . $apiary['coordinates'] . "' class='signin'>Show in map</a>
                                         </td>
 
                                     </tr>";
@@ -278,7 +272,7 @@ body {
 
     </section>
         <!-- About Us Section -->
-        <section id="about" class="info-section">
+        <section>
         <div class="row">
     <div class="col">
         <div class="card">

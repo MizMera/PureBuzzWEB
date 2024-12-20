@@ -1,6 +1,6 @@
 <?php
 // Inclure la bibliothèque TCPDF
-require_once 'C:\xampp\htdocs\PureBuzzWEB\views\Cart\front\TCPDF-main\tcpdf.php';
+require_once '../../../views/Cart/front/TCPDF-main/tcpdf.php';
 
 // Connexion à la base de données (assurez-vous que la connexion PDO est correcte)
 include_once __DIR__ . '/../../../config/database.php';

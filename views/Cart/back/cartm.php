@@ -511,7 +511,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['ne
                                 <span class="menu-title">Promos</span>
                             </a>
                         </li>
-
+                        <li class="nav-item nav-category">EVENTS</li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="../../events/app/manage_events.php">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">Mangae Event</span>
+                            </a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="../../events/app/manage_tickets.php">
+                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <span class="menu-title">Manage Ticket</span>
+                            </a>
+                    </li>
                         <li class="nav-item nav-category">Settings</li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" id="logoutLink">

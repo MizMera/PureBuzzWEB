@@ -122,12 +122,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['promo_code']) && !empt
             <img src="PureBuzzLogo.png" alt="PureBuzz Logo"> <!-- Replace with the actual logo path -->
         </div>
         <ul class="menu">
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#benefits" class="nav-link">Benefits</a></li>
-            <li><a href="#support" class="nav-link">Support</a></li>
-            <li><a href="#product-section" class="nav-link">Products</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-            <li><a href="#mu profile" class="nav-link">My profile</a></li>
+            <li><a href="../../../Public/Product-pages/prod.html" class="nav-link">About</a></li>
+            <li><a href="../../../Public/Product-pages/prod.html" class="nav-link">Benefits</a></li>
+            <li><a href="../../../Public/Product-pages/prod.html" class="nav-link">Support</a></li>
+            <li><a href="../../../Public/Product-pages/prod.html" class="nav-link">Products</a></li>
+            <li><a href="../../../Public/Product-pages/prod.html" class="nav-link">Contact</a></li>
+            <li><a href="../../../Public/Product-pages/prod.html" class="nav-link">My profile</a></li>
         </ul>
         <div class="auth-buttons">
 
