@@ -46,12 +46,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->isSMTP();
                 $mail->Host = 'sandbox.smtp.mailtrap.io';
                 $mail->SMTPAuth = true;
-                $mail->Username = '17d992ca54f145'; // Mailtrap Username
-                $mail->Password = 'e5a7a2aa21db09'; // Mailtrap Password
+                $mail->Username = '17009d73e75647'; // Mailtrap Username
+                $mail->Password = '6f3a18807b967a'; // Mailtrap Password
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 2525;
 
-                $resetLink = "http://localhost:63342/../controllers/user/submit_new_pwd.php?token=$resetToken";
+                $resetLink = "http://localhost:63342/PureBuzzWEB-integration/controllers/user/submit_new_pwd.php?token=$resetToken";
                 $mail->setFrom('noreply@purebuzz.com', 'PureBuzz Team');
                 $mail->addAddress($email);
                 $mail->isHTML(true);
