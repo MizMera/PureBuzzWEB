@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->Host = 'sandbox.smtp.mailtrap.io';
             $mail->SMTPAuth = true;
             $mail->Username = '17009d73e75647'; // Mailtrap Username
-            $mail->Password = '6f3a18807b967a'; // Mailtrap Password
+            $mail->Password = 'e5a7a2aa21db09'; // Mailtrap Password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 2525;
 
