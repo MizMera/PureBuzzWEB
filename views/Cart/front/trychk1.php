@@ -27,7 +27,7 @@ foreach ($_SESSION['cart'] as $product_id => $quantity) {
     if ($product) {
         $subtotal = $product['price'] * $quantity;
         $totalPanier += $subtotal;
-
+ 
         // Ajouter l'article au tableau des éléments du panier
         $cartItems[] = [
             'name' => $product['name'],

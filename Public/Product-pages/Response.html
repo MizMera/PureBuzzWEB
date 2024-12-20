@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respond to Claim</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../../assets/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href=../../../assets/vendors/typicons/typicons.css"">
+    <link rel="stylesheet" href="../../../assets/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="../../../assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../../../assets/js/select.dataTables.min.css">
+    <link rel="stylesheet" href="../../../assets/css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../../../assets/css/Back_office/AllUsers.css">
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-section {
+            margin-top: 20px;
+        }
+
+        .text {
+            width: 100%;
+            height: 150px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* General Styles */
+        .header {
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1030;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu li {
+            margin: 0 10px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .nav-link:hover {
+            color: #ffcc00;
+        }
+
+        .auth-buttons a {
+            text-decoration: none;
+            margin-left: 10px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .signin {
+            background-color: #ffcc00;
+            color: #fff;
+        }
+
+        .register {
+            background-color: #fff;
+            border: 1px solid #ffcc00;
+            color: #ffcc00;
+        }
+
+        .signin:hover {
+            background-color: #e6b800;
+        }
+
+        .register:hover {
+            background-color: #ffcc00;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="navbar">
+            <div class="logo">
+                <img src="logo.png" alt="PureBuzz Logo"> <!-- Replace with the actual logo path -->
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#benefits" class="nav-link">Benefits</a></li>
+                    <li><a href="#support" class="nav-link">Support</a></li>
+                    <li><a href="#product-section" class="nav-link">Products</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="signin">Sign in</a>
+                <a href="#" class="register">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container-fluid page-body-wrapper" style="margin-top: 100px;">
+        <div class="container">
+            <div style="width: 600px;">
+                <section class="claim-details">
+                    <h3>Claim Details</h3>
+                    <p><strong>Claim ID:</strong> <span id="claim-id">Loading...</span></p>
+                    <p><strong>User Name:</strong> <span id="user-name">Loading...</span></p>
+                    <p><strong>Product:</strong> <span id="product">Loading...</span></p>
+                    <p><strong>Details:</strong> <span id="details">Loading...</span></p>
+                    <p><strong>Created_at:</strong> <span id="created_at">Loading...</span></p>
+                </section>
+
+                <!-- Response Form -->
+                <section class="form-section" style="width: 800px;">
+                    <h3>Submit Your Response</h3>
+                    <form id="responseForm">
+                        <input type="hidden" id="hidden-claim-id" name="claim_id" value="">
+                        <div class="mb-3">
+                            <textarea class="text" id="response" name="response"
+                                placeholder="Type your response here..."></textarea>
+                        </div>
+                        <button style="width: 200px; background-color: orange;" onclick="validation()" type="submit"
+                            class="btn">Submit Response</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Extract the Claim ID and other details from the URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const claimID = urlParams.get('claim-id');
+        const userName = urlParams.get('user-name');
+        const product = urlParams.get('product');
+        const details = urlParams.get('details');
+        const created_at = urlParams.get('created_at');
+
+        // Update the claim details on the page
+        document.getElementById('claim-id').textContent = `#${claimID || 'N/A'}`;
+        document.getElementById('user-name').textContent = userName || 'N/A';
+        document.getElementById('product').textContent = product || 'N/A';
+        document.getElementById('details').textContent = details || 'N/A';
+        document.getElementById('created_at').textContent = created_at || 'N/A';
+
+        // Set the hidden claim ID value
+        document.getElementById("hidden-claim-id").value = claimID || ''; // Set the value for the hidden input
+
+        document.getElementById("responseForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const formData = {
+                claim_id: document.getElementById("hidden-claim-id").value,
+                response_details: document.getElementById("response").value,
+            };
+
+            try {
+                const response = await fetch("../../Public/index.php?controller=Responses&action=store_response", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message);
+                    document.getElementById("responseForm").reset();
+                } else {
+                    alert("Error: " + result.error);
+                }
+            } catch (error) {
+                console.error("Error submitting the form:", error);
+                alert("Failed to submit response. Please try again later.");
+            }
+        });
+
+        function validation() {
+            const name = document.getElementById("response").value;
+            if (name == null || name == "") {
+                alert("Response can't be blank");
+            }
+        }
+    </script>
+</body>
+
+</html>

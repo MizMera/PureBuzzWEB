@@ -1,3 +1,4 @@
+
 <?php
 
 require_once '../models/responses.php';
@@ -38,60 +39,13 @@ class Responses
         $ResponseModel = new ResponseModel();
         try {
             $ResponseModel->saveResponse($claimId, $responseDetails);
-            $this->sendEmailResponse($claimId,$responseDetails);
             echo json_encode(["message" => "Response submitted successfully! an email is sent to the user"]);
         } catch (Exception $e) {
             http_response_code(500);
             echo json_encode(["error" => $e]);
         }
     }
-    private function sendEmailResponse($claimId, $responseDetails)
-    {
-        require '../vendor/autoload.php'; 
- 
-        $claimDetails = $this->responseModel->getResponsesByClaimId(); 
-        if (!$claimDetails) {
-            error_log("Claim details not found for claim ID: $claimId");
-            return;
-        }
     
-        $userEmail ="omar.hamdi204@gmail.com" ; 
-        $product = $claimDetails['product_name']; 
-    
-        $mail = new PHPMailer\PHPMailer\PHPMailer();
-    
-        try {
-
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'djangomailer040@gmail.com';
-            $mail->Password = 'cdgh rufa gtwr ocqe'; 
-            $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
-    
-            // Email headers and content
-            $mail->setFrom('djangomailer040@gmail.com', 'PureBuzz');
-            $mail->addAddress($userEmail); 
-    
-            $mail->isHTML(true);
-            $mail->Subject = 'Response to Your Claim';
-            $mail->Body = "
-                <h1>Response to Your Claim</h1>
-                <p>We have reviewed your claim for the product: <strong>{$product}</strong>.</p>
-                <p><strong>Response Details:</strong> {$responseDetails}</p>
-                <br>
-                <p>Regards,</p>
-                <p>PureBuzz</p>
-            ";
-    
-            
-            $mail->send();
-            error_log("Email sent successfully to: $userEmail");
-        } catch (Exception $e) {
-            error_log("Email could not be sent. Mailer Error: {$mail->ErrorInfo}");
-        }
-    }
     
     public function list_response()
     {
