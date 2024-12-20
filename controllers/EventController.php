@@ -1,6 +1,5 @@
 <?php
 
-include_once '../models/Event.php';
 
 class EventController {
     private $db;

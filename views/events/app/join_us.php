@@ -1,10 +1,20 @@
 <?php
 require_once __DIR__ . '/../../config/database.php';
-require_once __DIR__ . '../../../../../controllers/EventController.php';
-require_once __DIR__ . '../../../../../controllers/TicketController.php';
+require_once __DIR__ . '/../../controllers/EventController.php';
+require_once __DIR__ . '/../../controllers/TicketController.php';
 
+// Initialize $access with the database connection
+$access = Database::getConnexion();
+
+// Pass the $access object to the controllers
 $eventController = new EventController($access);
 $ticketController = new TicketController($access);
+
+// Fetch events
+$events = $eventController->getAllEvents();
+
+$eventController = new EventController(db : $access);
+$ticketController = new TicketController(db : $access);
 
 $events = $eventController->getAllEvents();
 
