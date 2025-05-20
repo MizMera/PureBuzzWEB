@@ -33,38 +33,20 @@ if (isset($_GET['id'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Stock Adjustment</title>
-    <style>
-       body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        form {
-            max-width: 500px;
-            margin: auto;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-        }
-        input, textarea, button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-        }
-        button {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #45a049;
-        }
-    </style>
+    <title>Edit Category</title>
+    <link rel="stylesheet" href="vendors/feather/feather.css">
+    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="vendors/typicons/typicons.css">
+    <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="js/select.dataTables.min.css">
+    <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../../Public/css/common.css">
+    <link rel="shortcut icon" href="../../../assets/PureBuzzLogo.png" />
 </head>
 <body>
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
@@ -105,7 +87,7 @@ if (isset($_GET['id'])) {
                 <a class="dropdown-item preview-item">
                   <div class="preview-item-content flex-grow py-2">
                     <p class="preview-subject ellipsis font-weight-medium text-dark">Angular Bundle</p>
-                    <p class="fw-light small-text mb-0">Everything you’ll ever need for your Angular projects</p>
+                    <p class="fw-light small-text mb-0">Everything you'll ever need for your Angular projects</p>
                   </div>
                 </a>
                 <a class="dropdown-item preview-item">
@@ -237,26 +219,34 @@ if (isset($_GET['id'])) {
         </div>
       </nav>
 
-      <div class="container-fluid page-body-wrapper"> 
-
-<?php include '../../Public/sidebar.php'; ?>
-    
-    <div class="table-card" >   
-    <form action="" method="POST" id="categoryForm">
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($categorie ['name']); ?>" >
-            <span id="nameError" class="error"></span>
-         <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" ><?php echo htmlspecialchars($categorie ['description']); ?></textarea>
-            <span id="descriptionError" class="error"></span>
+      <div class="container-fluid"> 
+        <?php include '../../Public/sidebar.php'; ?>
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Edit Category</h4>
+                                <form action="" method="POST" id="categoryForm" class="forms-sample">
+                                    <div class="form-group">
+                                        <label for="name">Name:</label>
+                                        <input type="text" id="name" name="name" class="form-control" value="<?php echo htmlspecialchars($categorie ['name']); ?>">
+                                        <span id="nameError" class="error"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Description:</label>
+                                        <textarea id="description" name="description" class="form-control"><?php echo htmlspecialchars($categorie ['description']); ?></textarea>
+                                        <span id="descriptionError" class="error"></span>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save edited category</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-                <button type="submit" class="btn-primary">Save edited category</button>
-        </form>
-        <script src="Validation.js"></script>
     </div>
-    
-       
 </body>
 </html>

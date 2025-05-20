@@ -1,0 +1,320 @@
+/* product_management_theme.css */
+:root {
+    --honey-gold: #f6b92b; /* Main orange/gold */
+    --honey-dark-brown: #8B4513; /* SaddleBrown - good contrast for text/borders */
+    --honey-amber: #ffbf00; /* Amber */
+    --honey-light-amber: #fff8dc; /* Cornsilk - very light for backgrounds/highlights */
+    --honey-accent-yellow: #f2aa3e;
+    --honey-gentle-green: #90ee90; /* LightGreen for positive actions or highlights */
+    --honey-warning-red: #e60000; /* For delete/warning */
+
+    --text-dark: #333333;
+    --text-light: #555555;
+    --border-color: #e0e0e0;
+    --card-bg: #ffffff;
+    --body-bg: #fffcf2; /* Very light creamy background for the page */
+
+    --font-primary: 'Roboto', sans-serif; /* Ensure Roboto is loaded or use a common sans-serif */
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--body-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.page-content-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 25px; /* Space between columns/cards */
+    padding-top: 20px;
+}
+
+.form-column {
+    flex: 1 1 35%; /* Form takes 35% width, allows growing/shrinking */
+    min-width: 300px; /* Minimum width before stacking */
+}
+
+.data-display-column {
+    flex: 1 1 60%; /* Table and chart column takes remaining space */
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Space between table and chart card */
+}
+
+.card { /* Base styling for all cards on this page */
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    border: 1px solid var(--border-color);
+}
+
+.card h2 {
+    font-size: 1.6em;
+    color: var(--honey-dark-brown);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--honey-gold);
+    font-weight: 600;
+}
+
+/* Form Styling */
+.form-card .form-group {
+    margin-bottom: 20px;
+}
+
+.form-card label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 8px;
+}
+
+.form-card input[type="text"],
+.form-card input[type="number"],
+.form-card input[type="file"],
+.form-card select,
+.form-card textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.95em;
+    color: var(--text-dark);
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-card input[type="file"] {
+    padding: 8px 12px; /* Specific padding for file input */
+}
+
+.form-card input:focus,
+.form-card select:focus,
+.form-card textarea:focus {
+    border-color: var(--honey-gold);
+    box-shadow: 0 0 0 3px rgba(246, 185, 43, 0.25);
+    outline: none;
+}
+
+.form-card textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-card .error {
+    color: var(--honey-warning-red);
+    font-size: 0.85em;
+    margin-top: 5px;
+    display: block;
+}
+
+.btn-submit-product {
+    background-color: var(--honey-gold);
+    color: var(--honey-dark-brown);
+    font-weight: bold;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 1em;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-submit-product:hover {
+    background-color: var(--honey-accent-yellow);
+    transform: translateY(-2px);
+}
+
+/* Table Card & Table Styling */
+.table-card .search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.table-card .search-form input[type="text"] {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.95em;
+}
+.table-card .search-form input[type="text"]:focus {
+    border-color: var(--honey-gold);
+    box-shadow: 0 0 0 3px rgba(246, 185, 43, 0.25);
+    outline: none;
+}
+
+
+.table-card .search-form button {
+    background-color: var(--honey-dark-brown);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.table-card .search-form button:hover {
+    background-color: #a0522d; /* Darker brown */
+}
+
+.table-responsive {
+    overflow-x: auto; /* Ensures table is scrollable on small screens */
+}
+
+.table-card table {
+    width: 100%;
+    border-collapse: collapse; /* Use collapse for cleaner lines */
+    font-size: 0.9em;
+}
+
+.table-card th,
+.table-card td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table-card thead th {
+    background-color: var(--honey-light-amber);
+    color: var(--honey-dark-brown);
+    font-weight: 600;
+    border-top: 2px solid var(--honey-gold);
+    border-bottom: 2px solid var(--honey-gold);
+}
+
+.table-card thead th a {
+    color: inherit;
+    text-decoration: none;
+}
+.table-card thead th a:hover {
+    color: var(--honey-gold);
+}
+
+.table-card tbody tr:hover {
+    background-color: #fdf5e6; /* Very light cream for hover */
+}
+
+.table-card tbody tr:nth-child(even) {
+    /* background-color: #fffefa; Optional: for slightly different even row color */
+}
+
+.product-table-image {
+    max-width: 70px;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.action-buttons a {
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 0.85em;
+    margin-right: 5px;
+    transition: opacity 0.3s, transform 0.2s;
+    display: inline-block; /* For proper spacing and transform */
+}
+.action-buttons a:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+.btn-edit {
+    background-color: var(--honey-accent-yellow);
+    color: var(--honey-dark-brown) !important; /* Ensure text is readable */
+}
+
+.btn-delete {
+    background-color: var(--honey-warning-red);
+     color: white !important;
+}
+
+.no-products-message {
+    padding: 20px;
+    text-align: center;
+    font-size: 1.1em;
+    color: var(--text-light);
+}
+.no-products-message a {
+    color: var(--honey-gold);
+    font-weight: bold;
+}
+
+
+/* Chart Card */
+.chart-card {
+    min-height: 300px; /* Ensure chart has enough space */
+}
+.chart-card canvas {
+    max-height: 400px; /* Control chart height */
+}
+
+/* Navbar Welcome Text - More specific selector if needed */
+.navbar .welcome-text {
+    color: var(--honey-dark-brown) !important; /* Override existing if necessary */
+}
+.navbar .welcome-text .text-black {
+    color: var(--honey-gold) !important;
+}
+.navbar .welcome-sub-text {
+    color: var(--text-light) !important;
+}
+
+/* Correcting icon-menu if it's a typo for a Feather icon or MDI */
+.icon-menu { /* If using Material Design Icons */
+    font-family: 'Material Design Icons';
+    /* content: "\F035C"; or the correct MDI codepoint for menu */
+}
+/* Or if it's a generic span for a burger icon via ::before/::after */
+
+
+/* Responsiveness */
+@media (max-width: 991px) {
+    .page-content-container {
+        flex-direction: column;
+    }
+    .form-column, .data-display-column {
+        flex-basis: 100%;
+    }
+    .navbar .navbar-brand-wrapper {
+        width: auto; /* Adjust for smaller screens if sidebar is collapsed */
+    }
+    .navbar .navbar-menu-wrapper {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .card h2 {
+        font-size: 1.4em;
+    }
+    .form-card input, .form-card select, .form-card textarea,
+    .table-card .search-form input[type="text"], .table-card .search-form button {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+    .table-card th, .table-card td {
+        padding: 10px 8px;
+        font-size: 0.85em;
+    }
+    .product-table-image {
+        max-width: 50px;
+    }
+    .action-buttons a {
+        padding: 5px 8px;
+        font-size: 0.8em;
+    }
+}

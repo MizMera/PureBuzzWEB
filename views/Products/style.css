@@ -1,4 +1,4 @@
-                                                                            /*------------------------------------------------------------------
+    /*------------------------------------------------------------------
     [Master Stylesheet]
 
       Project:	Star Admin2 
@@ -9,7 +9,7 @@
 
       * Bootstrap functions
       * Template variables
-      * SCSS Com                            pass Functions
+      * SCSS Compass Functions
       * Boostrap Main SCSS
       * Template mixins
         + Animation Mixins
@@ -9229,26 +9229,7 @@
       font-size: 0.875em;
       color: #6c757d;
     }
-    .form-card, .table-container {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: 35%;
-  }
-    .container {
-      display: flex;
-    justify-content: space-between;
-    gap: 20px; /* Adjusts space between form and table */
-    padding: 20px;
-    max-width: 1200px; /* Limits the width of the container */
-    margin: 0 auto; /* Centers the container on the page */
-}
-.container-fluid {
-  padding: 20px;
-  display: flex;
-  gap: 20px;
-}
+
     .container,
     .container-fluid,
     .container-sm,
@@ -11540,29 +11521,13 @@
     }
 
     .btn-primary {
-      background-color: #ffcc00;
-      color: #333;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 4px;
-      cursor: pointer;btn-danger
-      transition: background-color 0.3s;
-  }
-  .table-card {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    flex: 1;
-}
- .table-card h2 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            color: #555;
-        }
-        
+      color: #fff;
+      background-color: #1F3BB3;
+      border-color: #1F3BB3;
+    }
+
     .btn-primary:hover {
-      background-color: #e6b800; /* Hover effect for buttons */
+      background-color: var(--secondary-color); /* Hover effect for buttons */
       transform: scale(1.05);
     }
 
@@ -11594,8 +11559,8 @@
     }
 
     .btn-secondary {
-      color: #000000;
-      background-color: #ee980e0000;
+      color: #000;
+      background-color: #F1F1F1;
       border-color: #F1F1F1;
     }
 
@@ -11634,18 +11599,19 @@
 
     .btn-success {
       color: #000;
-      background-color: #e4780b;
+      background-color: #34B1AA;
+      border-color: #34B1AA;
     }
 
     .btn-success:hover {
       color: #000;
-      background-color: #e4780b;
+      background-color: #52bdb7;
       border-color: #48b9b3;
     }
 
     .btn-check:focus + .btn-success, .btn-success:focus {
       color: #000;
-      background-color: #e4780b
+      background-color: #52bdb7;
       border-color: #48b9b3;
       box-shadow: 0 0 0 0.25rem rgba(44, 150, 145, 0.5);
     }
@@ -11654,7 +11620,7 @@
     .btn-check:active + .btn-success, .btn-success:active, .btn-success.active,
     .show > .btn-success.dropdown-toggle {
       color: #000;
-      background-color: #e4780b
+      background-color: #5dc1bb;
       border-color: #48b9b3;
     }
 
@@ -11666,7 +11632,7 @@
 
     .btn-success:disabled, .btn-success.disabled {
       color: #000;
-      background-color: #e4780b
+      background-color: #34B1AA;
       border-color: #34B1AA;
     }
 
@@ -11754,15 +11720,12 @@
       border-color: #F95F53;
     }
 
-    .btn-danger {
-      background-color: #ff6666;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-  }
+    .btn-danger:hover {
+      color: #000;
+      background-color: #fa776d;
+      border-color: #fa6f64;
+    }
+
     .btn-check:focus + .btn-danger, .btn-danger:focus {
       color: #000;
       background-color: #fa776d;
@@ -11847,172 +11810,6 @@
       border-color: #182031;
       box-shadow: 0 0 0 0.25rem rgba(64, 72, 90, 0.5);
     }
-/*added*/
-th, td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ddd; /* Subtle line between rows */
-}
-
-.form-card {
-  width: 48%; /* Set both form and table to take half width */
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-card h2 {
-  font-size: 1.5em;
-  margin-bottom: 15px;
-  color: #555;
-}
-.form-card button {
-  background-color: #ffcc00;
-  color: #333;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-.error {
-  color: red;
-  font-size: 0.9em;
-}
-table, th, td {
-  border: 1px solid #ddd;
-}
-th, td {
-  padding: 10px;
-  text-align: left;
-}
-th {
-  background-color: #f4f4f4;
-}
-a {
-  color: #3498db;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-.table-card {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  flex: 1;
-}
-.btn-edit, .btn-delete {
-  padding: 8px 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9em;
-  transition: background-color 0.3s;
-}
-.form-card {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 35%;
-}
-
-.form-card h2 {
-  font-size: 1.5em;
-  margin-bottom: 15px;
-  color: #555;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  font-weight: bold;
-  margin-bottom: 5px;
-  display: block;
-  color: #555;
-}
-
-.form-group input, .form-group select, .form-group textarea {
-  width: 100%;
-  padding: 10px;
-  font-size: 1em;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  transition: border-color 0.3s;
-}
-
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-  border-color: #ffcc00;
-  outline: none;
-}
-.btn-edit {
-  background-color: #ffcc00;
-  color: #333;
-}
-
-.btn-edit:hover {
-  background-color: #e6b800;
-}
-
-.btn-delete {
-  background-color: #ff4d4d;
-  color: #fff;
-}
-
-.btn-delete:hover {
-  background-color: #cc0000;
-}
-.table-card h2 {
-  font-size: 1.5em;
-  margin-bottom: 15px;
-  color: #555;
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-table thead {
-  background-color: #ffcc00;
-}
-
-table th, table td {
-  padding: 12px;
-  text-align: left;
-}
-
-table th {
-  color: #333;
-  font-weight: bold;
-}
-
-table tr:hover {
-  background-color: #f2f2f2;
-}
-.form-card label {
-  font-weight: bold;
-  color: #555;
-  margin-top: 10px;
-}
-
-form {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px; /* Spacing between form elements */
-}
 
     .btn-check:checked + .btn-dark,
     .btn-check:active + .btn-dark, .btn-dark:active, .btn-dark.active,
@@ -12944,29 +12741,7 @@ form {
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
     }
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-  }
-  table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-  }
-  table, th, td {
-      border: 1px solid #ddd;
-  }
- 
-  th {
-      background-color: #f4f4f4;
-  }
-  a {
-      color: #3498db;
-      text-decoration: none;
-  }
-  a:hover {
-      text-decoration: underline;
-  }
+
     .navbar > .container,
     .navbar > .container-fluid, .navbar > .container-sm, .navbar > .container-md, .navbar > .container-lg, .navbar > .container-xl, .navbar > .container-xxl {
       display: flex;
@@ -13376,7 +13151,7 @@ form {
     }
 
     .card-header {
-      padding: .1.5rem 1rem;
+      padding: 0.5rem 1rem;
       margin-bottom: 0;
       background-color: rgba(0, 0, 0, 0.03);
       border-bottom: 1px solid #e3e3e3;
@@ -19833,7 +19608,7 @@ form {
 
     /* Footer */
     .footer {
-      background-color: #131212;
+      background-color: var(--dark-color);
       color: var(--light-color);
       padding: 20px 0; 
       transition: all 0.25s ease;
@@ -20043,9 +19818,7 @@ form {
     .template-demo nav:last-child .breadcrumb {
       margin-bottom: 0;
     }
-    .form-group {
-      margin-bottom: 15px;
-  }
+
     .template-demo .editable-form > .form-group {
       border-bottom: 1px solid #dee2e6;
       padding-bottom: 0.8rem;
@@ -21251,8 +21024,8 @@ form {
     }
 
     .btn-success {
-      background-color:orange;
-      color: white;
+      background: #34B1AA;
+      color: #ffffff;
     }
 
     .btn-success.btn-light, .btn-success.btn-secondary {
@@ -21368,8 +21141,8 @@ form {
     }
 
     .btn-danger:hover, .btn-danger:focus {
-    background-color: #e60000;
-          color: #ffffff;
+      background: #f73122;
+      color: #ffffff;
     }
 
     .btn-danger.btn-social-icon-text {
@@ -23493,25 +23266,14 @@ form {
     select.border-dark.tt-hint:focus {
       outline: 1px solid #1E283D;
     }
-    form-group input, .form-group select, .form-group textarea {
-      width: 100%;
-      padding: 10px;
-      font-size: 1em;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      transition: border-color 0.3s;
-  }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    border-color: #ffcc00;
-    outline: none;
-}
 
     .form-group label {
-      font-weight: bold;
-      margin-bottom: 5px;
-      display: block;
-      color: #555;
-  }
+      font-size: 0.812rem;
+      line-height: 1.4rem;
+      vertical-align: top;
+      margin-bottom: .5rem;
+    }
+
     .form-group.has-danger .form-control, .form-group.has-danger .asColorPicker-input, .form-group.has-danger .dataTables_wrapper select, .dataTables_wrapper .form-group.has-danger select, .form-group.has-danger .select2-container--default .select2-selection--single, .select2-container--default .form-group.has-danger .select2-selection--single, .form-group.has-danger .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .form-group.has-danger .select2-search__field, .form-group.has-danger .typeahead,
     .form-group.has-danger .tt-query,
     .form-group.has-danger .tt-hint {
@@ -28691,7 +28453,7 @@ form {
       font-size: 22px;
       line-height: 1;
       margin-right: 1rem;
-      color: #dc7228;
+      color: #484848;
     }
 
     .rtl .sidebar .nav .nav-item .nav-link i.menu-icon {
@@ -28886,7 +28648,7 @@ form {
     }
 
     .sidebar-dark .sidebar .nav .nav-item .nav-link .sidebar-icon-only {
-      color: #dc7228;
+      color: #1E283D;
     }
 
     .sidebar-dark .sidebar .nav .nav-item .nav-link i {
@@ -28894,7 +28656,7 @@ form {
     }
 
     .sidebar-dark .sidebar .nav .nav-item .nav-link i.menu-icon {
-      color: #dc7228;
+      color: #FFFFFF;
     }
 
     .sidebar-dark .sidebar .nav .nav-item .nav-link .menu-title {
@@ -29062,6 +28824,120 @@ form {
       text-align: center;
     }
 
+    .form-card {
+      background: var(--card-bg, #fff); /* Default to white if variable not set */
+      border-radius: 10px; /* Matches common modern card radius */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+      padding: 30px 30px; /* Adjusted padding from your snippet for a bit more space */
+      border: 1px solid var(--border-color, #e0e0e0); /* Light border */
+      min-width: 340px; /* As per your snippet */
+    }
+    
+    /* Form Card Title */
+    .form-card h2 {
+      font-family: var(--font-primary, 'Roboto', sans-serif);
+      font-size: 1.7em; /* Slightly smaller than before for balance */
+      color: var(--honey-dark-brown, #8B4513);
+      margin-bottom: 25px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--honey-gold, #f6b92b);
+      font-weight: 600;
+      text-align: left;
+    }
+    
+    /* Form Group */
+    .form-card .form-group {
+      margin-bottom: 18px; /* Slightly reduced margin */
+    }
+    
+    /* Form Labels */
+    .form-card label {
+      display: block;
+      font-family: var(--font-primary, 'Roboto', sans-serif);
+      font-weight: 500; /* Medium weight */
+      color: var(--text-light, #555555);
+      margin-bottom: 6px; /* Reduced margin for tighter look */
+      font-size: 0.88em;
+    }
+    
+    /* General Styling for Inputs, Selects, Textareas */
+    .form-card input[type="text"],
+    .form-card input[type="number"],
+    .form-card select,
+    .form-card textarea {
+      width: 100%;
+      padding: 10px 12px; /* Slightly less vertical padding */
+      border: 1px solid var(--border-color-light, #d1d1d1); /* Slightly darker default border from image */
+      border-radius: 5px;
+      font-size: 0.92em;
+      font-family: var(--font-primary, 'Roboto', sans-serif);
+      color: var(--text-dark, #333333);
+      box-sizing: border-box;
+      transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      background: #fdfdfd; /* Very light grey, almost white, as seen in image */
+    }
+    
+    /* File Input - Basic styling, browser default button will appear */
+    .form-card input[type="file"] {
+      padding: 8px 10px;
+      background: transparent; /* File input often has no background by default */
+      border: 1px solid var(--border-color-light, #d1d1d1); /* Consistent border */
+    }
+    /* You might need more specific CSS or JS to fully style file inputs like "Browse..." button */
+    
+    
+    /* Focus State for Inputs */
+    .form-card input[type="text"]:focus,
+    .form-card input[type="number"]:focus,
+    .form-card select:focus,
+    .form-card textarea:focus {
+      border-color: var(--honey-gold, #f6b92b);
+      box-shadow: 0 0 0 3px rgba(246, 185, 43, 0.2); /* Softer focus glow */
+      outline: none;
+      background: #ffffff; /* White background on focus */
+    }
+    
+    /* Textarea Specifics */
+    .form-card textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    /* Error Message Styling */
+    .form-card .error {
+      color: var(--honey-warning-red, #e60000);
+      font-size: 0.8em;
+      margin-top: 4px;
+      display: block;
+    }
+    
+    /* Submit Button */
+    .btn-submit-product { /* Renamed from btn-primary in general CSS to be specific */
+      background-color: var(--honey-gold, #f6b92b);
+      color: var(--honey-dark-brown, #8B4513); /* Good contrast on gold */
+      font-family: var(--font-primary, 'Roboto', sans-serif);
+      font-weight: 600; /* Bolder */
+      padding: 10px 20px; /* Adjusted padding */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out, transform 0.15s ease-in-out;
+      font-size: 0.95em;
+      display: block; /* Make button full width */
+      width: 100%;
+      text-align: center;
+      margin-top: 15px; /* Space above the button */
+    }
+    
+    .btn-submit-product:hover {
+      background-color: var(--honey-accent-yellow, #f2aa3e); /* Lighter gold on hover */
+      transform: translateY(-1px);
+    }
+    
+    .btn-submit-product:active {
+      transform: translateY(0px);
+      background-color: #e0a828; /* Darker gold for active state */
+    }
     .navbar .navbar-brand-wrapper .brand-logo-mini img {
       width: calc(70px - 30px);
       max-width: 100%;
@@ -30391,10 +30267,10 @@ form {
         margin-right: 0;
         margin-left: 0;
         margin-bottom: 0;
-        color: #dc7228;
+        color: rgba(31, 59, 179, 0.7);
       }
       .sidebar-dark.sidebar-icon-only .sidebar .nav .nav-item .nav-link i.menu-icon {
-        color: #dc7228;
+        color: rgba(31, 59, 179, 0.7);
       }
       .sidebar-icon-only .sidebar .nav .nav-item .nav-link i.menu-arrow {
         display: none;

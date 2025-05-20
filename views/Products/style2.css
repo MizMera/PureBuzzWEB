@@ -1,66 +1,586 @@
-.search-form {
+/* product_management_theme.css */
+
+:root {
+  --honey-gold: #f6b92b;
+  --honey-dark-brown: #8B4513;
+  --honey-text-brown: #5D4037;
+  --honey-amber: #ffbf00;
+  --honey-light-amber-bg: #fffcf2; /* For input backgrounds */
+  --honey-light-border: #f0e6d2;
+  --honey-accent-yellow: #f2aa3e;
+  --honey-gentle-green: #8fbc8f; /* Darker green for better contrast */
+  --honey-warning-red: #d9534f; /* Softer red */
+
+  --text-dark: #3a3a3a;
+  --text-light: #6c757d;
+  --border-color: #e0e0e0;
+  --card-bg: #ffffff;
+  --body-bg: #fdfaf6; /* Very light, slightly warm page background */
+
+  --font-primary: 'Roboto', 'Manrope', sans-serif; /* Primary font stack */
+
+  /* Sidebar Specific */
+  --sidebar-bg: #fcf8f3;
+  --sidebar-text-color: #5D4037;
+  --sidebar-icon-color: var(--honey-gold);
+  --sidebar-active-bg: var(--honey-gold);
+  --sidebar-active-text: white;
+  --sidebar-hover-bg: #fef5e7;
+  --sidebar-hover-text: var(--honey-dark-brown);
+  --sidebar-border-color: #ede4d4;
+  --nav-category-text: #a0522d;
+  --sub-menu-indicator-color: var(--honey-gold);
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--body-bg);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+.page-content-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-.search-form input[type="text"] {
-  width: 300px;
-  padding: 10px;
-  border: 2px solid #ffaa00;
-  border-radius: 5px;
-  font-size: 16px;
-  outline: none;
-  transition: all 0.3s ease-in-out;
-}
-
-.search-form input[type="text"]:focus {
-  border-color: #ffe100;
-  box-shadow: 0 0 8px rgba(244, 183, 2, 0.5);
-}
-
-.search-form button {
-  margin-left: 10px;
-  padding: 10px 20px;
-  border: none;
-  background-color: #ffb411;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.search-form button:hover {
-  background-color: #de9c0e;
-}
-
- body {
-            font-family: Arial, sans-serif;
-        }
-        table {
-            width: 80%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-        a {
-            color: #3498db;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+  flex-wrap: wrap;
   
-      
+  gap: 25px;
+  padding-top: 20px;
+}
+
+.form-column {
+  flex: 0 0 40%; /* Give form column a decent fixed proportion */
+  min-width: 380px; /* Ensure it's not too small on medium screens */
+  max-width: 500px; /* Prevent it from becoming too wide */
+}
+
+.data-display-column {
+  flex: 1 1 58%; /* Adjust to fill remaining space */
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* General Card Styling */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 10px; /* Unified card radius */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07); /* Softer shadow */
+  padding: 25px;
+  border: 1px solid var(--border-color);
+}
+
+.card h2 {
+  font-family: var(--font-primary);
+  font-size: 1.7em;
+  color: var(--honey-dark-brown);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--honey-gold);
+  font-weight: 600;
+}
+
+
+/* ======================================================================= */
+/* Form Card Styling (Refined to match image and look better)              */
+/* ======================================================================= */
+
+.form-card {
+  /* Inherits .card styles, can add specific overrides if needed */
+  padding: 30px 35px; /* Generous padding for content */
+}
+
+.form-card h2 {
+  font-size: 1.8em; /* Make title prominent */
+  margin-bottom: 30px;
+}
+
+.form-card .form-group {
+  margin-bottom: 20px;
+}
+
+.form-card label {
+  display: block;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  color: var(--honey-text-brown);
+  margin-bottom: 8px;
+  font-size: 0.92em;
+}
+
+.form-card input[type="text"],
+.form-card input[type="number"],
+.form-card select,
+.form-card textarea {
+  width: 100%;
+  padding: 12px 15px; /* Make inputs feel substantial */
+  border: 1px solid var(--border-color-light, #ccc); /* Clearer border */
+  border-radius: 6px;
+  font-size: 0.95em; /* Larger font in inputs */
+  font-family: var(--font-primary);
+  color: var(--text-dark);
+  box-sizing: border-box;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  background: #fcfdff; /* Very light, clean background for inputs */
+}
+
+.form-card input[type="file"] {
+  padding: 10px 12px; /* Adjusted padding for file input */
+  background: #fcfdff;
+  border: 1px solid var(--border-color-light, #ccc);
+  border-radius: 6px;
+  font-size: 0.95em; /* Consistent font size */
+}
+/* Basic attempt to style the button part of file input - cross-browser is tricky */
+.form-card input[type="file"]::-webkit-file-upload-button {
+  background: var(--honey-gold);
+  color: var(--honey-dark-brown);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px 0 0 4px; /* Style one side */
+  margin-right: 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.form-card input[type="file"]::file-selector-button { /* Standard way */
+  background: var(--honey-gold);
+  color: var(--honey-dark-brown);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px 0 0 4px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+
+.form-card input:focus,
+.form-card select:focus,
+.form-card textarea:focus {
+  border-color: var(--honey-gold);
+  box-shadow: 0 0 0 3px rgba(246, 185, 43, 0.2); /* Subtle focus glow */
+  outline: none;
+  background: #ffffff;
+}
+
+.form-card textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.form-card .error {
+  color: var(--honey-warning-red);
+  font-size: 0.85em;
+  margin-top: 5px;
+  display: block;
+}
+
+.btn-submit-product {
+  background-color: var(--honey-gold);
+  color: var(--honey-dark-brown);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.15s ease-in-out, box-shadow 0.2s;
+  font-size: 1.05em; /* Larger button font */
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px; /* More space above button */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-submit-product:hover {
+  background-color: var(--honey-accent-yellow);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.btn-submit-product:active {
+  transform: translateY(0px);
+  background-color: #e0a828;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+
+/* ======================================================================= */
+/* Table Card & Table Styling                                              */
+/* ======================================================================= */
+.table-card .search-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px; /* More space */
+  align-items: center;
+}
+
+.table-card .search-form label { /* Style for the "Search" label */
+  font-weight: 500;
+  color: var(--honey-text-brown);
+  margin-right: 5px;
+}
+
+.table-card .search-form input[type="text"] {
+  flex-grow: 1;
+  padding: 11px 15px;
+  border: 1px solid var(--border-color-light, #ccc);
+  border-radius: 6px;
+  font-size: 0.95em;
+  background-color: #fcfdff;
+}
+.table-card .search-form input[type="text"]:focus {
+  border-color: var(--honey-gold);
+  box-shadow: 0 0 0 3px rgba(246, 185, 43, 0.2);
+  outline: none;
+}
+
+.table-card .search-form button {
+  background-color: var(--honey-dark-brown);
+  color: white;
+  padding: 11px 22px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.95em;
+  transition: background-color 0.3s;
+}
+
+.table-card .search-form button:hover {
+  background-color: #a0522d;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table-card table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+
+.table-card th,
+.table-card td {
+  padding: 14px 16px; /* Increased padding */
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle; /* Ensure content is vertically centered */
+}
+
+.table-card thead th {
+  background-color: var(--honey-light-amber-bg); /* Lighter, more subtle header */
+  color: var(--honey-dark-brown);
+  font-weight: 600;
+  font-size: 0.95em;
+  border-top: 1px solid var(--honey-light-border);
+  border-bottom: 2px solid var(--honey-gold);
+}
+
+.table-card thead th a {
+  color: inherit;
+  text-decoration: none;
+}
+.table-card thead th a:hover {
+  color: var(--honey-accent-yellow);
+}
+
+.table-card tbody tr:hover {
+  background-color: var(--honey-light-amber-bg);
+}
+
+.product-table-image {
+  max-width: 60px; /* Slightly smaller for compactness */
+  height: 60px;
+  object-fit: cover; /* Ensure image covers the area without distortion */
+  border-radius: 4px;
+  border: 1px solid var(--honey-light-border);
+}
+
+.action-buttons {
+  white-space: nowrap; /* Prevent buttons from wrapping */
+}
+.action-buttons a {
+  padding: 7px 14px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  font-size: 0.88em;
+  margin-right: 8px;
+  transition: opacity 0.2s, transform 0.15s;
+  display: inline-block;
+  font-weight: 500;
+}
+.action-buttons a:last-child {
+  margin-right: 0;
+}
+.action-buttons a:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.btn-edit {
+  background-color: var(--honey-accent-yellow);
+  color: var(--honey-dark-brown) !important;
+}
+
+.btn-delete {
+  background-color: var(--honey-warning-red);
+  color: white !important;
+}
+
+.no-products-message {
+  padding: 25px;
+  text-align: center;
+  font-size: 1.05em;
+  color: var(--text-light);
+}
+.no-products-message a {
+  color: var(--honey-gold);
+  font-weight: 600;
+}
+
+/* ======================================================================= */
+/* Chart Card Styling                                                      */
+/* ======================================================================= */
+.chart-card {
+  min-height: 350px; /* Ensure chart has enough space */
+}
+.chart-card canvas {
+  max-height: 400px; /* Control chart height */
+}
+
+/* ======================================================================= */
+/* Sidebar Theming (Copied from previous response)                         */
+/* ======================================================================= */
+
+.sidebar {
+min-height: calc(100vh - 97px);
+background: var(--sidebar-bg);
+font-family: "Manrope", sans-serif;
+padding: 0;
+width: 230px;
+z-index: 10;
+transition: width 0.25s ease, background 0.25s ease;
+border-right: 1px solid var(--sidebar-border-color);
+}
+
+.sidebar .nav {
+overflow: hidden;
+flex-wrap: nowrap;
+flex-direction: column;
+padding-top: 15px;
+margin-bottom: 30px;
+}
+
+.sidebar .nav .nav-item {
+transition: background-color 0.2s ease-in-out;
+}
+
+.sidebar .nav .nav-item .nav-link {
+display: flex;
+align-items: center;
+white-space: nowrap;
+padding: 12px 25px 12px 30px;
+color: var(--sidebar-text-color);
+border-radius: 0px 30px 30px 0px;
+transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+font-weight: 500;
+font-size: 13px;
+position: relative;
+}
+
+@media (max-width: 991px) {
+.sidebar .nav .nav-item .nav-link {
+    border-radius: 0;
+    padding: 12px 20px;
+}
+}
+
+.sidebar .nav .nav-item .nav-link i.menu-icon {
+font-size: 20px;
+line-height: 1;
+margin-right: 0.8rem;
+color: var(--sidebar-icon-color);
+flex-shrink: 0;
+width: 24px;
+text-align: center;
+}
+
+.sidebar .nav .nav-item .nav-link .menu-title {
+color: inherit;
+display: inline-block;
+font-size: 13px;
+line-height: 1;
+vertical-align: middle;
+flex-grow: 1;
+}
+
+.sidebar .nav .nav-item .nav-link i.menu-arrow {
+margin-left: auto;
+color: var(--sidebar-text-color);
+opacity: 0.7;
+font-size: 0.75rem;
+transition: transform 0.2s ease-in-out;
+}
+/* Ensure the menu-arrow definition from Star Admin is present or add it if missing */
+.sidebar .nav .nav-item .nav-link i.menu-arrow:before {
+content: "\F0409"; /* Example MDI chevron-right, adjust if using different icon set */
+font-family: "Material Design Icons"; /* Or "themify", "feather", etc. */
+font-style: normal;
+display: block;
+line-height: 1; /* Adjust as needed */
+}
+
+.sidebar .nav .nav-item .nav-link[aria-expanded="true"] i.menu-arrow {
+transform: rotate(90deg);
+}
+
+.sidebar .nav .nav-item:not(.active) > .nav-link:hover {
+background: var(--sidebar-hover-bg);
+color: var(--sidebar-hover-text);
+}
+.sidebar .nav .nav-item:not(.active) > .nav-link:hover i {
+color: var(--sidebar-hover-text); /* Make sure icon color changes too */
+}
+
+.sidebar .nav .nav-item.active > .nav-link {
+background: var(--sidebar-active-bg);
+color: var(--sidebar-active-text);
+font-weight: 600;
+box-shadow: 0 2px 10px rgba(139, 69, 19, 0.15);
+}
+
+.sidebar .nav .nav-item.active > .nav-link i,
+.sidebar .nav .nav-item.active > .nav-link .menu-title,
+.sidebar .nav .nav-item.active > .nav-link .menu-arrow {
+color: var(--sidebar-active-text);
+}
+
+.sidebar .nav .nav-item.nav-category {
+color: var(--nav-category-text);
+margin: 0 25px;
+font-size: 10px;
+font-weight: 600;
+padding: 25px 0px 10px 0px;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+border-bottom: none;
+}
+
+.sidebar .nav:not(.sub-menu) > .nav-item {
+margin-top: 4px;
+}
+
+.sidebar .nav:not(.sub-menu) > .nav-item.active > .nav-link[aria-expanded="true"] {
+background: var(--sidebar-active-bg);
+color: var(--sidebar-active-text);
+}
+
+.sidebar .nav.sub-menu {
+margin-bottom: 0;
+margin-top: 0;
+list-style: none;
+padding: 5px 0 10px 2.5rem;
+background: transparent;
+border-left: 3px solid var(--honey-gold);
+margin-left: 27px;
+border-radius: 0 0 0 15px;
+}
+
+.sidebar .nav.sub-menu .nav-item {
+padding: 0;
+}
+
+.sidebar .nav.sub-menu .nav-item::before {
+content: '–';
+position: absolute;
+left: 15px;
+top: 50%;
+transform: translateY(-50%);
+color: var(--sub-menu-indicator-color);
+font-weight: bold;
+font-size: 14px;
+}
+
+.sidebar .nav.sub-menu .nav-item .nav-link {
+color: var(--sidebar-text-color);
+opacity: 0.85;
+padding: 8px 1rem 8px 1.5rem;
+font-size: 12px;
+font-weight: 500;
+height: auto;
+border-top: 0;
+border-radius: 0;
+white-space: normal;
+line-height: 1.4;
+}
+
+.sidebar .nav.sub-menu .nav-item .nav-link:hover {
+color: var(--honey-dark-brown);
+opacity: 1;
+background-color: var(--sidebar-hover-bg);
+}
+
+.sidebar .nav.sub-menu .nav-item .nav-link.active {
+color: var(--honey-gold);
+font-weight: 600;
+background: transparent;
+opacity: 1;
+}
+
+/* Navbar Welcome Text */
+.navbar .welcome-text {
+color: var(--honey-dark-brown) !important;
+}
+.navbar .welcome-text .text-black { /* Assuming .text-black is used for the Admin part */
+color: var(--honey-gold) !important;
+}
+.navbar .welcome-sub-text {
+color: var(--text-light) !important;
+}
+
+/* Responsiveness for layout columns */
+@media (max-width: 991px) {
+  .page-content-container {
+      flex-direction: column;
+  }
+  .form-column, .data-display-column {
+      flex-basis: 100%; /* Stack them */
+      max-width: 100%; /* Allow full width */
+      min-width: unset; /* Reset min-width */
+  }
+}
+
+@media (max-width: 767px) {
+  .card h2 {
+      font-size: 1.5em;
+  }
+  .form-card {
+      padding: 20px;
+  }
+  .form-card input, .form-card select, .form-card textarea,
+  .table-card .search-form input[type="text"], .table-card .search-form button {
+      font-size: 0.9em;
+      padding: 10px;
+  }
+  .table-card th, .table-card td {
+      padding: 10px 8px;
+      font-size: 0.85em;
+  }
+  .product-table-image {
+      max-width: 50px;
+      height: 50px;
+  }
+  .action-buttons a {
+      padding: 6px 10px;
+      font-size: 0.8em;
+      margin-right: 3px;
+  }
+  .btn-submit-product {
+      font-size: 0.95em;
+      padding: 10px 18px;
+  }
+}

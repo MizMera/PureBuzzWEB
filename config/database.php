@@ -3,7 +3,7 @@
 function connectDatabase()
 {
     $host = 'localhost';    
-    $dbname = 'purebuzz_db';
+    $dbname = 'purebuzz_db3';
     $username = 'root';
     $password = '';
 
@@ -24,7 +24,7 @@ class Database
             $servername="localhost";
             $username="root";
             $password ="";
-            $dbname="purebuzz_db";  
+            $dbname="purebuzz_db3";  
             try {
                 self::$pdo = new PDO("mysql:host=$servername;dbname=$dbname",
                         $username,

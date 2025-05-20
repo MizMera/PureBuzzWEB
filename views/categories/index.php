@@ -27,271 +27,244 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categories List</title>
-    <link rel="stylesheet" href="style.css">
-   
+    <link rel="stylesheet" href="vendors/feather/feather.css">
+    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="vendors/typicons/typicons.css">
+    <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="js/select.dataTables.min.css">
+    <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+    
+    <link rel="shortcut icon" href="../../../assets/PureBuzzLogo.png" />
+
     <style>
-       body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+        .sidebar {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            height: calc(100% - 80px);
+            z-index: 999;
+            background: #fff;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            width: 260px;
+            transition: transform 0.3s ease-in-out;
+            background: #f5f5f5;
         }
-        form {
-            max-width: 500px;
-            margin: auto;
+
+        .sidebar.hidden {
+            transform: translateX(-260px);
         }
-        label {
-            display: block;
-            margin-top: 10px;
+
+        .sidebar .nav {
+            height: 100%;
+            margin-top: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
-        input, textarea, button {
+
+        .sidebar .nav::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .sidebar .nav::-webkit-scrollbar-track {
+            background: #f5f5f5;
+        }
+
+        .sidebar .nav::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+
+        .sidebar .nav::-webkit-scrollbar-thumb:hover {
+           
+        }
+        
+        .main-panel {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+            min-height: 100vh;
+            transition: 0.3s;
+            padding: 20px;
+            margin-top: 80px;
+        }
+
+        .main-panel.expanded {
+            margin-left: 0;
             width: 100%;
-            padding: 10px;
-            margin-top: 5px;
         }
-        button {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #45a049;
+
+        @media (max-width: 991px) {
+            .sidebar {
+                position: static;
+                height: auto;
+                width: 100%;
+                transform: none !important;
+                top: 0;
+            }
+            .sidebar .nav {
+                height: auto;
+                margin-top: 0;
+                overflow: visible;
+            }
+            .main-panel {
+                margin-left: 0;
+                width: 100%;
+                margin-top: 80px;
+            }
         }
     </style>
 </head>
 <body>
-<nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+    <!-- Navbar -->
+    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-          <div class="me-3">
-            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
-              <span class="icon-menu"></span>
-            </button>
-          </div>
-          <div>
-            <a class="navbar-brand brand-logo" href="index.html">
-              <img src="PureBuzzLogo.png"style="height: 80px;" alt="logo" />
-            </a>
-           
-          </div>
+            <div class="me-3">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
+                    <span class="icon-menu"></span>
+                </button>
+            </div>
+            <div>
+                <a class="navbar-brand brand-logo" href="index.html">
+                    <img src="../../Public/Product-pages/Images/PureBuzzLogo.png" style="height: 80px;" alt="logo" />
+                </a>
+            </div>
         </div>
-        <div class="navbar-menu-wrapper d-flex align-items-top"> 
-          <ul class="navbar-nav">
-            <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-              <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">Admin</span></h1>
-              <h3 class="welcome-sub-text">Your performance summary this week </h3>
-            </li>
-          </ul>
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item dropdown d-none d-lg-block">
-              <a class="nav-link dropdown-bordered dropdown-toggle dropdown-toggle-split" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false"> Select Category </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="messageDropdown">
-                <a class="dropdown-item py-3" >
-                  <p class="mb-0 font-weight-medium float-left">Select category</p>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">Bootstrap Bundle </p>
-                    <p class="fw-light small-text mb-0">This is a Bundle featuring 16 unique dashboards</p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">Angular Bundle</p>
-                    <p class="fw-light small-text mb-0">Everything you’ll ever need for your Angular projects</p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">VUE Bundle</p>
-                    <p class="fw-light small-text mb-0">Bundle of 6 Premium Vue Admin Dashboard</p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">React Bundle</p>
-                    <p class="fw-light small-text mb-0">Bundle of 8 Premium React Admin Dashboard</p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="nav-item d-none d-lg-block">
-              <div id="datepicker-popup" class="input-group date datepicker navbar-date-picker">
-                <span class="input-group-addon input-group-prepend border-right">
-                  <span class="icon-calendar input-group-text calendar-icon"></span>
-                </span>
-                <input type="text" class="form-control">
-              </div>
-            </li>
-            <li class="nav-item">
-              <form class="search-form" action="#">
-                <i class="icon-search"></i>
-                <input type="search" class="form-control" placeholder="Search Here" title="Search here">
-              </form>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                <i class="icon-mail icon-lg"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown">
-                <a class="dropdown-item py-3 border-bottom">
-                  <p class="mb-0 font-weight-medium float-left">You have 4 new notifications </p>
-                  <span class="badge badge-pill badge-primary float-right">View all</span>
-                </a>
-                <a class="dropdown-item preview-item py-3">
-                  <div class="preview-thumbnail">
-                    <i class="mdi mdi-alert m-auto text-primary"></i>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject fw-normal text-dark mb-1">Application Error</h6>
-                    <p class="fw-light small-text mb-0"> Just now </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item py-3">
-                  <div class="preview-thumbnail">
-                    <i class="mdi mdi-settings m-auto text-primary"></i>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject fw-normal text-dark mb-1">Settings</h6>
-                    <p class="fw-light small-text mb-0"> Private message </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item py-3">
-                  <div class="preview-thumbnail">
-                    <i class="mdi mdi-airballoon m-auto text-primary"></i>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject fw-normal text-dark mb-1">New user registration</h6>
-                    <p class="fw-light small-text mb-0"> 2 days ago </p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="nav-item dropdown"> 
-              <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="icon-bell"></i>
-                <span class="count"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="countDropdown">
-                <a class="dropdown-item py-3">
-                  <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
-                  <span class="badge badge-pill badge-primary float-right">View all</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <img src="images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
-                  </div>
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
-                    <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <img src="images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
-                  </div>
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
-                    <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <img src="images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
-                  </div>
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
-                    <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="nav-item dropdown d-none d-lg-block user-dropdown">
-              <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                <img class="img-xs rounded-circle" src="images/faces/face8.jpg" alt="Profile image"> </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-                <div class="dropdown-header text-center">
-                  <img class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
-                  <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
-                  <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
-                </div>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
-              </div>
-            </li>
-          </ul>
-          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
-            <span class="mdi mdi-menu"></span>
-          </button>
+        <div class="navbar-menu-wrapper d-flex align-items-top">
+            <ul class="navbar-nav">
+                <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+                    <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">Admin</span></h1>
+                    <h3 class="welcome-sub-text">Categories Management</h3>
+                </li>
+            </ul>
         </div>
-      </nav>
-       <!-- --------------------------------------nav-bar-set ne todeuche pas  -------------------------------------------------------------- -->
-    <div class="container-fluid page-body-wrapper"> 
+    </nav>
 
-    <?php include '../../Public/sidebar.php'; ?>
-
-        <div class="form-card" >
-            <h2>Categories List</h2>
-    <!--<a href="create.php?controller=Categories&action=create" class="btn">Add New Category</a>-->
-  
-                    <form id="categoryForm" method="POST" action="">
-                    <div class="form-group">
-                        <label for="name">Category Name</label>
-                        <input type="text" id="name" name="name" placeholder="Enter category name" >
-                        <span id="nameError" class="error"></span>
-                    </div> 
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea id="description" name="description" rows="4" placeholder="Enter description" ></textarea>
-                        <span id="descriptionError" class="error"></span>
+    <div class="container-fluid">
+    <?php include_once '../../Public/sidebar.php'; ?>
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <!-- Form Card -->
+                    <div class="col-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Add New Category</h4>
+                                <form id="categoryForm" method="POST" action="" class="forms-sample">
+                                    <div class="form-group">
+                                        <label for="name">Category Name</label>
+                                        <input type="text" class="form-control" id="name" name="name" 
+                                               placeholder="Enter category name" required>
+                                        <small class="text-danger" id="nameError"></small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control" id="description" name="description" 
+                                                  rows="4" placeholder="Enter description"></textarea>
+                                        <small class="text-danger" id="descriptionError"></small>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary me-2">Save Category</button>
+                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    <button type="submit" class="btn-primary">Save Category</button>
-                </form>
-                <script src="Validation.js"></script>
 
-        </div>
-
-  
-      
-        
-        <div class="table-card">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Category Name</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (!empty($categories) && is_array($categories)): ?>
-                        <?php foreach ($categories as $categories): ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($categories['id']); ?></td>
-                                <td><?php echo htmlspecialchars($categories['name']); ?></td>
-                                <td><?php echo htmlspecialchars($categories['description']); ?></td>
-                                <td>          
-
-                                <a class="btn-edit action-buttons " href="edit.php?id=<?php echo htmlspecialchars($categories['id']); ?>">Edit</a>                                    
-                                <a class="btn-delete action-buttons" href="index.php?controller=categorie&action=delete&id=<?php echo htmlspecialchars($categories['id']); ?>" 
-                                        onclick="return confirm('Are you sure you want to delete this category?')">Delete</a>
+                    <!-- Categories List Card -->
+                    <div class="col-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Categories List</h4>
+                                <form method="GET" action="index.php" class="search-form mb-3">
+                                    <div class="input-group">
+                                        <input type="text" name="search" class="form-control" 
+                                               placeholder="Search categories..." 
+                                               value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" />
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </div>
+                                </form>
                                 
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="4" class="no-data">No categories found.</td>
-                        </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
+                                <?php if ($categories): ?>
+                                <div class="table-responsive">
+                                    <table class="table" style="width: 100%; table-layout: fixed;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10%">ID</th>
+                                                <th style="width: 30%">Name</th>
+                                                <th style="width: 40%">Description</th>
+                                                <th style="width: 20%">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($categories as $category): ?>
+                                                <tr>
+                                                    <td class="text-truncate"><?= $category['id'] ?></td>
+                                                    <td class="text-truncate"><?= htmlspecialchars($category['name']) ?></td>
+                                                    <td class="text-truncate"><?= htmlspecialchars($category['description']) ?></td>
+                                                    <td>
+                                                        <div class="d-flex gap-2">
+                                                            <a class="btn btn-primary btn-sm" 
+                                                               href="edit.php?id=<?= $category['id'] ?>">Edit</a>
+                                                            <a class="btn btn-danger btn-sm" 
+                                                               href="index.php?controller=categorie&action=delete&id=<?= $category['id'] ?>" 
+                                                               onclick="return confirm('Are you sure you want to delete this category?')">Delete</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <?php else: ?>
+                                    <p>No categories available.</p>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+    <script>
+        // Add scroll handling for sidebar
+        let lastScrollTop = 0;
+        const sidebar = document.querySelector('.sidebar');
+        const mainPanel = document.querySelector('.main-panel');
+        const scrollThreshold = 100;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (currentScroll > scrollThreshold) {
+                if (currentScroll > lastScrollTop) {
+                    sidebar.classList.add('hidden');
+                    mainPanel.classList.add('expanded');
+                } else {
+                    sidebar.classList.remove('hidden');
+                    mainPanel.classList.remove('expanded');
+                }
+            } else {
+                sidebar.classList.remove('hidden');
+                mainPanel.classList.remove('expanded');
+            }
+            
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+
+        // Add hover behavior
+        sidebar.addEventListener('mouseenter', () => {
+            sidebar.classList.remove('hidden');
+            mainPanel.classList.remove('expanded');
+        });
+
+        sidebar.addEventListener('mouseleave', () => {
+            if (window.pageYOffset > scrollThreshold) {
+                sidebar.classList.add('hidden');
+                mainPanel.classList.add('expanded');
+            }
+        });
+    </script>
 </body>
 </html>
