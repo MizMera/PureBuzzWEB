@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_apiary'])) {
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Star Admin2 </title>
@@ -66,6 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_apiary'])) {
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="stylesheet" href="../../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../../assets/css/sidebar.css">
+   
        
         <link rel="shortcut icon" href="../../../assets/PureBuzzLogo.png" />
 </head>
@@ -418,125 +420,100 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_apiary'])) {
             </div>
             <!-- partial -->
             <!-- partial:partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
                     <ul class="nav">
-                      
-            <li class="nav-item nav-category">Products and Management</li>
+                        <li class="nav-item nav-category">Products and Management</li>
                         <li class="nav-item">
-                        <a class="nav-link" href="../../categories/index.php" aria-expanded="false" aria-controls="charts">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
+                            <a class="nav-link" data-bs-toggle="collapse" href="../../categories/index.php" aria-expanded="false" aria-controls="tables">
+                                <i class="menu-icon mdi mdi-format-list-bulleted"></i>
                                 <span class="menu-title">Categories</span>
                             </a>
-                            <div class="collapse" id="tables">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../../Products/index.php" aria-expanded="false" aria-controls="charts">
-                                <i class="menu-icon mdi mdi-chart-line"></i>
+                                <i class="menu-icon mdi mdi-package-variant"></i>
                                 <span class="menu-title">Product</span>
                             </a>
-                            <div class="collapse" id="charts">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
-            <li class="nav-item nav-category">Support</li>
+
+                        <li class="nav-item nav-category">Support</li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../support/Reclamation.html" aria-expanded="false"
-                                aria-controls="charts">
-                                <i class="menu-icon mdi mdi-chart-line"></i>
+                            <a class="nav-link" href="../../support/Reclamation.html" aria-expanded="false" aria-controls="charts">
+                                <i class="menu-icon mdi mdi-message-alert"></i>
                                 <span class="menu-title">Claims views</span>
                             </a>
-                            <div class="collapse" id="charts">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
 
-
-             <li class="nav-item nav-category">User Managment</li>
-                        <li class="nav-item"> 
-                             <a class="nav-link" href="../../user/Back_Office/stat.html">
-                                <i class="menu-icon mdi mdi-table"></i>
+                        <li class="nav-item nav-category">User Management</li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="../../user/Back_Office/stat.html" aria-expanded="false" aria-controls="basic">
+                                <i class="menu-icon mdi mdi-account-group"></i>
                                 <span class="menu-title">User Mangamnets</span>
-                                <i class="menu-arrow"></i>
                             </a>
-                            <li class="nav-item">
-                            <a class="nav-link" href="../../user/Front_office/UserProfile.html">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">My profile</span>
-                            </a>
-                        </li>
                             <div class="collapse" id="basic">
                                 <ul class="nav flex-column sub-menu">
                                     <li class="nav-item"> <a class="nav-link" href="addUser.html">Add User</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="AllUsers.html">Get All Users</a>
-                                    </li>
+                                    <li class="nav-item"> <a class="nav-link" href="AllUsers.html">Get All Users</a></li>
                                     <li class="nav-item"> <a class="nav-link" href="stat.html">Dashboard</a></li>
-
                                 </ul>
                             </div>
                         </li>
-             <li class="nav-item nav-category"> apiaries</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../user/Front_office/UserProfile.html">
+                                <i class="menu-icon mdi mdi-account-circle"></i>
+                                <span class="menu-title">My profile</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item nav-category">apiaries</li>
                         <li class="nav-item">
                             <a class="nav-link" href="../../apiary/backOffice/apiaries.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <i class="menu-icon mdi mdi-hexagon-multiple"></i>
                                 <span class="menu-title">Apiaries</span>
                             </a>
                         </li>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../../apiary/backOffice/harvests.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <i class="menu-icon mdi mdi-honey-pot"></i>
                                 <span class="menu-title">Harvests</span>
                             </a>
                         </li>
-          <li class="nav-item nav-category">Cart</li>
+
+                        <li class="nav-item nav-category">Cart</li>
                         <li class="nav-item">
                             <a class="nav-link" href="../../Cart/back/cartm.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <i class="menu-icon mdi mdi-cart"></i>
                                 <span class="menu-title">Cart Management</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../../Cart/back/promo.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <i class="menu-icon mdi mdi-tag-multiple"></i>
                                 <span class="menu-title">Promos</span>
                             </a>
                         </li>
+
                         <li class="nav-item nav-category">EVENTS</li>
-                    <li class="nav-item">
-                            <a class="nav-link" href="../../../views/events/app/manage_events.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">Mangae Event</span>
-                            </a>
-                    </li>
-                    <li class="nav-item">
-                            <a class="nav-link" href="../../../views/events/app/manage_tickets.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">Manage Ticket</span>
-                            </a>
-                    </li>
-                        <li class="nav-item nav-category">Settings</li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" id="logoutLink">
-                                <i class="menu-icon mdi mdi-file-document"></i>
-                                <span class="menu-title">Log Out</span>
+                            <a class="nav-link" href="../../events/app/manage_events.php">
+                                <i class="menu-icon mdi mdi-calendar"></i>
+                                <span class="menu-title">Manage Event</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../events/app/manage_tickets.php">
+                                <i class="menu-icon mdi mdi-ticket"></i>
+                                <span class="menu-title">Manage Ticket</span>
                             </a>
                         </li>
 
-
+                        <li class="nav-item nav-category">Settings</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="logoutLink">
+                                <i class="menu-icon mdi mdi-logout"></i>
+                                <span class="menu-title">Log Out</span>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             <!-- partial -->
@@ -794,3 +771,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_apiary'])) {
 </body>
 
 </html>
+ <script src="../../../assets/js/sidebar.js"></script>

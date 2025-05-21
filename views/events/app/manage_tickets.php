@@ -84,409 +84,444 @@ $tickets = $ticketController->getAllTickets();
     <link rel="stylesheet" href="../../../assets/css/vertical-layout-light/style.css">
     <link rel="stylesheet" href="../../../assets/css/Back_office/AllUsers.css">
     <link rel="shortcut icon" href="../../../assets/PureBuzzLogo.png" />
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #fff8e1;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #6d4c41;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: #ffeb3b;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        form {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #8d6e63;
-            border-radius: 5px;
-            background-color: #fff;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-            color: #6d4c41;
-        }
-        input[type="text"], input[type="tel"], input[type="email"], input[type="number"] {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            background-color: #fbc02d;
-            color: #fff;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            margin-top: 10px;
-            border-radius: 5px;
-            font-weight: bold;
-            display: block;
-            width: 100%;
-        }
-        button:hover {
-            background-color: #f9a825;
-        }
-        .success, .error {
-            text-align: center;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        .success {
-            color: green;
-        }
-        .error {
-            color: red;
-        }
-        table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid #8d6e63;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #fbc02d;
-        }
-    </style>
 </head>
+ <style>
+     .card {
+            margin-bottom: 30px;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-description {
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #dde1e3;
+            padding: 10px 15px;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 80px; /* Match the navbar height */
+            left: 0;
+            height: calc(100% - 80px); /* Subtract navbar height */
+            z-index: 999; /* Just below navbar */
+            background: #f5f5f5;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            width: 260px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .sidebar.hidden {
+            transform: translateX(-260px);
+        }
+
+        .sidebar .nav {
+            height: 100%;
+            margin-top: 0; /* Remove margin since we're already positioned below navbar */
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .sidebar .nav::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .sidebar .nav::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .sidebar .nav::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+
+        .sidebar .nav::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        .main-panel {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+            min-height: 100vh;
+            transition: 0.3s;
+            padding: 20px;
+            margin-top: 80px; /* Add margin to account for fixed navbar */
+        }
+
+        .main-panel.expanded {
+            margin-left: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 991px) {
+            .sidebar {
+                position: static;
+                height: auto;
+                width: 100%;
+                transform: none !important;
+                top: 0;
+            }
+            .sidebar .nav {
+                height: auto;
+                margin-top: 0;
+                overflow: visible;
+            }
+            .main-panel {
+                margin-left: 0;
+                width: 100%;
+                margin-top: 80px;
+            }
+        }
+</style>
 <body>
-<div class="container-fluid">
-<nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
-        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-          <div class="me-3">
-            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
-              <span class="icxon-menu"></span>
-            </button>
-          </div>
-          <div>
-            <a class="navbar-brand brand-logo" href="index.html">
-              <img src="../../Public/Product-pages/Images/PureBuzzLogo.png"style="height: 80px;" alt="logo" />
-            </a>
-           
-          </div>
-        </div>
-        <div class="navbar-menu-wrapper d-flex align-items-top"> 
-          <ul class="navbar-nav">
-            <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-              <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">Admin</span></h1>
-              <h3 class="welcome-sub-text">Your performance summary this week </h3>
-            </li>
-          </ul>
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item dropdown">
-              <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                <i class="icon-mail icon-lg"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown">
-                <a class="dropdown-item py-3 border-bottom">
-                  <p class="mb-0 font-weight-medium float-left">You have 4 new notifications </p>
-                  <span class="badge badge-pill badge-primary float-right">View all</span>
-                </a>
-                <a class="dropdown-item preview-item py-3">
-                  <div class="preview-thumbnail">
-                    <i class="mdi mdi-alert m-auto text-primary"></i>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject fw-normal text-dark mb-1">Application Error</h6>
-                    <p class="fw-light small-text mb-0"> Just now </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item py-3">
-                  <div class="preview-thumbnail">
-                    <i class="mdi mdi-settings m-auto text-primary"></i>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject fw-normal text-dark mb-1">Settings</h6>
-                    <p class="fw-light small-text mb-0"> Private message </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item py-3">
-                  <div class="preview-thumbnail">
-                    <i class="mdi mdi-airballoon m-auto text-primary"></i>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject fw-normal text-dark mb-1">New user registration</h6>
-                    <p class="fw-light small-text mb-0"> 2 days ago </p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="nav-item dropdown"> 
-              <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="icon-bell"></i>
-                <span class="count"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="countDropdown">
-                <a class="dropdown-item py-3">
-                  <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
-                  <span class="badge badge-pill badge-primary float-right">View all</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <img src="images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
-                  </div>
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
-                    <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <img src="images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
-                  </div>
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
-                    <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <img src="images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
-                  </div>
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
-                    <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="nav-item dropdown d-none d-lg-block user-dropdown">
-              <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                <img class="img-xs rounded-circle" src="images/faces/face8.jpg" alt="Profile image"> </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-                <div class="dropdown-header text-center">
-                  <img class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
-                  <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
-                  <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+    <div class="container-scroller">
+        <!-- Navbar -->
+        <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+                <div class="me-3">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
+                        <span class="icxon-menu"></span>
+                    </button>
                 </div>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
-                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
-              </div>
-            </li>
-          </ul>
-          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
-            <span class="mdi mdi-menu"></span>
-          </button>
+                <div>
+                    <a class="navbar-brand brand-logo" href="index.html">
+                        <img src="../../../assets/PureBuzzLogo.png" style="height: 80px;" alt="logo" />
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-top"> 
+                <ul class="navbar-nav">
+                    <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+                        <h1 class="welcome-text">Ticket <span class="text-black fw-bold">Mangment</span></h1>
+                        <h3 class="welcome-sub-text">Your performance summary this week </h3>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
+                            <i class="icon-mail icon-lg"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown">
+                            <a class="dropdown-item py-3 border-bottom">
+                                <p class="mb-0 font-weight-medium float-left">You have 4 new notifications </p>
+                                <span class="badge badge-pill badge-primary float-right">View all</span>
+                            </a>
+                            <a class="dropdown-item preview-item py-3">
+                                <div class="preview-thumbnail">
+                                    <i class="mdi mdi-alert m-auto text-primary"></i>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject fw-normal text-dark mb-1">Application Error</h6>
+                                    <p class="fw-light small-text mb-0"> Just now </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item preview-item py-3">
+                                <div class="preview-thumbnail">
+                                    <i class="mdi mdi-settings m-auto text-primary"></i>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject fw-normal text-dark mb-1">Settings</h6>
+                                    <p class="fw-light small-text mb-0"> Private message </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item preview-item py-3">
+                                <div class="preview-thumbnail">
+                                    <i class="mdi mdi-airballoon m-auto text-primary"></i>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject fw-normal text-dark mb-1">New user registration</h6>
+                                    <p class="fw-light small-text mb-0"> 2 days ago </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown"> 
+                        <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="icon-bell"></i>
+                            <span class="count"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="countDropdown">
+                            <a class="dropdown-item py-3">
+                                <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
+                                <span class="badge badge-pill badge-primary float-right">View all</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
+                                </div>
+                                <div class="preview-item-content flex-grow py-2">
+                                    <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
+                                    <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
+                                </div>
+                                <div class="preview-item-content flex-grow py-2">
+                                    <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
+                                    <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
+                                </div>
+                                <div class="preview-item-content flex-grow py-2">
+                                    <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
+                                    <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown d-none d-lg-block user-dropdown">
+                        <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="img-xs rounded-circle" src="images/faces/face8.jpg" alt="Profile image"> </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                            <div class="dropdown-header text-center">
+                                <img class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
+                                <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
+                                <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+                            </div>
+                            <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
+                            <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
+                            <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
+                            <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
+                            <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Container -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- Sidebar -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">              
+                    <li class="nav-item nav-category">Products Management</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../categories/index.php">
+                            <i class="mdi mdi-grid-large menu-icon"></i>
+                            <span class="menu-title">Categories</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../Products/index.php">
+                            <i class="menu-icon mdi mdi-cart"></i>
+                            <span class="menu-title">Products</span>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-category">User Management</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../user/Back_Office/stat.html">
+                            <i class="menu-icon mdi mdi-account-group"></i>
+                            <span class="menu-title">Users</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../user/Front_office/UserProfile.html">
+                            <i class="menu-icon mdi mdi-account-circle"></i>
+                            <span class="menu-title">My Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-category">Apiaries</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../apiary/backOffice/apiaries.php">
+                            <i class="menu-icon mdi mdi-hexagon-multiple"></i>
+                            <span class="menu-title">Apiaries</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../apiary/backOffice/harvests.php">
+                            <i class="menu-icon mdi mdi-honey-pot"></i>
+                            <span class="menu-title">Harvests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-category">Cart</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../Cart/back/cartm.php">
+                            <i class="menu-icon mdi mdi-cart-outline"></i>
+                            <span class="menu-title">Cart Management</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../Cart/back/promo.php">
+                            <i class="menu-icon mdi mdi-tag-multiple"></i>
+                            <span class="menu-title">Promos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-category">Events</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="manage_events.php">
+                            <i class="menu-icon mdi mdi-calendar"></i>
+                            <span class="menu-title">Manage Events</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="manage_tickets.php">
+                            <i class="menu-icon mdi mdi-ticket"></i>
+                            <span class="menu-title">Manage Tickets</span>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-category">Settings</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logoutLink">
+                            <i class="menu-icon mdi mdi-logout"></i>
+                            <span class="menu-title">Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Main Panel -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="page-title">Ticket Management</h2>
+                            <p class="welcome-text">Manage your event tickets here</p>
+                        </div>
+                        
+                        <!-- Add Ticket Card -->
+                        <div class="col-12 col-xl-5 grid-margin">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Add New Ticket</h4>
+                                    <form method="POST">
+                                        <div class="form-group">
+                                            <label for="event_id">Event ID</label>
+                                            <input type="number" class="form-control" name="event_id" id="event_id" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="username">Name</label>
+                                            <input type="text" class="form-control" name="username" id="username" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone">Phone</label>
+                                            <input type="tel" class="form-control" name="phone" id="phone" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" name="email" id="email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="num_tickets">Number of Tickets</label>
+                                            <input type="number" class="form-control" name="num_tickets" id="num_tickets" required min="1">
+                                        </div>
+                                        <button type="submit" name="add" class="btn btn-primary">Add Ticket</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tickets List Card -->
+                        <div class="col-12 col-xl-7 grid-margin">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Tickets List</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Event ID</th>
+                                                    <th>Name</th>
+                                                    <th>Phone</th>
+                                                    <th>Email</th>
+                                                    <th>Tickets</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php if (!empty($tickets)): ?>
+                                                    <?php foreach ($tickets as $ticket): ?>
+                                                        <tr>
+                                                            <td><?= htmlspecialchars($ticket->getId()); ?></td>
+                                                            <td><?= htmlspecialchars($ticket->getEventId()); ?></td>
+                                                            <td><?= htmlspecialchars($ticket->getUsername()); ?></td>
+                                                            <td><?= htmlspecialchars($ticket->getPhone()); ?></td>
+                                                            <td><?= htmlspecialchars($ticket->getEmail()); ?></td>
+                                                            <td><?= htmlspecialchars($ticket->getNumTickets()); ?></td>
+                                                            <td>
+                                                                <button class="btn btn-primary btn-sm" onclick="editTicket(<?= $ticket->getId() ?>)">
+                                                                    <i class="mdi mdi-pencil"></i>
+                                                                </button>
+                                                                <button class="btn btn-danger btn-sm" onclick="deleteTicket(<?= $ticket->getId() ?>)">
+                                                                    <i class="mdi mdi-delete"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php else: ?>
+                                                    <tr>
+                                                        <td colspan="7" class="text-center">No tickets found.</td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </nav>
-
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
-                    <ul class="nav">
-            <li class="nav-item nav-category">Products and Management</li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="../../categories/index.php" aria-expanded="false" aria-controls="charts">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">Categories</span>
-                            </a>
-                            <div class="collapse" id="tables">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../Products/index.php" aria-expanded="false" aria-controls="charts">
-                                <i class="menu-icon mdi mdi-chart-line"></i>
-                                <span class="menu-title">Product</span>
-                            </a>
-                            <div class="collapse" id="charts">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-            <li class="nav-item nav-category">Support</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../support/Reclamation.html" aria-expanded="false"
-                                aria-controls="charts">
-                                <i class="menu-icon mdi mdi-chart-line"></i>
-                                <span class="menu-title">Claims views</span>
-                            </a>
-                            <div class="collapse" id="charts">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-
-             <li class="nav-item nav-category">User Managment</li>
-                        <li class="nav-item"> 
-                             <a class="nav-link" href="../../user/Back_Office/stat.html">
-                                <i class="menu-icon mdi mdi-table"></i>
-                                <span class="menu-title">User Mangamnets</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                            <li class="nav-item">
-                            <a class="nav-link" href="../../user/Front_office/UserProfile.html">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">My profile</span>
-                            </a>
-                        </li>
-                            <div class="collapse" id="basic">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item"> <a class="nav-link" href="addUser.html">Add User</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="AllUsers.html">Get All Users</a>
-                                    </li>
-                                    <li class="nav-item"> <a class="nav-link" href="stat.html">Dashboard</a></li>
-
-                                </ul>
-                            </div>
-                        </li>
-             <li class="nav-item nav-category"> apiaries</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../apiary/backOffice/apiaries.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">Apiaries</span>
-                            </a>
-                        </li>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../apiary/backOffice/harvests.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">Harvests</span>
-                            </a>
-                        </li>
-          <li class="nav-item nav-category">Cart</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../Cart/back/cartm.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">Cart Management</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../Cart/back/promo.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">Promos</span>
-                            </a>
-                        </li>
-                        <li class="nav-item nav-category">EVENTS</li>
-                    <li class="nav-item">
-                            <a class="nav-link" href="../../events/app/manage_events.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">Mangae Event</span>
-                            </a>
-                    </li>
-                    <li class="nav-item">
-                            <a class="nav-link" href="../../events/app/manage_tickets.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">Manage Ticket</span>
-                            </a>
-                    </li>
-                        <li class="nav-item nav-category">Settings</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" id="logoutLink">
-                                <i class="menu-icon mdi mdi-file-document"></i>
-                                <span class="menu-title">Log Out</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-         <div class="container-fluid">
-        <h1>Manage Tickets</h1>
-
-        <?php if ($message): ?>
-            <p class="<?php echo $messageType; ?>"><?php echo $message; ?></p>
-        <?php endif; ?>
-
-        <!-- Form to Add Ticket -->
-        <form method="POST">
-            <h2>Add Ticket</h2>
-            <label for="event_id">Event ID:</label>
-            <input type="number" name="event_id" id="event_id" required>
-            <label for="username">Name:</label>
-            <input type="text" name="username" id="username" required>
-            <label for="phone">Phone:</label>
-            <input type="tel" name="phone" id="phone" required>
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" required>
-            <label for="num_tickets">Number of Tickets:</label>
-            <input type="number" name="num_tickets" id="num_tickets" required min="1">
-            <button type="submit" name="add">Add Ticket</button>
-        </form>
-
-        <!-- Form to Update Ticket -->
-        <form method="POST">
-            <h2>Update Ticket</h2>
-            <label for="id">Ticket ID:</label>
-            <input type="number" name="id" id="id" required>
-            <label for="username2">Name:</label>
-            <input type="text" name="username" id="username2" required>
-            <label for="phone2">Phone:</label>
-            <input type="tel" name="phone" id="phone2" required>
-            <label for="email2">Email:</label>
-            <input type="email" name="email" id="email2" required>
-            <label for="num_tickets2">Number of Tickets:</label>
-            <input type="number" name="num_tickets" id="num_tickets2" required min="1">
-            <button type="submit" name="update">Update Ticket</button>
-        </form>
-
-        <!-- Form to Delete Ticket -->
-        <form method="POST">
-            <h2>Delete Ticket</h2>
-            <label for="delete_id">Ticket ID:</label>
-            <input type="number" name="id" id="delete_id" required>
-            <button type="submit" name="delete">Delete Ticket</button>
-        </form>
-        <!-- Display All Tickets -->
-        <h2>All Tickets</h2>
-        <?php if (!empty($tickets)): ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Event ID</th>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Number of Tickets</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($tickets as $ticket): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($ticket->getId()); ?></td>
-                            <td><?php echo htmlspecialchars($ticket->getEventId()); ?></td>
-                            <td><?php echo htmlspecialchars($ticket->getUsername()); ?></td>
-                            <td><?php echo htmlspecialchars($ticket->getPhone()); ?></td>
-                            <td><?php echo htmlspecialchars($ticket->getEmail()); ?></td>
-                            <td><?php echo htmlspecialchars($ticket->getNumTickets()); ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php else: ?>
-            <p>No tickets found.</p>
-        <?php endif; ?>
     </div>
-    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fix sidebar height
+            const mainPanel = document.querySelector('.main-panel');
+            
+            function adjustLayout() {
+                const windowHeight = window.innerHeight;
+                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                sidebar.style.height = `${windowHeight - navbarHeight}px`;
+                sidebar.style.top = `${navbarHeight}px`;
+                mainPanel.style.marginTop = `${navbarHeight}px`;
+            }
+
+            adjustLayout();
+            window.addEventListener('resize', adjustLayout);
+        });
+
+        function editTicket(id) {
+            // Implement edit functionality
+            console.log('Edit ticket:', id);
+        }
+
+        function deleteTicket(id) {
+            if (confirm('Are you sure you want to delete this ticket?')) {
+                // Submit delete form
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.innerHTML = `
+                    <input type="hidden" name="id" value="${id}">
+                    <input type="hidden" name="delete" value="1">
+                `;
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    </script>
 </body>
 </html>
-
+<script src="../../../assets/js/sidebar.js"></script>

@@ -8,6 +8,125 @@
     <link rel="stylesheet" href="product-style.css">
     <link rel="stylesheet" href="product-style.css">
     <link rel="stylesheet" href="product-style.css">
+    <style>
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chat-widget-button {
+            background: #ff5722;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .chat-widget-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .chat-container {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 350px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: #ff5722;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .chat-body {
+            height: 300px;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .chat-message {
+            margin-bottom: 15px;
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            position: relative;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .user-message {
+            background: #ff5722;
+            color: #fff;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+
+        .bot-message {
+            background: #fff;
+            color: #333;
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+
+        .chat-input button {
+            background: #ff5722;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 
 <body>
@@ -199,6 +318,28 @@
         </div>
     </footer>
 
+    <!-- Add before closing body tag -->
+    <div class="chat-widget">
+        <button class="chat-widget-button" onclick="toggleChat()">
+            <i class="mdi mdi-message-text"></i>
+            Need Help?
+        </button>
+        
+        <div class="chat-container" id="chatContainer" style="display: none;">
+            <div class="chat-header">
+                <h3>PureBuzz Support Assistant</h3>
+                <button class="close-chat" onclick="toggleChat()">×</button>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <!-- Chat messages will appear here -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type your message here...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript for Smooth Scrolling and Scroll Animation -->
     <script>
         // Smooth Scroll for Navigation Links
@@ -227,6 +368,171 @@
 
             window.addEventListener("scroll", checkScroll);
             checkScroll(); // Initial check in case the section is already in view
+        });
+
+        // Chat functionality
+        function toggleChat() {
+            const chatContainer = document.getElementById('chatContainer');
+            const currentDisplay = chatContainer.style.display;
+            chatContainer.style.display = currentDisplay === 'none' ? 'block' : 'none';
+            
+            if (currentDisplay === 'none') {
+                // Send welcome message when chat is opened
+                setTimeout(() => {
+                    appendMessage('bot', "👋 Welcome to PureBuzz Support! How can I help you today?");
+                }, 300);
+            }
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById('userInput');
+            const message = userInput.value.trim();
+            
+            if (!message) return;
+
+            // Display user message
+            appendMessage('user', message);
+            userInput.value = '';
+
+            // Process the message and get bot response
+            processMessage(message);
+        }
+
+        function appendMessage(type, content) {
+            const chatBody = document.getElementById('chatBody');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${type}-message`;
+            
+            // Convert line breaks to HTML and add emoji spacing
+            const formattedContent = content.replace(/\n/g, '<br>').replace(/([📦💰ℹ️✨🌿🔄])/g, '$1 ');
+            messageDiv.innerHTML = formattedContent;
+            
+            chatBody.appendChild(messageDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function processMessage(message) {
+            const lowerMessage = message.toLowerCase();
+            const products = {
+                honey: {
+                    name: "Organic Honey",
+                    price: 15.00,
+                    description: "Pure organic honey in a glass jar, perfect for natural sweetening and health benefits.",
+                    benefits: "Rich in antioxidants and natural enzymes, great for immunity and energy."
+                },
+                pollen: {
+                    name: "Bee Pollen",
+                    price: 10.00,
+                    description: "Rich in vitamins and minerals, perfect for boosting nutrition.",
+                    benefits: "Contains proteins, vitamins, and minerals essential for overall health."
+                },
+                "royal jelly": {
+                    name: "Royal Jelly",
+                    price: 20.00,
+                    description: "A premium supplement for vitality and wellness.",
+                    benefits: "Supports immune system and provides natural energy boost."
+                },
+                candles: {
+                    name: "Beeswax Candles",
+                    price: 25.00,
+                    description: "Natural beeswax candles for ambiance and relaxation.",
+                    benefits: "Clean burning, long-lasting, and naturally purifies air."
+                }
+            };
+
+            // Helper function to format currency
+            const formatPrice = (price) => `$${price.toFixed(2)}`;
+
+            // Helper function to find product matches
+            const findProduct = (query) => {
+                return Object.entries(products).find(([key]) => 
+                    query.includes(key) || key.includes(query)
+                );
+            };
+
+            setTimeout(() => {
+                // Product specific queries
+                const productMatch = findProduct(lowerMessage);
+                if (productMatch) {
+                    const [_, product] = productMatch;
+                    appendMessage('bot', 
+                        `📦 ${product.name}\n` +
+                        `💰 Price: ${formatPrice(product.price)}\n` +
+                        `ℹ️ ${product.description}\n` +
+                        `✨ Benefits: ${product.benefits}\n\n` +
+                        `Would you like to know more about this product or add it to your cart?`
+                    );
+                    return;
+                }
+
+                // Price related queries
+                if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('how much')) {
+                    if (lowerMessage.includes('range') || lowerMessage.includes('all')) {
+                        appendMessage('bot', "Our products range from $5 to $30. Here's a quick overview:\n" +
+                            "- Honey Products: $15-20\n" +
+                            "- Bee Pollen: $10\n" +
+                            "- Royal Jelly: $20\n" +
+                            "- Beeswax Products: $25\n" +
+                            "Would you like specific details about any product?");
+                        return;
+                    }
+                }
+
+                // Shipping and delivery queries
+                if (lowerMessage.includes('delivery') || lowerMessage.includes('shipping')) {
+                    appendMessage('bot', "📦 Shipping Information:\n" +
+                        "- Standard Shipping (3-5 business days): $5.99\n" +
+                        "- Express Shipping (1-2 business days): $12.99\n" +
+                        "- Free shipping on orders over $50!\n\n" +
+                        "Would you like to know about shipping to your specific location?");
+                    return;
+                }
+
+                // Return policy queries
+                if (lowerMessage.includes('return') || lowerMessage.includes('refund')) {
+                    appendMessage('bot', "🔄 Our Return Policy:\n" +
+                        "- 30-day money-back guarantee\n" +
+                        "- Unopened products only\n" +
+                        "- Free returns within the US\n" +
+                        "- Contact support with your order number\n\n" +
+                        "Do you need help with a return?");
+                    return;
+                }
+
+                // Benefits and health queries
+                if (lowerMessage.includes('benefit') || lowerMessage.includes('health') || lowerMessage.includes('good for')) {
+                    appendMessage('bot', "🌿 Our bee products offer many health benefits:\n" +
+                        "- Honey: Natural antibacterial & immune booster\n" +
+                        "- Bee Pollen: Rich in proteins & vitamins\n" +
+                        "- Royal Jelly: Supports energy & vitality\n" +
+                        "- Propolis: Natural immune system support\n\n" +
+                        "Which product would you like to learn more about?");
+                    return;
+                }
+
+                // Order status
+                if (lowerMessage.includes('order') && (lowerMessage.includes('status') || lowerMessage.includes('track'))) {
+                    appendMessage('bot', "To track your order, please provide your order number or email address. " +
+                        "You can also track your order directly from your account dashboard.");
+                    return;
+                }
+
+                // Default response with conversation continuation
+                appendMessage('bot', "I'd be happy to help you! Are you interested in:\n" +
+                    "1. Product information\n" +
+                    "2. Shipping & delivery\n" +
+                    "3. Returns & refunds\n" +
+                    "4. Health benefits\n" +
+                    "5. Order tracking\n" +
+                    "Just click or type the number or topic you'd like to know more about!");
+            }, 500);
+        }
+
+        // Add event listener for Enter key
+        document.getElementById('userInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
         });
     </script>
 </body>

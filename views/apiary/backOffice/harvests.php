@@ -52,6 +52,7 @@ $chartData = json_encode([
 <html lang="en">
 
 <head>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -71,7 +72,8 @@ $chartData = json_encode([
     <!-- inject:css -->
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- endinject -->
-  
+      <link rel="stylesheet" href="../../../assets/css/sidebar.css">
+
     <link rel="shortcut icon" href="../../../assets/PureBuzzLogo.png" />
 </head>
 
@@ -780,3 +782,4 @@ $chartData = json_encode([
 </body>
 
 </html>
+ <script src="../../../assets/js/sidebar.js"></script>

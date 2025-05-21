@@ -34,6 +34,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['ne
         $error = "Error updating status: " . $e->getMessage();
     }
 }
+
+function getStatusBadgeClass($status) {
+    switch ($status) {
+        case 'Pending':
+            return 'warning';
+        case 'In Progress':
+            return 'primary';
+        case 'Ready for Delivery':
+            return 'info';
+        case 'Delivered':
+            return 'success';
+        default:
+            return 'secondary';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,8 +77,104 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['ne
     <link rel="stylesheet" href="../Products/style.css">
     <link rel="stylesheet" href="../Products/style2.css">
     <link rel="shortcut icon" href="../../../assets/PureBuzzLogo.png" />
+    <link rel="stylesheet" href="../../../assets/css/sidebar.css">
 
 </head>
+<style>
+    .card {
+        margin-bottom: 30px;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    .card-title {
+        color: #ff5722; /* Orange color matching theme */
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+
+    .card-description {
+        color:rgb(0, 0, 0);
+        margin-bottom: 1.5rem;
+    }
+
+    .table {
+        margin-top: 1rem;
+    }
+
+    .table thead th {
+        background-color: #fff5f2; /* Light orange background */
+        border-bottom: 2px solid #ff5722;
+        color: #ff5722;
+        font-weight: 600;
+        padding: 12px;
+    }
+
+    .table tbody tr:hover {
+        background-color: #fff5f2;
+        cursor: pointer;
+    }
+
+    .badge {
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-weight: 500;
+    }
+
+    .badge-success {
+        background-color: #ff5722;
+        color: white;
+    }
+
+    .badge-warning {
+        background-color: #ffc107;
+        color: #000;
+    }
+
+    .btn-primary {
+        background-color: #ff5722;
+        border: none;
+        margin-right: 5px;
+    }
+
+    .btn-primary:hover {
+        background-color: #f4511e;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+    .table-responsive {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .table td {
+        vertical-align: middle;
+    }
+
+    @media (max-width: 768px) {
+        .card {
+            margin: 10px;
+        }
+        
+        .table td, .table th {
+            padding: 8px;
+        }
+        
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+        }
+    }
+</style>
 <body>
 
 <div class="container-scroller">
@@ -85,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['ne
             <div class="navbar-menu-wrapper d-flex align-items-top">
                 <ul class="navbar-nav">
                     <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-                        <h1 class="welcome-text">welcome </h1>
+                        <h1 class="welcome-text">Cart Management </h1>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
@@ -413,204 +524,186 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'], $_POST['ne
             </div>
             <!-- partial -->
             <!-- partial:partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
                     <ul class="nav">
-                      
-            <li class="nav-item nav-category">Products and Management</li>
+                        <li class="nav-item nav-category">Products and Management</li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="../../categories/index.php"
-                                aria-expanded="false" aria-controls="tables">
-                                    <i class="menu-icon mdi mdi-table"></i>
-                                  <span class="menu-title">Categories</span>
+                            <a class="nav-link" data-bs-toggle="collapse" href="../../categories/index.php" aria-expanded="false" aria-controls="tables">
+                                <i class="menu-icon mdi mdi-format-list-bulleted"></i>
+                                <span class="menu-title">Categories</span>
                             </a>
-                            <div class="collapse" id="tables">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../../Products/index.php" aria-expanded="false" aria-controls="charts">
-                                <i class="menu-icon mdi mdi-chart-line"></i>
+                                <i class="menu-icon mdi mdi-package-variant"></i>
                                 <span class="menu-title">Product</span>
                             </a>
-                            <div class="collapse" id="charts">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
-            <li class="nav-item nav-category">Support</li>
+
+                        <li class="nav-item nav-category">Support</li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../support/Reclamation.html" aria-expanded="false"
-                                aria-controls="charts">
-                                <i class="menu-icon mdi mdi-chart-line"></i>
+                            <a class="nav-link" href="../../support/Reclamation.html" aria-expanded="false" aria-controls="charts">
+                                <i class="menu-icon mdi mdi-message-alert"></i>
                                 <span class="menu-title">Claims views</span>
                             </a>
-                            <div class="collapse" id="charts">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
 
-
-             <li class="nav-item nav-category">User Managment</li>
-                        <li class="nav-item"> 
-                             <a class="nav-link" href="../../user/Back_Office/stat.html">
-                                <i class="menu-icon mdi mdi-table"></i>
+                        <li class="nav-item nav-category">User Management</li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="../../user/Back_Office/stat.html" aria-expanded="false" aria-controls="basic">
+                                <i class="menu-icon mdi mdi-account-group"></i>
                                 <span class="menu-title">User Mangamnets</span>
-                                <i class="menu-arrow"></i>
                             </a>
-                            <li class="nav-item">
-                            <a class="nav-link" href="../../user/Front_office/UserProfile.html">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">My profile</span>
-                            </a>
-                        </li>
                             <div class="collapse" id="basic">
                                 <ul class="nav flex-column sub-menu">
                                     <li class="nav-item"> <a class="nav-link" href="addUser.html">Add User</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="AllUsers.html">Get All Users</a>
-                                    </li>
+                                    <li class="nav-item"> <a class="nav-link" href="AllUsers.html">Get All Users</a></li>
                                     <li class="nav-item"> <a class="nav-link" href="stat.html">Dashboard</a></li>
-
                                 </ul>
                             </div>
                         </li>
-             <li class="nav-item nav-category"> apiaries</li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../user/Front_office/UserProfile.html">
+                                <i class="menu-icon mdi mdi-account-circle"></i>
+                                <span class="menu-title">My profile</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item nav-category">apiaries</li>
                         <li class="nav-item">
                             <a class="nav-link" href="../../apiary/backOffice/apiaries.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <i class="menu-icon mdi mdi-hexagon-multiple"></i>
                                 <span class="menu-title">Apiaries</span>
                             </a>
                         </li>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../../apiary/backOffice/harvests.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <i class="menu-icon mdi mdi-honey-pot"></i>
                                 <span class="menu-title">Harvests</span>
                             </a>
                         </li>
-          <li class="nav-item nav-category">Cart</li>
+
+                        <li class="nav-item nav-category">Cart</li>
                         <li class="nav-item">
                             <a class="nav-link" href="../../Cart/back/cartm.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <i class="menu-icon mdi mdi-cart"></i>
                                 <span class="menu-title">Cart Management</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../../Cart/back/promo.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <i class="menu-icon mdi mdi-tag-multiple"></i>
                                 <span class="menu-title">Promos</span>
                             </a>
                         </li>
+
+                        <li class="nav-item nav-category">EVENTS</li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../Cart/back/back1modif.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">Dashboread</span>
+                            <a class="nav-link" href="../../events/app/manage_events.php">
+                                <i class="menu-icon mdi mdi-calendar"></i>
+                                <span class="menu-title">Manage Event</span>
                             </a>
                         </li>
-                        <li class="nav-item nav-category">EVENTS</li>
-                    <li class="nav-item">
-                            <a class="nav-link" href="../../events/app/manage_events.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
-                                <span class="menu-title">Mangae Event</span>
-                            </a>
-                    </li>
-                    <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="../../events/app/manage_tickets.php">
-                                <i class="mdi mdi-grid-large menu-icon"></i>
+                                <i class="menu-icon mdi mdi-ticket"></i>
                                 <span class="menu-title">Manage Ticket</span>
                             </a>
-                    </li>
+                        </li>
+
                         <li class="nav-item nav-category">Settings</li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" id="logoutLink">
-                                <i class="menu-icon mdi mdi-file-document"></i>
+                                <i class="menu-icon mdi mdi-logout"></i>
                                 <span class="menu-title">Log Out</span>
                             </a>
                         </li>
-
-
                     </ul>
                 </nav>
-            <div class="table">
-            <h2 class="text" style="margin-top:10px;">Cart Management</h2>          
-        <form method="GET" action="" class="form-filter">
-            <label for="filter" ></label>
-            <select name="status" style='margin-left: 150px;' id="filter" onchange="this.form.submit()">
-                <option value="">All</option>
-                <option value="Pending" <?= $filterStatus == 'Pending' ? 'selected' : '' ?>>Pending</option>
-                <option value="In Progress" <?= $filterStatus == 'In Progress' ? 'selected' : '' ?>>In Progress</option>
-                <option value="Ready for Delivery" <?= $filterStatus == 'Ready for Delivery' ? 'selected' : '' ?>>Ready for Delivery</option>
-                <option value="Delivered" <?= $filterStatus == 'Delivered' ? 'selected' : '' ?>>Delivered</option>
-            </select>
-        </form>
-            <table>
-    <thead>
-        <tr>
-            <th>Cart ID</th>
-            <th>Total (TND)</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    <?php if (!empty($carts)): ?>
-        <?php foreach ($carts as $cart): ?>
-            <tr>
-                <td><?= $cart['id']; ?></td>
-                <td><?= number_format($cart['total'], 2); ?> TND</td>
-                <td><?= htmlspecialchars($cart['status']); ?></td>
-                <td>
-                    <!-- Status change -->
-                    <form method="POST" action="" class="form-change-status">
-                        <input type="hidden" name="cart_id" value="<?= $cart['id']; ?>">
-                        <select name="new_status" onchange="this.form.submit()">
-                            <option value="Pending" <?= $cart['status'] == 'Pending' ? 'selected' : '' ?>>Pending</option>
-                            <option value="In Progress" <?= $cart['status'] == 'In Progress' ? 'selected' : '' ?>>In Progress</option>
-                            <option value="Ready for Delivery" <?= $cart['status'] == 'Ready for Delivery' ? 'selected' : '' ?>>Ready for Delivery</option>
-                            <option value="Delivered" <?= $cart['status'] == 'Delivered' ? 'selected' : '' ?>>Delivered</option>
-                        </select>
-                    </form>
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Cart Management</h4>
+                                    <p class="card-description">Manage and track all customer carts</p>
 
-                    <!-- Additional actions -->
-                    <a href="details.php?id=<?= $cart['id']; ?>#carts" >
-                        <button>View Details</button>
-                    </a>
-                    <a href="delete_cart.php?id=<?= $cart['id']; ?>" onclick="return confirm('Are you sure you want to delete this cart?');">
-                        <button>Delete</button>
-                    </a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <tr>
-            <td colspan="4">No carts found.</td>
-        </tr>
-    <?php endif; ?>
-    </tbody>
-</table>
+                                    <form method="GET" action="" class="form-filter mb-4">
+                                        <label for="filter">Filter by Status:</label>
+                                        <select name="status" id="filter" class="form-control" style="width: 200px;" onchange="this.form.submit()">
+                                            <option value="">All</option>
+                                            <option value="Pending" <?= $filterStatus == 'Pending' ? 'selected' : '' ?>>Pending</option>
+                                            <option value="In Progress" <?= $filterStatus == 'In Progress' ? 'selected' : '' ?>>In Progress</option>
+                                            <option value="Ready for Delivery" <?= $filterStatus == 'Ready for Delivery' ? 'selected' : '' ?>>Ready for Delivery</option>
+                                            <option value="Delivered" <?= $filterStatus == 'Delivered' ? 'selected' : '' ?>>Delivered</option>
+                                        </select>
+                                    </form>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Cart ID</th>
+                                                    <th>Total (TND)</th>
+                                                    <th>Status</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php if (!empty($carts)): ?>
+                                                    <?php foreach ($carts as $cart): ?>
+                                                        <tr>
+                                                            <td><?= $cart['id']; ?></td>
+                                                            <td><?= number_format($cart['total'], 2); ?> TND</td>
+                                                            <td>
+                                                                <span class="badge badge-<?= getStatusBadgeClass($cart['status']) ?>">
+                                                                    <?= htmlspecialchars($cart['status']); ?>
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                <form method="POST" action="" class="form-change-status d-inline">
+                                                                    <input type="hidden" name="cart_id" value="<?= $cart['id']; ?>">
+                                                                    <select name="new_status" class="form-control form-control-sm d-inline-block" style="width: auto;" onchange="this.form.submit()">
+                                                                        <option value="Pending" <?= $cart['status'] == 'Pending' ? 'selected' : '' ?>>Pending</option>
+                                                                        <option value="In Progress" <?= $cart['status'] == 'In Progress' ? 'selected' : '' ?>>In Progress</option>
+                                                                        <option value="Ready for Delivery" <?= $cart['status'] == 'Ready for Delivery' ? 'selected' : '' ?>>Ready for Delivery</option>
+                                                                        <option value="Delivered" <?= $cart['status'] == 'Delivered' ? 'selected' : '' ?>>Delivered</option>
+                                                                    </select>
+                                                                </form>
+
+                                                                <a href="details.php?id=<?= $cart['id']; ?>" class="btn btn-info btn-sm ml-2">
+                                                                    <i class="mdi mdi-eye"></i> View
+                                                                </a>
+                                                                <a href="delete_cart.php?id=<?= $cart['id']; ?>" 
+                                                                   onclick="return confirm('Are you sure you want to delete this cart?');" 
+                                                                   class="btn btn-danger btn-sm ml-2">
+                                                                    <i class="mdi mdi-delete"></i> Delete
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php else: ?>
+                                                    <tr>
+                                                        <td colspan="4" class="text-center">No carts found.</td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <?php if (isset($error)): ?>
+                                        <div class="alert alert-danger mt-3">
+                                            <?= $error; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="cart-management">
-
- </div>
-
-
-
-<!-- Displaying errors -->
-<?php if (isset($error)): ?>
-    <p class="error"><?= $error; ?></p>
-<?php endif; ?>
-</div>
-        
- 
+        </div>
 </body>
 </html>
+<script src="../../../assets/js/sidebar.js"></script>

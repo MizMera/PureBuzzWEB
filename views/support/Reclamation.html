@@ -19,79 +19,80 @@
     
 </head>
 <style>
-    .sidebar {
-        position: fixed;
-        top: 80px; /* Match the navbar height */
-        left: 0;
-        height: calc(100% - 80px); /* Subtract navbar height */
-        z-index: 999; /* Just below navbar */
-        background: #f5f5f5;
-        box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        width: 260px;
-        transition: transform 0.3s ease-in-out;
-    }
-
-    .sidebar.hidden {
-        transform: translateX(-260px);
-    }
-
-    .sidebar .nav {
-        height: 100%;
-        margin-top: 0; /* Remove margin since we're already positioned below navbar */
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-
-    .sidebar .nav::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    .sidebar .nav::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
-
-    .sidebar .nav::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 5px;
-    }
-
-    .sidebar .nav::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
-    
-    .main-panel {
-        margin-left: 260px;
-        width: calc(100% - 260px);
-        min-height: 100vh;
-        transition: 0.3s;
-        padding: 20px;
-        margin-top: 80px; /* Add margin to account for fixed navbar */
-    }
-
-    .main-panel.expanded {
-        margin-left: 0;
-        width: 100%;
-    }
-
-    @media (max-width: 991px) {
-        .sidebar {
-            position: static;
-            height: auto;
-            width: 100%;
-            transform: none !important;
-            top: 0;
+     .sidebar {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            height: calc(100% - 80px);
+            z-index: 999;
+            background: #fff;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            width: 260px;
+            transition: transform 0.3s ease-in-out;
+            background: #f5f5f5;
         }
+
+        .sidebar.hidden {
+            transform: translateX(-260px);
+        }
+
         .sidebar .nav {
-            height: auto;
+            height: 100%;
             margin-top: 0;
-            overflow: visible;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
+
+        .sidebar .nav::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .sidebar .nav::-webkit-scrollbar-track {
+            background: #f5f5f5;
+        }
+
+        .sidebar .nav::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+
+        .sidebar .nav::-webkit-scrollbar-thumb:hover {
+           
+        }
+        
         .main-panel {
-            margin-left: 0;
-            width: 100%;
+            margin-left: 260px;
+            width: calc(100% - 260px);
+            min-height: 100vh;
+            transition: 0.3s;
+            padding: 20px;
             margin-top: 80px;
         }
-    }
+
+        .main-panel.expanded {
+            margin-left: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 991px) {
+            .sidebar {
+                position: static;
+                height: auto;
+                width: 100%;
+                transform: none !important;
+                top: 0;
+            }
+            .sidebar .nav {
+                height: auto;
+                margin-top: 0;
+                overflow: visible;
+            }
+            .main-panel {
+                margin-left: 0;
+                width: 100%;
+                margin-top: 80px;
+            }
+        }
 </style>
 <body>
     <!-- Navbar -->
@@ -162,112 +163,16 @@
     </nav>
     <div class="container-fluid ">
         <!-- Sidebar -->
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
-            <ul class="nav">
-                <li class="nav-item nav-category">Products and Management</li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="../../views/categories/index.php" aria-expanded="false" aria-controls="tables">
-                        <i class="menu-icon mdi mdi-table"></i>
-                        <span class="menu-title">Categories</span>
-                    </a>
-                    <div class="collapse" id="tables">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../views/Products/index.php" aria-expanded="false" aria-controls="charts">
-                        <i class="menu-icon mdi mdi-chart-line"></i>
-                        <span class="menu-title">Product</span>
-                    </a>
-                    <div class="collapse" id="charts">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item nav-category">Support</li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../views/support/Reclamation.html" aria-expanded="false" aria-controls="charts">
-                        <i class="menu-icon mdi mdi-chart-line"></i>
-                        <span class="menu-title">Claims views</span>
-                    </a>
-                    <div class="collapse" id="charts">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item nav-category">User Managment</li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="../../views/user/Back_Office/stat.html" aria-expanded="false" aria-controls="basic">
-                        <i class="menu-icon mdi mdi-table"></i>
-                        <span class="menu-title">User Mangamnets</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="basic">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="addUser.html">Add User</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="AllUsers.html">Get All Users</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="stat.html">Dashboard</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item nav-category"> apiaries</li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../views/apiary/backOffice/apiaries.php">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
-                        <span class="menu-title">Apiaries</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../views/apiary/backOffice/harvests.php">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
-                        <span class="menu-title">Harvests</span>
-                    </a>
-                </li>
-                <li class="nav-item nav-category">Cart</li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../views/Cart/back/cartm.php">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
-                        <span class="menu-title">Cart Management</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../views/Cart/back/promo.php">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
-                        <span class="menu-title">Promos</span>
-                    </a>
-                </li>
-                <li class="nav-item nav-category">EVENTS</li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../events/app/manage_events.php">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
-                        <span class="menu-title">Mangae Event</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../events/app/manage_tickets.php">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
-                        <span class="menu-title">Manage Ticket</span>
-                    </a>
-                </li>
-                <li class="nav-item nav-category">Settings</li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="logoutLink">
-                        <i class="menu-icon mdi mdi-file-document"></i>
-                        <span class="menu-title">Log Out</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+               <div id="sidebar-placeholder"></div>
+               <script>
+                   fetch('../../Public/sidebar.php')
+                       .then(response => response.text())
+                       .then(data => {
+                           document.getElementById('sidebar-placeholder').innerHTML = data;
+                       })
+                       .catch(error => console.error('Error loading sidebar:', error));
+               </script>
+
 
         <!-- Main Content -->
         <div class="main-panel">
@@ -803,4 +708,4 @@
     });
 </script>
 
-</html>
+</html> <script src="../../../assets/js/sidebar.js"></script>

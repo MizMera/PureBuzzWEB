@@ -8695,6 +8695,8 @@
       margin-bottom: 0.5rem;
       font-weight: 500;
       line-height: 1.2;
+      color: var(--primary-color);
+
     }
 
     h1, .h1 {
@@ -29179,7 +29181,8 @@
     }
     .welcome-text {
       color: var(--primary-color);
-      font-weight: 700; /* Increased font weight for emphasis */
+      font-weight: 700;
+      font-size: 17px; /* Increased font weight for emphasis */
     }
     .navbar .navbar-menu-wrapper .navbar-nav .nav-item {
       font-family: "Manrope", sans-serif;
